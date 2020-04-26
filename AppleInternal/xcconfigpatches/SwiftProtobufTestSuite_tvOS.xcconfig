@@ -1,0 +1,11 @@
+// Architectures
+SDKROOT = appletvos.internal
+
+// Linking
+LD_RUNPATH_SEARCH_PATHS =
+
+// Packaging
+PRODUCT_BUNDLE_IDENTIFIER = com.apple.InternalSwiftProtobufTests
+
+// Signing
+CODE_SIGN_IDENTITY[sdk=appletvos*] = -
