@@ -22,7 +22,7 @@ import Darwin.C
 #endif
 
 import Foundation
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 func readRequest() -> Data? {
     var rawCount: UInt32 = 0
@@ -84,7 +84,7 @@ func buildResponse(serializedData: Data) -> Conformance_ConformanceResponse {
         return response
     }
 
-    let msgType: SwiftProtobuf.Message.Type
+    let msgType: InternalSwiftProtobuf.Message.Type
     switch request.messageType {
     case "":
         // Note: This case is here to cover using a old version of the conformance test
@@ -99,7 +99,7 @@ func buildResponse(serializedData: Data) -> Conformance_ConformanceResponse {
         return response
     }
 
-    let testMessage: SwiftProtobuf.Message
+    let testMessage: InternalSwiftProtobuf.Message
     switch request.payload {
     case .protobufPayload(let data)?:
         do {

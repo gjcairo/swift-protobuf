@@ -16,7 +16,7 @@
 // -----------------------------------------------------------------------------
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 /// Provides the generation for proto2 syntax extensions in a file.
 class ExtensionSetGenerator {
@@ -207,10 +207,10 @@ class ExtensionSetGenerator {
         let filePrefix = namer.typePrefix(forFile: fileDescriptor)
         p.print(
           "\n",
-          "/// A `SwiftProtobuf.SimpleExtensionMap` that includes all of the extensions defined by\n",
-          "/// this .proto file. It can be used any place an `SwiftProtobuf.ExtensionMap` is needed\n",
-          "/// in parsing, or it can be combined with other `SwiftProtobuf.SimpleExtensionMap`s to create\n",
-          "/// a larger `SwiftProtobuf.SimpleExtensionMap`.\n",
+          "/// A `InternalSwiftProtobuf.SimpleExtensionMap` that includes all of the extensions defined by\n",
+          "/// this .proto file. It can be used any place an `InternalSwiftProtobuf.ExtensionMap` is needed\n",
+          "/// in parsing, or it can be combined with other `InternalSwiftProtobuf.SimpleExtensionMap`s to create\n",
+          "/// a larger `InternalSwiftProtobuf.SimpleExtensionMap`.\n",
           "\(generatorOptions.visibilitySourceSnippet)let \(filePrefix)\(filenameAsIdentifer)_Extensions: \(SwiftProtobufInfo.name).SimpleExtensionMap = [\n")
         p.indent()
         var separator = ""

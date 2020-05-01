@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import XCTest
-import SwiftProtobuf
+import InternalSwiftProtobuf
 @testable import SwiftProtobufPluginLibrary
 
 // Support equality to simplify testing of getting the correct errors.
@@ -35,7 +35,7 @@ class Test_ProtoFileToModuleMappings: XCTestCase {
     // ProtoFileToModuleMappings always includes mappings for the protos that
     // ship with the library, so they will show in the counts below.
     let baselineEntries = SwiftProtobufInfo.bundledProtoFiles.count
-    let baselineModules = 1  // Since those files are in SwiftProtobuf.
+    let baselineModules = 1  // Since those files are in InternalSwiftProtobuf.
 
     // (config, num_expected_mappings, num_expected_modules)
     let tests: [(String, Int, Int)] = [

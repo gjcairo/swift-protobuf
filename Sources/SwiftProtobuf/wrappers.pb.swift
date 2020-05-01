@@ -53,8 +53,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
-  struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.ProtobufAPIVersionCheck {
+  struct _2: InternalSwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -62,14 +62,14 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 ///
 /// The JSON representation for `DoubleValue` is JSON number.
 public struct Google_Protobuf_DoubleValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The double value.
   public var value: Double = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -78,14 +78,14 @@ public struct Google_Protobuf_DoubleValue {
 ///
 /// The JSON representation for `FloatValue` is JSON number.
 public struct Google_Protobuf_FloatValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The float value.
   public var value: Float = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -94,14 +94,14 @@ public struct Google_Protobuf_FloatValue {
 ///
 /// The JSON representation for `Int64Value` is JSON string.
 public struct Google_Protobuf_Int64Value {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The int64 value.
   public var value: Int64 = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -110,14 +110,14 @@ public struct Google_Protobuf_Int64Value {
 ///
 /// The JSON representation for `UInt64Value` is JSON string.
 public struct Google_Protobuf_UInt64Value {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The uint64 value.
   public var value: UInt64 = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -126,14 +126,14 @@ public struct Google_Protobuf_UInt64Value {
 ///
 /// The JSON representation for `Int32Value` is JSON number.
 public struct Google_Protobuf_Int32Value {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The int32 value.
   public var value: Int32 = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -142,14 +142,14 @@ public struct Google_Protobuf_Int32Value {
 ///
 /// The JSON representation for `UInt32Value` is JSON number.
 public struct Google_Protobuf_UInt32Value {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The uint32 value.
   public var value: UInt32 = 0
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -158,14 +158,14 @@ public struct Google_Protobuf_UInt32Value {
 ///
 /// The JSON representation for `BoolValue` is JSON `true` and `false`.
 public struct Google_Protobuf_BoolValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The bool value.
   public var value: Bool = false
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -174,14 +174,14 @@ public struct Google_Protobuf_BoolValue {
 ///
 /// The JSON representation for `StringValue` is JSON string.
 public struct Google_Protobuf_StringValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The string value.
   public var value: String = String()
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -190,14 +190,14 @@ public struct Google_Protobuf_StringValue {
 ///
 /// The JSON representation for `BytesValue` is JSON string.
 public struct Google_Protobuf_BytesValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   /// The bytes value.
-  public var value: Data = SwiftProtobuf.Internal.emptyData
+  public var value: Data = InternalSwiftProtobuf.Internal.emptyData
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -206,13 +206,13 @@ public struct Google_Protobuf_BytesValue {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_DoubleValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_DoubleValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DoubleValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularDoubleField(value: &self.value)
@@ -221,7 +221,7 @@ extension Google_Protobuf_DoubleValue: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularDoubleField(value: self.value, fieldNumber: 1)
     }
@@ -235,13 +235,13 @@ extension Google_Protobuf_DoubleValue: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 }
 
-extension Google_Protobuf_FloatValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_FloatValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FloatValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularFloatField(value: &self.value)
@@ -250,7 +250,7 @@ extension Google_Protobuf_FloatValue: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularFloatField(value: self.value, fieldNumber: 1)
     }
@@ -264,13 +264,13 @@ extension Google_Protobuf_FloatValue: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 }
 
-extension Google_Protobuf_Int64Value: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Int64Value: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Int64Value"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt64Field(value: &self.value)
@@ -279,7 +279,7 @@ extension Google_Protobuf_Int64Value: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularInt64Field(value: self.value, fieldNumber: 1)
     }
@@ -293,13 +293,13 @@ extension Google_Protobuf_Int64Value: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 }
 
-extension Google_Protobuf_UInt64Value: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_UInt64Value: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UInt64Value"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularUInt64Field(value: &self.value)
@@ -308,7 +308,7 @@ extension Google_Protobuf_UInt64Value: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularUInt64Field(value: self.value, fieldNumber: 1)
     }
@@ -322,13 +322,13 @@ extension Google_Protobuf_UInt64Value: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 }
 
-extension Google_Protobuf_Int32Value: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Int32Value: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Int32Value"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt32Field(value: &self.value)
@@ -337,7 +337,7 @@ extension Google_Protobuf_Int32Value: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularInt32Field(value: self.value, fieldNumber: 1)
     }
@@ -351,13 +351,13 @@ extension Google_Protobuf_Int32Value: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 }
 
-extension Google_Protobuf_UInt32Value: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_UInt32Value: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UInt32Value"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularUInt32Field(value: &self.value)
@@ -366,7 +366,7 @@ extension Google_Protobuf_UInt32Value: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != 0 {
       try visitor.visitSingularUInt32Field(value: self.value, fieldNumber: 1)
     }
@@ -380,13 +380,13 @@ extension Google_Protobuf_UInt32Value: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 }
 
-extension Google_Protobuf_BoolValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_BoolValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BoolValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBoolField(value: &self.value)
@@ -395,7 +395,7 @@ extension Google_Protobuf_BoolValue: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.value != false {
       try visitor.visitSingularBoolField(value: self.value, fieldNumber: 1)
     }
@@ -409,13 +409,13 @@ extension Google_Protobuf_BoolValue: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 }
 
-extension Google_Protobuf_StringValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_StringValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StringValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.value)
@@ -424,7 +424,7 @@ extension Google_Protobuf_StringValue: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.value.isEmpty {
       try visitor.visitSingularStringField(value: self.value, fieldNumber: 1)
     }
@@ -438,13 +438,13 @@ extension Google_Protobuf_StringValue: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 }
 
-extension Google_Protobuf_BytesValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_BytesValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BytesValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularBytesField(value: &self.value)
@@ -453,7 +453,7 @@ extension Google_Protobuf_BytesValue: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.value.isEmpty {
       try visitor.visitSingularBytesField(value: self.value, fieldNumber: 1)
     }

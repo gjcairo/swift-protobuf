@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 
 class MessageFieldGenerator: FieldGeneratorBase, FieldGenerator {
