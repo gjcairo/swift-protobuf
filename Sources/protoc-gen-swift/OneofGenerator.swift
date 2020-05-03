@@ -14,7 +14,7 @@
 // -----------------------------------------------------------------------------
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 class OneofGenerator {
     /// Custom FieldGenerator that caches come calculated strings, and bridges

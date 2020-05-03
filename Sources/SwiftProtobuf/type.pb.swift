@@ -43,13 +43,13 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
-  struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.ProtobufAPIVersionCheck {
+  struct _2: InternalSwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
 /// The syntax in which a protocol buffer element is defined.
-public enum Google_Protobuf_Syntax: SwiftProtobuf.Enum {
+public enum Google_Protobuf_Syntax: InternalSwiftProtobuf.Enum {
   public typealias RawValue = Int
 
   /// Syntax `proto2`.
@@ -95,7 +95,7 @@ extension Google_Protobuf_Syntax: CaseIterable {
 
 /// A protocol buffer message type.
 public struct Google_Protobuf_Type {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -124,7 +124,7 @@ public struct Google_Protobuf_Type {
   /// The source syntax.
   public var syntax: Google_Protobuf_Syntax = .proto2
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 
@@ -133,7 +133,7 @@ public struct Google_Protobuf_Type {
 
 /// A single field of a message type.
 public struct Google_Protobuf_Field {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -169,10 +169,10 @@ public struct Google_Protobuf_Field {
   /// The string value of the default value of this field. Proto2 syntax only.
   public var defaultValue: String = String()
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   /// Basic field types.
-  public enum Kind: SwiftProtobuf.Enum {
+  public enum Kind: InternalSwiftProtobuf.Enum {
     public typealias RawValue = Int
 
     /// Field type unknown.
@@ -290,7 +290,7 @@ public struct Google_Protobuf_Field {
   }
 
   /// Whether a field is optional, required, or repeated.
-  public enum Cardinality: SwiftProtobuf.Enum {
+  public enum Cardinality: InternalSwiftProtobuf.Enum {
     public typealias RawValue = Int
 
     /// For fields with unknown cardinality.
@@ -376,7 +376,7 @@ extension Google_Protobuf_Field.Cardinality: CaseIterable {
 
 /// Enum type definition.
 public struct Google_Protobuf_Enum {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -402,7 +402,7 @@ public struct Google_Protobuf_Enum {
   /// The source syntax.
   public var syntax: Google_Protobuf_Syntax = .proto2
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 
@@ -411,7 +411,7 @@ public struct Google_Protobuf_Enum {
 
 /// Enum value definition.
 public struct Google_Protobuf_EnumValue {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -424,7 +424,7 @@ public struct Google_Protobuf_EnumValue {
   /// Protocol buffer options.
   public var options: [Google_Protobuf_Option] = []
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 }
@@ -432,7 +432,7 @@ public struct Google_Protobuf_EnumValue {
 /// A protocol buffer option, which can be attached to a message, field,
 /// enumeration, etc.
 public struct Google_Protobuf_Option {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -455,7 +455,7 @@ public struct Google_Protobuf_Option {
   /// Clears the value of `value`. Subsequent reads from it will return its default value.
   public mutating func clearValue() {self._value = nil}
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 
@@ -466,16 +466,16 @@ public struct Google_Protobuf_Option {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Syntax: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+extension Google_Protobuf_Syntax: InternalSwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "SYNTAX_PROTO2"),
     1: .same(proto: "SYNTAX_PROTO3"),
   ]
 }
 
-extension Google_Protobuf_Type: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Type: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Type"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "fields"),
     3: .same(proto: "oneofs"),
@@ -484,7 +484,7 @@ extension Google_Protobuf_Type: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     6: .same(proto: "syntax"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.name)
@@ -498,7 +498,7 @@ extension Google_Protobuf_Type: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }
@@ -532,9 +532,9 @@ extension Google_Protobuf_Type: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 }
 
-extension Google_Protobuf_Field: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Field: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Field"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "kind"),
     2: .same(proto: "cardinality"),
     3: .same(proto: "number"),
@@ -547,7 +547,7 @@ extension Google_Protobuf_Field: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     11: .standard(proto: "default_value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.kind)
@@ -565,7 +565,7 @@ extension Google_Protobuf_Field: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if self.kind != .typeUnknown {
       try visitor.visitSingularEnumField(value: self.kind, fieldNumber: 1)
     }
@@ -615,8 +615,8 @@ extension Google_Protobuf_Field: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
   }
 }
 
-extension Google_Protobuf_Field.Kind: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+extension Google_Protobuf_Field.Kind: InternalSwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "TYPE_UNKNOWN"),
     1: .same(proto: "TYPE_DOUBLE"),
     2: .same(proto: "TYPE_FLOAT"),
@@ -639,8 +639,8 @@ extension Google_Protobuf_Field.Kind: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Google_Protobuf_Field.Cardinality: SwiftProtobuf._ProtoNameProviding {
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+extension Google_Protobuf_Field.Cardinality: InternalSwiftProtobuf._ProtoNameProviding {
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "CARDINALITY_UNKNOWN"),
     1: .same(proto: "CARDINALITY_OPTIONAL"),
     2: .same(proto: "CARDINALITY_REQUIRED"),
@@ -648,9 +648,9 @@ extension Google_Protobuf_Field.Cardinality: SwiftProtobuf._ProtoNameProviding {
   ]
 }
 
-extension Google_Protobuf_Enum: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Enum: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Enum"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "enumvalue"),
     3: .same(proto: "options"),
@@ -658,7 +658,7 @@ extension Google_Protobuf_Enum: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     5: .same(proto: "syntax"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.name)
@@ -671,7 +671,7 @@ extension Google_Protobuf_Enum: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }
@@ -701,15 +701,15 @@ extension Google_Protobuf_Enum: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 }
 
-extension Google_Protobuf_EnumValue: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_EnumValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EnumValue"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "number"),
     3: .same(proto: "options"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.name)
@@ -720,7 +720,7 @@ extension Google_Protobuf_EnumValue: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }
@@ -742,14 +742,14 @@ extension Google_Protobuf_EnumValue: SwiftProtobuf.Message, SwiftProtobuf._Messa
   }
 }
 
-extension Google_Protobuf_Option: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Option: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Option"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "name"),
     2: .same(proto: "value"),
   ]
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.name)
@@ -759,7 +759,7 @@ extension Google_Protobuf_Option: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.name.isEmpty {
       try visitor.visitSingularStringField(value: self.name, fieldNumber: 1)
     }

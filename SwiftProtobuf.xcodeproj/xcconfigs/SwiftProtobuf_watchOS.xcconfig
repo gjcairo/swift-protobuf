@@ -1,0 +1,31 @@
+// Architectures
+SDKROOT = watchos
+
+// Deployment
+TARGETED_DEVICE_FAMILY = 4
+
+// Packaging
+INFOPLIST_FILE = SwiftProtobuf.xcodeproj/Protobuf_Info.plist
+PRODUCT_BUNDLE_IDENTIFIER = org.swift.protobuf.SwiftProtobuf
+PRODUCT_MODULE_NAME = SwiftProtobuf
+PRODUCT_NAME = SwiftProtobuf
+
+
+// AppleInternal Section
+
+
+// Architectures
+SDKROOT = watchos.internal
+
+// Build Options
+BUILD_LIBRARY_FOR_DISTRIBUTION = YES
+SUPPORTS_TEXT_BASED_API = YES
+SWIFT_INSTALL_OBJC_HEADER = NO
+
+// Packaging
+PRODUCT_BUNDLE_IDENTIFIER = com.apple.InternalSwiftProtobuf
+PRODUCT_MODULE_NAME = InternalSwiftProtobuf
+PRODUCT_NAME = InternalSwiftProtobuf
+
+// Deployment
+INSTALL_PATH = $(SYSTEM_LIBRARY_DIR)/PrivateFrameworks

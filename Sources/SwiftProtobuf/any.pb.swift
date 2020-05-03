@@ -43,8 +43,8 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVersionCheck {
-  struct _2: SwiftProtobuf.ProtobufAPIVersion_2 {}
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.ProtobufAPIVersionCheck {
+  struct _2: InternalSwiftProtobuf.ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
@@ -128,7 +128,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
 ///       "value": "1.212s"
 ///     }
 public struct Google_Protobuf_Any {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
@@ -170,7 +170,7 @@ public struct Google_Protobuf_Any {
     set {_uniqueStorage()._value = newValue}
   }
 
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
   public init() {}
 
@@ -181,9 +181,9 @@ public struct Google_Protobuf_Any {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-extension Google_Protobuf_Any: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Google_Protobuf_Any: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Any"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .standard(proto: "type_url"),
     2: .same(proto: "value"),
   ]
@@ -197,7 +197,7 @@ extension Google_Protobuf_Any: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     return _storage
   }
 
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
@@ -210,7 +210,7 @@ extension Google_Protobuf_Any: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
   }
 
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       try _storage.preTraverse()
       if !_storage._typeURL.isEmpty {

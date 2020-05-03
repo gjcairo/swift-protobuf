@@ -14,7 +14,7 @@
 
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 /// The name of the case used to represent unrecognized values in proto3.
 /// This case has an associated value containing the raw integer value.
@@ -58,7 +58,7 @@ class EnumGenerator {
 
     p.print("\n")
     p.print(enumDescriptor.protoSourceComments())
-    p.print("\(visibility)enum \(swiftRelativeName): SwiftProtobuf.Enum {\n")
+    p.print("\(visibility)enum \(swiftRelativeName): \(SwiftProtobufInfo.name).Enum {\n")
     p.indent()
     p.print("\(visibility)typealias RawValue = Int\n")
 
@@ -120,7 +120,7 @@ class EnumGenerator {
 
   func generateRuntimeSupport(printer p: inout CodePrinter) {
     p.print("\n")
-    p.print("extension \(swiftFullName): SwiftProtobuf._ProtoNameProviding {\n")
+    p.print("extension \(swiftFullName): \(SwiftProtobufInfo.name)._ProtoNameProviding {\n")
     p.indent()
     generateProtoNameProviding(printer: &p)
     p.outdent()
@@ -156,7 +156,7 @@ class EnumGenerator {
   private func generateProtoNameProviding(printer p: inout CodePrinter) {
     let visibility = generatorOptions.visibilitySourceSnippet
 
-    p.print("\(visibility)static let _protobuf_nameMap: SwiftProtobuf._NameMap = [\n")
+    p.print("\(visibility)static let _protobuf_nameMap: \(SwiftProtobufInfo.name)._NameMap = [\n")
     p.indent()
     for v in mainEnumValueDescriptorsSorted {
       if v.aliases.isEmpty {
