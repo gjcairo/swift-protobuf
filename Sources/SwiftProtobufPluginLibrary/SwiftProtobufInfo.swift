@@ -13,13 +13,13 @@
 // -----------------------------------------------------------------------------
 
 import Foundation
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 /// Scope for helpers about the library.
 public enum SwiftProtobufInfo {
 
   /// The name of the library
-  public static let name = "SwiftProtobuf"
+  public static let name = "InternalSwiftProtobuf"
 
   /// Proto Files that ship with the library.
   public static let bundledProtoFiles: Set<String> = [
