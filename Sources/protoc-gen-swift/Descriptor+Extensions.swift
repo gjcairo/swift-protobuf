@@ -16,11 +16,6 @@ extension FileDescriptor {
     return syntax == .proto3
   }
 
-  /// True of primative field types should have field presence.
-  var hasPrimativeFieldPresence: Bool {
-    return syntax == .proto2
-  }
-
   var isBundledProto: Bool {
     return SwiftProtobufInfo.isBundledProto(file: proto)
   }
@@ -100,31 +95,9 @@ extension Descriptor {
 }
 
 extension FieldDescriptor {
-  /// True if this field should have presence support
-  var hasFieldPresence: Bool {
-    if label == .repeated {  // Covers both Arrays and Maps
-      return false
-    }
-    if oneofIndex != nil {
-      // When in a oneof, no presence is provided.
-      return false
-    }
-    switch type {
-    case .group, .message:
-      // Groups/messages always get field presence.
-      return true
-    default:
-      // Depends on the context the message was declared in.
-      return file.hasPrimativeFieldPresence
-    }
-  }
-
   func swiftType(namer: SwiftProtobufNamer) -> String {
-    if isMap {
-      let mapDescriptor: Descriptor = messageType
-      let keyField = mapDescriptor.fields[0]
+    if case let (keyField, valueField)? = messageType?.mapKeyAndValue {
       let keyType = keyField.swiftType(namer: namer)
-      let valueField = mapDescriptor.fields[1]
       let valueType = valueField.swiftType(namer: namer)
       return "Dictionary<" + keyType + "," + valueType + ">"
     }
@@ -163,7 +136,10 @@ extension FieldDescriptor {
     case .repeated:
       return swiftType
     case .optional, .required:
-      if hasFieldPresence {
+      guard realOneof == nil else {
+        return swiftType
+      }
+      if hasPresence {
         return "\(swiftType)?"
       } else {
         return swiftType
@@ -248,11 +224,8 @@ extension FieldDescriptor {
   /// Calculates the traits type used for maps and extensions, they
   /// are used in decoding and visiting.
   func traitsType(namer: SwiftProtobufNamer) -> String {
-    if isMap {
-      let mapDescriptor: Descriptor = messageType
-      let keyField = mapDescriptor.fields[0]
+    if case let (keyField, valueField)? = messageType?.mapKeyAndValue {
       let keyTraits = keyField.traitsType(namer: namer)
-      let valueField = mapDescriptor.fields[1]
       let valueTraits = valueField.traitsType(namer: namer)
       switch valueField.type {
       case .message:  // Map's can't have a group as the value

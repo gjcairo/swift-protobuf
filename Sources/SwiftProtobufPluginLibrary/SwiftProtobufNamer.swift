@@ -91,10 +91,7 @@ public final class SwiftProtobufNamer {
     func candidateName(_ enumValue: EnumValueDescriptor) -> String {
       let baseName = enumValue.name
       if let stripped = stripper.strip(from: baseName) {
-        let camelCased = NamingUtils.toLowerCamelCase(stripped)
-        if isValidSwiftIdentifier(camelCased) {
-          return camelCased
-        }
+        return NamingUtils.toLowerCamelCase(stripped)
       }
       return NamingUtils.toLowerCamelCase(baseName)
     }
