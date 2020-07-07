@@ -9,7 +9,7 @@
 // -----------------------------------------------------------------------------
 
 import XCTest
-import SwiftProtobuf
+import InternalSwiftProtobuf
 import SwiftProtobufPluginLibrary
 
 class Test_SwiftProtobufNamer: XCTestCase {

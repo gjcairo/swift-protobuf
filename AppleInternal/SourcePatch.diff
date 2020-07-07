@@ -1,0 +1,13 @@
+diff --git a/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift b/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
+index 83d3b529..ae31fc49 100644
+--- a/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
++++ b/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
+@@ -19,7 +19,7 @@ import SwiftProtobuf
+ public enum SwiftProtobufInfo {
+ 
+   /// The name of the library
+-  public static let name = "SwiftProtobuf"
++  public static let name = "InternalSwiftProtobuf"
+ 
+   /// Proto Files that ship with the library.
+   public static let bundledProtoFiles: Set<String> = [
