@@ -401,6 +401,7 @@ Tests/SwiftProtobufPluginLibraryTests/DescriptorTestData.swift: build ${PROTOC_G
 		${SWIFT_DESCRIPTOR_TEST_PROTOS}
 	@rm -f $@
 	@echo '// See Makefile how this is generated.' >> $@
+	@echo '// swift-format-ignore-file' >> $@
 	@echo 'import Foundation' >> $@
 	@echo 'let fileDescriptorSetBytes: [UInt8] = [' >> $@
 	@xxd -i < DescriptorTestData.bin >> $@
@@ -529,13 +530,16 @@ update-proto-files: check-for-protobuf-checkout
 #
 check-proto-files: check-for-protobuf-checkout
 	@for p in `cd ${GOOGLE_PROTOBUF_CHECKOUT} && ls conformance/*.proto`; do \
-		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/$$p" "Protos/$$p" || exit 1; \
+		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/$$p" "Protos/$$p" \
+		  || (echo "ERROR: Time to do a 'make update-proto-files'" && exit 1); \
 	done
 	@for p in `cd ${GOOGLE_PROTOBUF_CHECKOUT}/src && ls google/protobuf/*.proto | grep -v test`; do \
-		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/src/$$p" "Protos/$$p" || exit 1; \
+		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/src/$$p" "Protos/$$p" \
+		  || (echo "ERROR: Time to do a 'make update-proto-files'" && exit 1); \
 	done
 	@for p in `cd ${GOOGLE_PROTOBUF_CHECKOUT}/src && ls google/protobuf/compiler/*.proto`; do \
-		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/src/$$p" "Protos/$$p" || exit 1; \
+		diff -u "${GOOGLE_PROTOBUF_CHECKOUT}/src/$$p" "Protos/$$p" \
+		  || (echo "ERROR: Time to do a 'make update-proto-files'" && exit 1); \
 	done
 
 # Runs the conformance tests.
