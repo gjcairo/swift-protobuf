@@ -1,0 +1,12 @@
+SKIP_INSTALL = NO
+
+// I would have expected we could set this to either $(inherited) or $(SDK_VERSION), but that doesn't seem to be overriding the values set in Base.xcconfig.
+IPHONEOS_DEPLOYMENT_TARGET = 14.0
+MACOSX_DEPLOYMENT_TARGET = 10.16
+TVOS_DEPLOYMENT_TARGET = 14.0
+WATCHOS_DEPLOYMENT_TARGET = 7.0
+
+DYLIB_INSTALL_NAME_BASE = $(INSTALL_PATH)
+
+// Signing
+CODE_SIGN_IDENTITY = -
