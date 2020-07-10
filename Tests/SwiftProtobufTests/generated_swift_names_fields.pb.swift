@@ -9141,12 +9141,6 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedFields: InternalSwiftP
       if _storage._internalSwiftProtobuf != 0 {
         try visitor.visitSingularInt32Field(value: _storage._internalSwiftProtobuf, fieldNumber: 448)
       }
-      if _storage._internalSwiftProtobuf != 0 {
-        try visitor.visitSingularInt32Field(value: _storage._internalSwiftProtobuf, fieldNumber: 452)
-      }
-      if _storage._internalSwiftProtobuf != 0 {
-        try visitor.visitSingularInt32Field(value: _storage._internalSwiftProtobuf, fieldNumber: 450)
-      }
       if _storage._into != 0 {
         try visitor.visitSingularInt32Field(value: _storage._into, fieldNumber: 449)
       }
