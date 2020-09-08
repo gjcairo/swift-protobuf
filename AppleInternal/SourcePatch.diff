@@ -1,13 +1,13 @@
-diff --git a/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift b/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
-index 83d3b529..ae31fc49 100644
---- a/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
-+++ b/Sources/SwiftProtobufPluginLibrary/SwiftProtobufInfo.swift
-@@ -19,7 +19,7 @@ import SwiftProtobuf
- public enum SwiftProtobufInfo {
+diff --git a/Makefile b/Makefile
+index 0be6fef8..a28b03fa 100644
+--- a/Makefile
++++ b/Makefile
+@@ -54,7 +54,7 @@ GOOGLE_PROTOBUF_CHECKOUT?=../protobuf
+ PROTOC_GEN_SWIFT=.build/debug/protoc-gen-swift
+ GENERATE_SRCS_BASE=${PROTOC} --plugin=protoc-gen-tfiws=${PROTOC_GEN_SWIFT}
+ # Until the flag isn't needed, add the flag to enable proto3 optional.
+-GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional
++GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional --tfiws_opt=SwiftProtobufModuleName=InternalSwiftProtobuf
  
-   /// The name of the library
--  public static let name = "SwiftProtobuf"
-+  public static let name = "InternalSwiftProtobuf"
- 
-   /// Proto Files that ship with the library.
-   public static let bundledProtoFiles: Set<String> = [
+ # Where to find the Swift conformance test runner executable.
+ SWIFT_CONFORMANCE_PLUGIN=.build/debug/Conformance
