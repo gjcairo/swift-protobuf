@@ -112,6 +112,7 @@ class Test_NamingUtils: XCTestCase {
 
       // Some of our names get the disambiguator added.
       ( "SwiftProtobuf", "SwiftProtobufMessage" ),
+      ( "RenamedSwiftProtobuf", "RenamedSwiftProtobufMessage" ),
       ( "isInitialized", "isInitializedMessage" ),
 
       // Some Swift keywords.
@@ -129,7 +130,7 @@ class Test_NamingUtils: XCTestCase {
       ( "___", "___Message" ),
     ]
     for (input, expected) in tests {
-      XCTAssertEqual(NamingUtils.sanitize(messageName: input), expected)
+      XCTAssertEqual(NamingUtils.sanitize(messageName: input, forbiddenTypeNames: ["RenamedSwiftProtobuf"]), expected)
     }
   }
 
@@ -144,6 +145,7 @@ class Test_NamingUtils: XCTestCase {
 
       // Some of our names get the disambiguator added.
       ( "SwiftProtobuf", "SwiftProtobufEnum" ),
+      ( "RenamedSwiftProtobuf", "RenamedSwiftProtobufEnum" ),
       ( "isInitialized", "isInitializedEnum" ),
 
       // Some Swift keywords.
@@ -161,7 +163,7 @@ class Test_NamingUtils: XCTestCase {
       ( "___", "___Enum" ),
     ]
     for (input, expected) in tests {
-      XCTAssertEqual(NamingUtils.sanitize(enumName: input), expected)
+      XCTAssertEqual(NamingUtils.sanitize(enumName: input, forbiddenTypeNames: ["RenamedSwiftProtobuf"]), expected)
     }
   }
 
@@ -175,7 +177,7 @@ class Test_NamingUtils: XCTestCase {
       ( "foo_bar", "foo_bar" ),
 
       // Some of our names get the disambiguator added.
-      ( "SwiftProtobuf", "SwiftProtobufOneof" ),
+      ( "RenamedSwiftProtobuf", "RenamedSwiftProtobufOneof" ),
       ( "isInitialized", "isInitializedOneof" ),
 
       // Some Swift keywords.
@@ -193,7 +195,7 @@ class Test_NamingUtils: XCTestCase {
       ( "___", "___Oneof" ),
     ]
     for (input, expected) in tests {
-      XCTAssertEqual(NamingUtils.sanitize(oneofName: input), expected)
+      XCTAssertEqual(NamingUtils.sanitize(oneofName: input, forbiddenTypeNames: ["RenamedSwiftProtobuf"]), expected)
     }
   }
 

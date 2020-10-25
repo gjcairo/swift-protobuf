@@ -1,5 +1,8 @@
 name: Build and Test
 
+# NOTE: If making changes to most of the steps, please also look to update
+# regular_conformance.yml also.
+
 on:
   push:
     branches: [ master ]
@@ -12,19 +15,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.2.1-bionic", "5.1.5-bionic", "4.2.4"]
+        swift: ["5.3-bionic", "5.2.5-bionic", "5.1.5-bionic", "5.0.3-bionic", "4.2.4"]
         # protobuf_git can reference a commit, tag, or branch
         # commit: "commits/6935eae45c99926a000ecbef0be20dfd3d159e71"
         # tag: "ref/tags/v3.11.4"
         # branch: "ref/heads/master"
         protobuf_git: ["ref/heads/master"]
-        include:
-          - swift: "5.2.1-bionic"
-            platform: "ubuntu-18.04"
-          - swift: "5.1.5-bionic"
-            platform: "ubuntu-18.04"
-          - swift: "4.2.4"
-            platform: "ubuntu-16.04"
     container:
       image: swift:${{ matrix.swift }}
     steps:
@@ -35,7 +31,13 @@ jobs:
     - name: Update and install dependencies
       # dependencies from https://github.com/protocolbuffers/protobuf/blob/master/src/README.md
       # this step is run before get-sha because we need curl and jq for get-sha
-      run: apt-get update && apt-get install -y autoconf automake libtool curl make g++ unzip jq
+      # NOTE: zlib1g-dev is added to fix the Swift 5.0.x builds, when those builds aren't needed
+      # that dep likely can be removed.
+      run: |
+        set -eu
+        apt-get update
+        apt-get install -y autoconf automake libtool curl make g++ unzip jq
+        [ \"${{ matrix.swift }}\" != \"5.0.3-bionic\" ] || apt-get install zlib1g-dev
     - name: Get Protobuf Commit SHA
       id: get-sha
       run: |
@@ -61,7 +63,7 @@ jobs:
       with:
         path: protobuf
         # NOTE: for refs that can float like 'master' the cache might be out of date!
-        key: ${{ runner.os }}-${{ matrix.platform}}-protobuf-${{ steps.get-sha.outputs.sha }}
+        key: ${{ runner.os }}-${{ matrix.swift}}-protobuf-${{ steps.get-sha.outputs.sha }}
     - name: Checkout protobuf repo
       if: steps.cache-protobuf.outputs.cache-hit != 'true'
       uses: actions/checkout@v2

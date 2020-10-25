@@ -235,8 +235,11 @@ extension Ext4MyMessage.C: InternalSwiftProtobuf.Message, InternalSwiftProtobuf.
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1410: try decoder.decodeSingularInt64Field(value: &self._c)
+      case 1410: try { try decoder.decodeSingularInt64Field(value: &self._c) }()
       default: break
       }
     }
@@ -264,8 +267,11 @@ extension Ext4C: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageIm
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1420: try decoder.decodeSingularInt64Field(value: &self._c)
+      case 1420: try { try decoder.decodeSingularInt64Field(value: &self._c) }()
       default: break
       }
     }

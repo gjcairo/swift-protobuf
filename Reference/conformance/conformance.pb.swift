@@ -115,7 +115,7 @@ enum Conformance_TestCategory: SwiftProtobuf.Enum {
   case jsonTest // = 2
 
   /// Similar to JSON_TEST. However, during parsing json, testee should ignore
-  /// unknown fields. This feature is optional. Each implementation can descide
+  /// unknown fields. This feature is optional. Each implementation can decide
   /// whether to support it.  See
   /// https://developers.google.com/protocol-buffers/docs/proto3#json_options
   /// for more detail.
@@ -212,7 +212,7 @@ struct Conformance_ConformanceRequest {
   var protobufPayload: Data {
     get {
       if case .protobufPayload(let v)? = payload {return v}
-      return SwiftProtobuf.Internal.emptyData
+      return Data()
     }
     set {payload = .protobufPayload(newValue)}
   }
@@ -251,7 +251,7 @@ struct Conformance_ConformanceRequest {
   var messageType: String = String()
 
   /// Each test is given a specific test category. Some category may need
-  /// spedific support in testee programs. Refer to the definition of TestCategory
+  /// specific support in testee programs. Refer to the definition of TestCategory
   /// for more information.
   var testCategory: Conformance_TestCategory = .unspecifiedTest
 
@@ -287,11 +287,26 @@ struct Conformance_ConformanceRequest {
 
   #if !swift(>=4.1)
     static func ==(lhs: Conformance_ConformanceRequest.OneOf_Payload, rhs: Conformance_ConformanceRequest.OneOf_Payload) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.protobufPayload(let l), .protobufPayload(let r)): return l == r
-      case (.jsonPayload(let l), .jsonPayload(let r)): return l == r
-      case (.jspbPayload(let l), .jspbPayload(let r)): return l == r
-      case (.textPayload(let l), .textPayload(let r)): return l == r
+      case (.protobufPayload, .protobufPayload): return {
+        guard case .protobufPayload(let l) = lhs, case .protobufPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.jsonPayload, .jsonPayload): return {
+        guard case .jsonPayload(let l) = lhs, case .jsonPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.jspbPayload, .jspbPayload): return {
+        guard case .jspbPayload(let l) = lhs, case .jspbPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.textPayload, .textPayload): return {
+        guard case .textPayload(let l) = lhs, case .textPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -351,7 +366,7 @@ struct Conformance_ConformanceResponse {
   var protobufPayload: Data {
     get {
       if case .protobufPayload(let v)? = result {return v}
-      return SwiftProtobuf.Internal.emptyData
+      return Data()
     }
     set {result = .protobufPayload(newValue)}
   }
@@ -433,15 +448,42 @@ struct Conformance_ConformanceResponse {
 
   #if !swift(>=4.1)
     static func ==(lhs: Conformance_ConformanceResponse.OneOf_Result, rhs: Conformance_ConformanceResponse.OneOf_Result) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.parseError(let l), .parseError(let r)): return l == r
-      case (.serializeError(let l), .serializeError(let r)): return l == r
-      case (.runtimeError(let l), .runtimeError(let r)): return l == r
-      case (.protobufPayload(let l), .protobufPayload(let r)): return l == r
-      case (.jsonPayload(let l), .jsonPayload(let r)): return l == r
-      case (.skipped(let l), .skipped(let r)): return l == r
-      case (.jspbPayload(let l), .jspbPayload(let r)): return l == r
-      case (.textPayload(let l), .textPayload(let r)): return l == r
+      case (.parseError, .parseError): return {
+        guard case .parseError(let l) = lhs, case .parseError(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.serializeError, .serializeError): return {
+        guard case .serializeError(let l) = lhs, case .serializeError(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.runtimeError, .runtimeError): return {
+        guard case .runtimeError(let l) = lhs, case .runtimeError(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.protobufPayload, .protobufPayload): return {
+        guard case .protobufPayload(let l) = lhs, case .protobufPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.jsonPayload, .jsonPayload): return {
+        guard case .jsonPayload(let l) = lhs, case .jsonPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.skipped, .skipped): return {
+        guard case .skipped(let l) = lhs, case .skipped(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.jspbPayload, .jspbPayload): return {
+        guard case .jspbPayload(let l) = lhs, case .jspbPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.textPayload, .textPayload): return {
+        guard case .textPayload(let l) = lhs, case .textPayload(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -498,8 +540,11 @@ extension Conformance_FailureSet: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeRepeatedStringField(value: &self.failure)
+      case 1: try { try decoder.decodeRepeatedStringField(value: &self.failure) }()
       default: break
       }
     }
@@ -535,44 +580,57 @@ extension Conformance_ConformanceRequest: SwiftProtobuf.Message, SwiftProtobuf._
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1:
+      case 1: try {
         if self.payload != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
         if let v = v {self.payload = .protobufPayload(v)}
-      case 2:
+      }()
+      case 2: try {
         if self.payload != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.payload = .jsonPayload(v)}
-      case 3: try decoder.decodeSingularEnumField(value: &self.requestedOutputFormat)
-      case 4: try decoder.decodeSingularStringField(value: &self.messageType)
-      case 5: try decoder.decodeSingularEnumField(value: &self.testCategory)
-      case 6: try decoder.decodeSingularMessageField(value: &self._jspbEncodingOptions)
-      case 7:
+      }()
+      case 3: try { try decoder.decodeSingularEnumField(value: &self.requestedOutputFormat) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.messageType) }()
+      case 5: try { try decoder.decodeSingularEnumField(value: &self.testCategory) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._jspbEncodingOptions) }()
+      case 7: try {
         if self.payload != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.payload = .jspbPayload(v)}
-      case 8:
+      }()
+      case 8: try {
         if self.payload != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.payload = .textPayload(v)}
-      case 9: try decoder.decodeSingularBoolField(value: &self.printUnknownFields)
+      }()
+      case 9: try { try decoder.decodeSingularBoolField(value: &self.printUnknownFields) }()
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.payload {
-    case .protobufPayload(let v)?:
+    case .protobufPayload?: try {
+      guard case .protobufPayload(let v)? = self.payload else { preconditionFailure() }
       try visitor.visitSingularBytesField(value: v, fieldNumber: 1)
-    case .jsonPayload(let v)?:
+    }()
+    case .jsonPayload?: try {
+      guard case .jsonPayload(let v)? = self.payload else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 2)
-    case nil: break
+    }()
     default: break
     }
     if self.requestedOutputFormat != .unspecified {
@@ -587,12 +645,18 @@ extension Conformance_ConformanceRequest: SwiftProtobuf.Message, SwiftProtobuf._
     if let v = self._jspbEncodingOptions {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.payload {
-    case .jspbPayload(let v)?:
+    case .jspbPayload?: try {
+      guard case .jspbPayload(let v)? = self.payload else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 7)
-    case .textPayload(let v)?:
+    }()
+    case .textPayload?: try {
+      guard case .textPayload(let v)? = self.payload else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 8)
-    case nil: break
+    }()
     default: break
     }
     if self.printUnknownFields != false {
@@ -628,70 +692,100 @@ extension Conformance_ConformanceResponse: SwiftProtobuf.Message, SwiftProtobuf.
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1:
+      case 1: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .parseError(v)}
-      case 2:
+      }()
+      case 2: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .runtimeError(v)}
-      case 3:
+      }()
+      case 3: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
         if let v = v {self.result = .protobufPayload(v)}
-      case 4:
+      }()
+      case 4: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .jsonPayload(v)}
-      case 5:
+      }()
+      case 5: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .skipped(v)}
-      case 6:
+      }()
+      case 6: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .serializeError(v)}
-      case 7:
+      }()
+      case 7: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .jspbPayload(v)}
-      case 8:
+      }()
+      case 8: try {
         if self.result != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.result = .textPayload(v)}
+      }()
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.result {
-    case .parseError(let v)?:
+    case .parseError?: try {
+      guard case .parseError(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 1)
-    case .runtimeError(let v)?:
+    }()
+    case .runtimeError?: try {
+      guard case .runtimeError(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 2)
-    case .protobufPayload(let v)?:
+    }()
+    case .protobufPayload?: try {
+      guard case .protobufPayload(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularBytesField(value: v, fieldNumber: 3)
-    case .jsonPayload(let v)?:
+    }()
+    case .jsonPayload?: try {
+      guard case .jsonPayload(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 4)
-    case .skipped(let v)?:
+    }()
+    case .skipped?: try {
+      guard case .skipped(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 5)
-    case .serializeError(let v)?:
+    }()
+    case .serializeError?: try {
+      guard case .serializeError(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 6)
-    case .jspbPayload(let v)?:
+    }()
+    case .jspbPayload?: try {
+      guard case .jspbPayload(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 7)
-    case .textPayload(let v)?:
+    }()
+    case .textPayload?: try {
+      guard case .textPayload(let v)? = self.result else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 8)
+    }()
     case nil: break
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -712,8 +806,11 @@ extension Conformance_JspbEncodingConfig: SwiftProtobuf.Message, SwiftProtobuf._
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.useJspbArrayAnyFormat)
+      case 1: try { try decoder.decodeSingularBoolField(value: &self.useJspbArrayAnyFormat) }()
       default: break
       }
     }

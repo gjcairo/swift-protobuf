@@ -139,13 +139,49 @@ struct ProtobufUnittest_OneOfContainer {
     case option3(ProtobufUnittest_OneOfContainer.Option3)
     case option4(Int32)
 
+    fileprivate var isInitialized: Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch self {
+      case .option1: return {
+        guard case .option1(let v) = self else { preconditionFailure() }
+        return v.isInitialized
+      }()
+      case .option2: return {
+        guard case .option2(let v) = self else { preconditionFailure() }
+        return v.isInitialized
+      }()
+      case .option3: return {
+        guard case .option3(let v) = self else { preconditionFailure() }
+        return v.isInitialized
+      }()
+      default: return true
+      }
+    }
+
   #if !swift(>=4.1)
     static func ==(lhs: ProtobufUnittest_OneOfContainer.OneOf_Option, rhs: ProtobufUnittest_OneOfContainer.OneOf_Option) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.option1(let l), .option1(let r)): return l == r
-      case (.option2(let l), .option2(let r)): return l == r
-      case (.option3(let l), .option3(let r)): return l == r
-      case (.option4(let l), .option4(let r)): return l == r
+      case (.option1, .option1): return {
+        guard case .option1(let l) = lhs, case .option1(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.option2, .option2): return {
+        guard case .option2(let l) = lhs, case .option2(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.option3, .option3): return {
+        guard case .option3(let l) = lhs, case .option3(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.option4, .option4): return {
+        guard case .option4(let l) = lhs, case .option4(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -203,8 +239,11 @@ extension ProtobufUnittest_OneOfOptionMessage1: InternalSwiftProtobuf.Message, I
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._requiredField)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._requiredField) }()
       default: break
       }
     }
@@ -237,8 +276,11 @@ extension ProtobufUnittest_OneOfOptionMessage2: InternalSwiftProtobuf.Message, I
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._requiredField)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._requiredField) }()
       default: break
       }
     }
@@ -268,19 +310,17 @@ extension ProtobufUnittest_OneOfContainer: InternalSwiftProtobuf.Message, Intern
   ]
 
   public var isInitialized: Bool {
-    switch self.option {
-    case .option1(let v)?: if !v.isInitialized {return false}
-    case .option2(let v)?: if !v.isInitialized {return false}
-    case .option3(let v)?: if !v.isInitialized {return false}
-    default: break
-    }
+    if let v = self.option, !v.isInitialized {return false}
     return true
   }
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1:
+      case 1: try {
         var v: ProtobufUnittest_OneOfOptionMessage1?
         if let current = self.option {
           try decoder.handleConflictingOneOf()
@@ -288,7 +328,8 @@ extension ProtobufUnittest_OneOfContainer: InternalSwiftProtobuf.Message, Intern
         }
         try decoder.decodeSingularMessageField(value: &v)
         if let v = v {self.option = .option1(v)}
-      case 2:
+      }()
+      case 2: try {
         var v: ProtobufUnittest_OneOfOptionMessage2?
         if let current = self.option {
           try decoder.handleConflictingOneOf()
@@ -296,7 +337,8 @@ extension ProtobufUnittest_OneOfContainer: InternalSwiftProtobuf.Message, Intern
         }
         try decoder.decodeSingularMessageField(value: &v)
         if let v = v {self.option = .option2(v)}
-      case 3:
+      }()
+      case 3: try {
         var v: ProtobufUnittest_OneOfContainer.Option3?
         if let current = self.option {
           try decoder.handleConflictingOneOf()
@@ -304,26 +346,39 @@ extension ProtobufUnittest_OneOfContainer: InternalSwiftProtobuf.Message, Intern
         }
         try decoder.decodeSingularGroupField(value: &v)
         if let v = v {self.option = .option3(v)}
-      case 6:
+      }()
+      case 6: try {
         if self.option != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.option = .option4(v)}
+      }()
       default: break
       }
     }
   }
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.option {
-    case .option1(let v)?:
+    case .option1?: try {
+      guard case .option1(let v)? = self.option else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    case .option2(let v)?:
+    }()
+    case .option2?: try {
+      guard case .option2(let v)? = self.option else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    case .option3(let v)?:
+    }()
+    case .option3?: try {
+      guard case .option3(let v)? = self.option else { preconditionFailure() }
       try visitor.visitSingularGroupField(value: v, fieldNumber: 3)
-    case .option4(let v)?:
+    }()
+    case .option4?: try {
+      guard case .option4(let v)? = self.option else { preconditionFailure() }
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 6)
+    }()
     case nil: break
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -350,9 +405,12 @@ extension ProtobufUnittest_OneOfContainer.Option3: InternalSwiftProtobuf.Message
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 4: try decoder.decodeSingularInt32Field(value: &self._a)
-      case 5: try decoder.decodeSingularStringField(value: &self._b)
+      case 4: try { try decoder.decodeSingularInt32Field(value: &self._a) }()
+      case 5: try { try decoder.decodeSingularStringField(value: &self._b) }()
       default: break
       }
     }

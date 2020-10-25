@@ -183,7 +183,7 @@ struct ProtobufUnittest_TestProto3Optional {
   mutating func clearOptionalString() {_uniqueStorage()._optionalString = nil}
 
   var optionalBytes: Data {
-    get {return _storage._optionalBytes ?? InternalSwiftProtobuf.Internal.emptyData}
+    get {return _storage._optionalBytes ?? Data()}
     set {_uniqueStorage()._optionalBytes = newValue}
   }
   /// Returns true if `optionalBytes` has been explicitly set.
@@ -323,6 +323,49 @@ extension ProtobufUnittest_TestProto3Optional.NestedEnum: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+struct ProtobufUnittest_TestProto3OptionalMessage {
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var nestedMessage: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage {
+    get {return _nestedMessage ?? ProtobufUnittest_TestProto3OptionalMessage.NestedMessage()}
+    set {_nestedMessage = newValue}
+  }
+  /// Returns true if `nestedMessage` has been explicitly set.
+  var hasNestedMessage: Bool {return self._nestedMessage != nil}
+  /// Clears the value of `nestedMessage`. Subsequent reads from it will return its default value.
+  mutating func clearNestedMessage() {self._nestedMessage = nil}
+
+  var optionalNestedMessage: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage {
+    get {return _optionalNestedMessage ?? ProtobufUnittest_TestProto3OptionalMessage.NestedMessage()}
+    set {_optionalNestedMessage = newValue}
+  }
+  /// Returns true if `optionalNestedMessage` has been explicitly set.
+  var hasOptionalNestedMessage: Bool {return self._optionalNestedMessage != nil}
+  /// Clears the value of `optionalNestedMessage`. Subsequent reads from it will return its default value.
+  mutating func clearOptionalNestedMessage() {self._optionalNestedMessage = nil}
+
+  var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+  struct NestedMessage {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var s: String = String()
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  init() {}
+
+  fileprivate var _nestedMessage: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage? = nil
+  fileprivate var _optionalNestedMessage: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage? = nil
+}
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "protobuf_unittest"
@@ -416,28 +459,31 @@ extension ProtobufUnittest_TestProto3Optional: InternalSwiftProtobuf.Message, In
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
         switch fieldNumber {
-        case 1: try decoder.decodeSingularInt32Field(value: &_storage._optionalInt32)
-        case 2: try decoder.decodeSingularInt64Field(value: &_storage._optionalInt64)
-        case 3: try decoder.decodeSingularUInt32Field(value: &_storage._optionalUint32)
-        case 4: try decoder.decodeSingularUInt64Field(value: &_storage._optionalUint64)
-        case 5: try decoder.decodeSingularSInt32Field(value: &_storage._optionalSint32)
-        case 6: try decoder.decodeSingularSInt64Field(value: &_storage._optionalSint64)
-        case 7: try decoder.decodeSingularFixed32Field(value: &_storage._optionalFixed32)
-        case 8: try decoder.decodeSingularFixed64Field(value: &_storage._optionalFixed64)
-        case 9: try decoder.decodeSingularSFixed32Field(value: &_storage._optionalSfixed32)
-        case 10: try decoder.decodeSingularSFixed64Field(value: &_storage._optionalSfixed64)
-        case 11: try decoder.decodeSingularFloatField(value: &_storage._optionalFloat)
-        case 12: try decoder.decodeSingularDoubleField(value: &_storage._optionalDouble)
-        case 13: try decoder.decodeSingularBoolField(value: &_storage._optionalBool)
-        case 14: try decoder.decodeSingularStringField(value: &_storage._optionalString)
-        case 15: try decoder.decodeSingularBytesField(value: &_storage._optionalBytes)
-        case 16: try decoder.decodeSingularStringField(value: &_storage._optionalCord)
-        case 18: try decoder.decodeSingularMessageField(value: &_storage._optionalNestedMessage)
-        case 19: try decoder.decodeSingularMessageField(value: &_storage._lazyNestedMessage)
-        case 21: try decoder.decodeSingularEnumField(value: &_storage._optionalNestedEnum)
-        case 22: try decoder.decodeSingularInt32Field(value: &_storage._singularInt32)
-        case 23: try decoder.decodeSingularInt64Field(value: &_storage._singularInt64)
+        case 1: try { try decoder.decodeSingularInt32Field(value: &_storage._optionalInt32) }()
+        case 2: try { try decoder.decodeSingularInt64Field(value: &_storage._optionalInt64) }()
+        case 3: try { try decoder.decodeSingularUInt32Field(value: &_storage._optionalUint32) }()
+        case 4: try { try decoder.decodeSingularUInt64Field(value: &_storage._optionalUint64) }()
+        case 5: try { try decoder.decodeSingularSInt32Field(value: &_storage._optionalSint32) }()
+        case 6: try { try decoder.decodeSingularSInt64Field(value: &_storage._optionalSint64) }()
+        case 7: try { try decoder.decodeSingularFixed32Field(value: &_storage._optionalFixed32) }()
+        case 8: try { try decoder.decodeSingularFixed64Field(value: &_storage._optionalFixed64) }()
+        case 9: try { try decoder.decodeSingularSFixed32Field(value: &_storage._optionalSfixed32) }()
+        case 10: try { try decoder.decodeSingularSFixed64Field(value: &_storage._optionalSfixed64) }()
+        case 11: try { try decoder.decodeSingularFloatField(value: &_storage._optionalFloat) }()
+        case 12: try { try decoder.decodeSingularDoubleField(value: &_storage._optionalDouble) }()
+        case 13: try { try decoder.decodeSingularBoolField(value: &_storage._optionalBool) }()
+        case 14: try { try decoder.decodeSingularStringField(value: &_storage._optionalString) }()
+        case 15: try { try decoder.decodeSingularBytesField(value: &_storage._optionalBytes) }()
+        case 16: try { try decoder.decodeSingularStringField(value: &_storage._optionalCord) }()
+        case 18: try { try decoder.decodeSingularMessageField(value: &_storage._optionalNestedMessage) }()
+        case 19: try { try decoder.decodeSingularMessageField(value: &_storage._lazyNestedMessage) }()
+        case 21: try { try decoder.decodeSingularEnumField(value: &_storage._optionalNestedEnum) }()
+        case 22: try { try decoder.decodeSingularInt32Field(value: &_storage._singularInt32) }()
+        case 23: try { try decoder.decodeSingularInt64Field(value: &_storage._singularInt64) }()
         default: break
         }
       }
@@ -566,8 +612,11 @@ extension ProtobufUnittest_TestProto3Optional.NestedMessage: InternalSwiftProtob
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._bb)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._bb) }()
       default: break
       }
     }
@@ -582,6 +631,76 @@ extension ProtobufUnittest_TestProto3Optional.NestedMessage: InternalSwiftProtob
 
   static func ==(lhs: ProtobufUnittest_TestProto3Optional.NestedMessage, rhs: ProtobufUnittest_TestProto3Optional.NestedMessage) -> Bool {
     if lhs._bb != rhs._bb {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufUnittest_TestProto3OptionalMessage: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TestProto3OptionalMessage"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .standard(proto: "nested_message"),
+    2: .standard(proto: "optional_nested_message"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._nestedMessage) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._optionalNestedMessage) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._nestedMessage {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._optionalNestedMessage {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittest_TestProto3OptionalMessage, rhs: ProtobufUnittest_TestProto3OptionalMessage) -> Bool {
+    if lhs._nestedMessage != rhs._nestedMessage {return false}
+    if lhs._optionalNestedMessage != rhs._optionalNestedMessage {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufUnittest_TestProto3OptionalMessage.NestedMessage: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittest_TestProto3OptionalMessage.protoMessageName + ".NestedMessage"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "s"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.s) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.s.isEmpty {
+      try visitor.visitSingularStringField(value: self.s, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage, rhs: ProtobufUnittest_TestProto3OptionalMessage.NestedMessage) -> Bool {
+    if lhs.s != rhs.s {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
