@@ -72,7 +72,7 @@ struct SwiftUnittest_TestMessage {
   var oneofBytes: Data {
     get {
       if case .oneofBytes(let v)? = oneofField {return v}
-      return InternalSwiftProtobuf.Internal.emptyData
+      return Data()
     }
     set {oneofField = .oneofBytes(newValue)}
   }
@@ -87,11 +87,26 @@ struct SwiftUnittest_TestMessage {
 
   #if !swift(>=4.1)
     static func ==(lhs: SwiftUnittest_TestMessage.OneOf_OneofField, rhs: SwiftUnittest_TestMessage.OneOf_OneofField) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.oneofUint32(let l), .oneofUint32(let r)): return l == r
-      case (.oneofNestedMessage(let l), .oneofNestedMessage(let r)): return l == r
-      case (.oneofString(let l), .oneofString(let r)): return l == r
-      case (.oneofBytes(let l), .oneofBytes(let r)): return l == r
+      case (.oneofUint32, .oneofUint32): return {
+        guard case .oneofUint32(let l) = lhs, case .oneofUint32(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofNestedMessage, .oneofNestedMessage): return {
+        guard case .oneofNestedMessage(let l) = lhs, case .oneofNestedMessage(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofString, .oneofString): return {
+        guard case .oneofString(let l) = lhs, case .oneofString(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofBytes, .oneofBytes): return {
+        guard case .oneofBytes(let l) = lhs, case .oneofBytes(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -194,13 +209,17 @@ extension SwiftUnittest_TestMessage: InternalSwiftProtobuf.Message, InternalSwif
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 111:
+      case 111: try {
         if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: UInt32?
         try decoder.decodeSingularUInt32Field(value: &v)
         if let v = v {self.oneofField = .oneofUint32(v)}
-      case 112:
+      }()
+      case 112: try {
         var v: SwiftUnittest_TestMessage.NestedMessage?
         if let current = self.oneofField {
           try decoder.handleConflictingOneOf()
@@ -208,31 +227,45 @@ extension SwiftUnittest_TestMessage: InternalSwiftProtobuf.Message, InternalSwif
         }
         try decoder.decodeSingularMessageField(value: &v)
         if let v = v {self.oneofField = .oneofNestedMessage(v)}
-      case 113:
+      }()
+      case 113: try {
         if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.oneofField = .oneofString(v)}
-      case 114:
+      }()
+      case 114: try {
         if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
         if let v = v {self.oneofField = .oneofBytes(v)}
+      }()
       default: break
       }
     }
   }
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.oneofField {
-    case .oneofUint32(let v)?:
+    case .oneofUint32?: try {
+      guard case .oneofUint32(let v)? = self.oneofField else { preconditionFailure() }
       try visitor.visitSingularUInt32Field(value: v, fieldNumber: 111)
-    case .oneofNestedMessage(let v)?:
+    }()
+    case .oneofNestedMessage?: try {
+      guard case .oneofNestedMessage(let v)? = self.oneofField else { preconditionFailure() }
       try visitor.visitSingularMessageField(value: v, fieldNumber: 112)
-    case .oneofString(let v)?:
+    }()
+    case .oneofString?: try {
+      guard case .oneofString(let v)? = self.oneofField else { preconditionFailure() }
       try visitor.visitSingularStringField(value: v, fieldNumber: 113)
-    case .oneofBytes(let v)?:
+    }()
+    case .oneofBytes?: try {
+      guard case .oneofBytes(let v)? = self.oneofField else { preconditionFailure() }
       try visitor.visitSingularBytesField(value: v, fieldNumber: 114)
+    }()
     case nil: break
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -255,10 +288,13 @@ extension SwiftUnittest_TestMessage.NestedMessage: InternalSwiftProtobuf.Message
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._a)
-      case 2: try decoder.decodeSingularInt32Field(value: &self._b)
-      case 3: try decoder.decodeSingularInt32Field(value: &self._c)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._a) }()
+      case 2: try { try decoder.decodeSingularInt32Field(value: &self._b) }()
+      case 3: try { try decoder.decodeSingularInt32Field(value: &self._c) }()
       default: break
       }
     }
@@ -295,9 +331,12 @@ extension SwiftUnittest_TestParsingMerge: InternalSwiftProtobuf.Message, Interna
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularMessageField(value: &self._optionalMessage)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.repeatedMessage)
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._optionalMessage) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.repeatedMessage) }()
       default: break
       }
     }
@@ -330,9 +369,12 @@ extension SwiftUnittest_TestParsingMerge.RepeatedFieldsGenerator: InternalSwiftP
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.field1)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.field2)
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.field1) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.field2) }()
       default: break
       }
     }

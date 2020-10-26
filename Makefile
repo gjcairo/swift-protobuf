@@ -54,7 +54,7 @@ GOOGLE_PROTOBUF_CHECKOUT?=../protobuf
 PROTOC_GEN_SWIFT=.build/debug/protoc-gen-swift
 GENERATE_SRCS_BASE=${PROTOC} --plugin=protoc-gen-tfiws=${PROTOC_GEN_SWIFT}
 # Until the flag isn't needed, add the flag to enable proto3 optional.
-GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional
+GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional --tfiws_opt=SwiftProtobufModuleName=InternalSwiftProtobuf
 
 # Where to find the Swift conformance test runner executable.
 SWIFT_CONFORMANCE_PLUGIN=.build/debug/Conformance
@@ -123,6 +123,7 @@ TEST_PROTOS= \
 	Protos/unittest_swift_extension4.proto \
 	Protos/unittest_swift_fieldorder.proto \
 	Protos/unittest_swift_groups.proto \
+	Protos/unittest_swift_json.proto \
 	Protos/unittest_swift_naming.proto \
 	Protos/unittest_swift_naming_no_prefix.proto \
 	Protos/unittest_swift_naming_number_prefix.proto \
@@ -579,27 +580,21 @@ test-xcode-release: test-xcode-iOS-release test-xcode-macOS-release test-xcode-t
 
 # The individual ones
 
-# 4s - 32bit, 6s - 64bit
 test-xcode-iOS-debug:
-	# 9+ seems to not like concurrent testing with the iPhone 4s simulator.
 	xcodebuild -project SwiftProtobuf.xcodeproj \
 		-scheme SwiftProtobuf_iOS \
 		-configuration Debug \
 		-destination "platform=iOS Simulator,name=iPhone 8,OS=latest" \
-		-destination "platform=iOS Simulator,name=iPhone 4s,OS=9.0" \
 		-disable-concurrent-destination-testing \
 		test $(XCODEBUILD_EXTRAS)
 
-# 4s - 32bit, 6s - 64bit
 # Release defaults to not supporting testing, so add ENABLE_TESTABILITY=YES
 # to ensure the main library gets testing support.
 test-xcode-iOS-release:
-	# 9+ seems to not like concurrent testing with the iPhone 4s simulator.
 	xcodebuild -project SwiftProtobuf.xcodeproj \
 		-scheme SwiftProtobuf_iOS \
 		-configuration Release \
 		-destination "platform=iOS Simulator,name=iPhone 8,OS=latest" \
-		-destination "platform=iOS Simulator,name=iPhone 4s,OS=9.0" \
 		-disable-concurrent-destination-testing \
 		test ENABLE_TESTABILITY=YES $(XCODEBUILD_EXTRAS)
 

@@ -121,11 +121,26 @@ struct Swift_Protobuf_TestFieldOrderings: InternalSwiftProtobuf.ExtensibleMessag
 
   #if !swift(>=4.1)
     static func ==(lhs: Swift_Protobuf_TestFieldOrderings.OneOf_Options, rhs: Swift_Protobuf_TestFieldOrderings.OneOf_Options) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.oneofInt64(let l), .oneofInt64(let r)): return l == r
-      case (.oneofBool(let l), .oneofBool(let r)): return l == r
-      case (.oneofString(let l), .oneofString(let r)): return l == r
-      case (.oneofInt32(let l), .oneofInt32(let r)): return l == r
+      case (.oneofInt64, .oneofInt64): return {
+        guard case .oneofInt64(let l) = lhs, case .oneofInt64(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofBool, .oneofBool): return {
+        guard case .oneofBool(let l) = lhs, case .oneofBool(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofString, .oneofString): return {
+        guard case .oneofString(let l) = lhs, case .oneofString(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.oneofInt32, .oneofInt32): return {
+        guard case .oneofInt32(let l) = lhs, case .oneofInt32(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -274,9 +289,18 @@ struct Swift_Protobuf_OneofTraversalGeneration: InternalSwiftProtobuf.Extensible
 
   #if !swift(>=4.1)
     static func ==(lhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OGood, rhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OGood) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.a(let l), .a(let r)): return l == r
-      case (.b(let l), .b(let r)): return l == r
+      case (.a, .a): return {
+        guard case .a(let l) = lhs, case .a(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.b, .b): return {
+        guard case .b(let l) = lhs, case .b(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -290,9 +314,18 @@ struct Swift_Protobuf_OneofTraversalGeneration: InternalSwiftProtobuf.Extensible
 
   #if !swift(>=4.1)
     static func ==(lhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictField, rhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictField) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.a2(let l), .a2(let r)): return l == r
-      case (.b2(let l), .b2(let r)): return l == r
+      case (.a2, .a2): return {
+        guard case .a2(let l) = lhs, case .a2(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.b2, .b2): return {
+        guard case .b2(let l) = lhs, case .b2(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -306,9 +339,18 @@ struct Swift_Protobuf_OneofTraversalGeneration: InternalSwiftProtobuf.Extensible
 
   #if !swift(>=4.1)
     static func ==(lhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictExtensionsStart, rhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictExtensionsStart) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.a3(let l), .a3(let r)): return l == r
-      case (.b3(let l), .b3(let r)): return l == r
+      case (.a3, .a3): return {
+        guard case .a3(let l) = lhs, case .a3(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.b3, .b3): return {
+        guard case .b3(let l) = lhs, case .b3(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -322,9 +364,18 @@ struct Swift_Protobuf_OneofTraversalGeneration: InternalSwiftProtobuf.Extensible
 
   #if !swift(>=4.1)
     static func ==(lhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictExtensionsEnd, rhs: Swift_Protobuf_OneofTraversalGeneration.OneOf_OConflictExtensionsEnd) -> Bool {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch (lhs, rhs) {
-      case (.a4(let l), .a4(let r)): return l == r
-      case (.b4(let l), .b4(let r)): return l == r
+      case (.a4, .a4): return {
+        guard case .a4(let l) = lhs, case .a4(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
+      case (.b4, .b4): return {
+        guard case .b4(let l) = lhs, case .b4(let r) = rhs else { preconditionFailure() }
+        return l == r
+      }()
       default: return false
       }
     }
@@ -429,33 +480,40 @@ extension Swift_Protobuf_TestFieldOrderings: InternalSwiftProtobuf.Message, Inte
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt64Field(value: &self._myInt)
-      case 9:
+      case 1: try { try decoder.decodeSingularInt64Field(value: &self._myInt) }()
+      case 9: try {
         if self.options != nil {try decoder.handleConflictingOneOf()}
         var v: Bool?
         try decoder.decodeSingularBoolField(value: &v)
         if let v = v {self.options = .oneofBool(v)}
-      case 10:
+      }()
+      case 10: try {
         if self.options != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.options = .oneofInt32(v)}
-      case 11: try decoder.decodeSingularStringField(value: &self._myString)
-      case 60:
+      }()
+      case 11: try { try decoder.decodeSingularStringField(value: &self._myString) }()
+      case 60: try {
         if self.options != nil {try decoder.handleConflictingOneOf()}
         var v: Int64?
         try decoder.decodeSingularInt64Field(value: &v)
         if let v = v {self.options = .oneofInt64(v)}
-      case 101: try decoder.decodeSingularFloatField(value: &self._myFloat)
-      case 150:
+      }()
+      case 101: try { try decoder.decodeSingularFloatField(value: &self._myFloat) }()
+      case 150: try {
         if self.options != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
         if let v = v {self.options = .oneofString(v)}
-      case 200: try decoder.decodeSingularMessageField(value: &self._optionalNestedMessage)
+      }()
+      case 200: try { try decoder.decodeSingularMessageField(value: &self._optionalNestedMessage) }()
       case 2..<9, 12..<56:
-        try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: Swift_Protobuf_TestFieldOrderings.self, fieldNumber: fieldNumber)
+        try { try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: Swift_Protobuf_TestFieldOrderings.self, fieldNumber: fieldNumber) }()
       default: break
       }
     }
@@ -466,12 +524,18 @@ extension Swift_Protobuf_TestFieldOrderings: InternalSwiftProtobuf.Message, Inte
       try visitor.visitSingularInt64Field(value: v, fieldNumber: 1)
     }
     try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 2, end: 9)
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.options {
-    case .oneofBool(let v)?:
+    case .oneofBool?: try {
+      guard case .oneofBool(let v)? = self.options else { preconditionFailure() }
       try visitor.visitSingularBoolField(value: v, fieldNumber: 9)
-    case .oneofInt32(let v)?:
+    }()
+    case .oneofInt32?: try {
+      guard case .oneofInt32(let v)? = self.options else { preconditionFailure() }
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 10)
-    case nil: break
+    }()
     default: break
     }
     if let v = self._myString {
@@ -514,9 +578,12 @@ extension Swift_Protobuf_TestFieldOrderings.NestedMessage: InternalSwiftProtobuf
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._bb)
-      case 2: try decoder.decodeSingularInt64Field(value: &self._oo)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._bb) }()
+      case 2: try { try decoder.decodeSingularInt64Field(value: &self._oo) }()
       default: break
       }
     }
@@ -561,61 +628,79 @@ extension Swift_Protobuf_OneofTraversalGeneration: InternalSwiftProtobuf.Message
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1:
+      case 1: try {
         if self.oGood != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oGood = .a(v)}
-      case 26:
+      }()
+      case 26: try {
         if self.oGood != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oGood = .b(v)}
-      case 101:
+      }()
+      case 101: try {
         if self.oConflictField != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictField = .a2(v)}
-      case 113: try decoder.decodeSingularInt32Field(value: &self._m)
-      case 126:
+      }()
+      case 113: try { try decoder.decodeSingularInt32Field(value: &self._m) }()
+      case 126: try {
         if self.oConflictField != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictField = .b2(v)}
-      case 201:
+      }()
+      case 201: try {
         if self.oConflictExtensionsStart != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictExtensionsStart = .a3(v)}
-      case 226:
+      }()
+      case 226: try {
         if self.oConflictExtensionsStart != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictExtensionsStart = .b3(v)}
-      case 301:
+      }()
+      case 301: try {
         if self.oConflictExtensionsEnd != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictExtensionsEnd = .a4(v)}
-      case 326:
+      }()
+      case 326: try {
         if self.oConflictExtensionsEnd != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
         if let v = v {self.oConflictExtensionsEnd = .b4(v)}
+      }()
       case 202..<203, 325..<326:
-        try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: Swift_Protobuf_OneofTraversalGeneration.self, fieldNumber: fieldNumber)
+        try { try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: Swift_Protobuf_OneofTraversalGeneration.self, fieldNumber: fieldNumber) }()
       default: break
       }
     }
   }
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every case branch when no optimizations are
+    // enabled. https://github.com/apple/swift-protobuf/issues/1034
     switch self.oGood {
-    case .a(let v)?:
+    case .a?: try {
+      guard case .a(let v)? = self.oGood else { preconditionFailure() }
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 1)
-    case .b(let v)?:
+    }()
+    case .b?: try {
+      guard case .b(let v)? = self.oGood else { preconditionFailure() }
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 26)
+    }()
     case nil: break
     }
     if case .a2(let v)? = self.oConflictField {

@@ -100,9 +100,12 @@ extension ProtobufUnittest_TestEmbedOptimizedForSize: InternalSwiftProtobuf.Mess
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularMessageField(value: &self._optionalMessage)
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.repeatedMessage)
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._optionalMessage) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.repeatedMessage) }()
       default: break
       }
     }

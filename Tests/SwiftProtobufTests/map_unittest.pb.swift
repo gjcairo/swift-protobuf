@@ -530,26 +530,29 @@ extension ProtobufUnittest_TestMap: InternalSwiftProtobuf.Message, InternalSwift
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
         switch fieldNumber {
-        case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &_storage._mapInt32Int32)
-        case 2: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt64,InternalSwiftProtobuf.ProtobufInt64>.self, value: &_storage._mapInt64Int64)
-        case 3: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt32,InternalSwiftProtobuf.ProtobufUInt32>.self, value: &_storage._mapUint32Uint32)
-        case 4: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt64,InternalSwiftProtobuf.ProtobufUInt64>.self, value: &_storage._mapUint64Uint64)
-        case 5: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt32,InternalSwiftProtobuf.ProtobufSInt32>.self, value: &_storage._mapSint32Sint32)
-        case 6: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt64,InternalSwiftProtobuf.ProtobufSInt64>.self, value: &_storage._mapSint64Sint64)
-        case 7: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed32,InternalSwiftProtobuf.ProtobufFixed32>.self, value: &_storage._mapFixed32Fixed32)
-        case 8: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed64,InternalSwiftProtobuf.ProtobufFixed64>.self, value: &_storage._mapFixed64Fixed64)
-        case 9: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed32,InternalSwiftProtobuf.ProtobufSFixed32>.self, value: &_storage._mapSfixed32Sfixed32)
-        case 10: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed64,InternalSwiftProtobuf.ProtobufSFixed64>.self, value: &_storage._mapSfixed64Sfixed64)
-        case 11: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufFloat>.self, value: &_storage._mapInt32Float)
-        case 12: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufDouble>.self, value: &_storage._mapInt32Double)
-        case 13: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufBool,InternalSwiftProtobuf.ProtobufBool>.self, value: &_storage._mapBoolBool)
-        case 14: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufString,InternalSwiftProtobuf.ProtobufString>.self, value: &_storage._mapStringString)
-        case 15: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufBytes>.self, value: &_storage._mapInt32Bytes)
-        case 16: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufEnumMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_MapEnum>.self, value: &_storage._mapInt32Enum)
-        case 17: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapInt32ForeignMessage)
-        case 18: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapStringForeignMessage)
-        case 19: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestAllTypes>.self, value: &_storage._mapInt32AllTypes)
+        case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &_storage._mapInt32Int32) }()
+        case 2: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt64,InternalSwiftProtobuf.ProtobufInt64>.self, value: &_storage._mapInt64Int64) }()
+        case 3: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt32,InternalSwiftProtobuf.ProtobufUInt32>.self, value: &_storage._mapUint32Uint32) }()
+        case 4: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt64,InternalSwiftProtobuf.ProtobufUInt64>.self, value: &_storage._mapUint64Uint64) }()
+        case 5: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt32,InternalSwiftProtobuf.ProtobufSInt32>.self, value: &_storage._mapSint32Sint32) }()
+        case 6: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt64,InternalSwiftProtobuf.ProtobufSInt64>.self, value: &_storage._mapSint64Sint64) }()
+        case 7: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed32,InternalSwiftProtobuf.ProtobufFixed32>.self, value: &_storage._mapFixed32Fixed32) }()
+        case 8: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed64,InternalSwiftProtobuf.ProtobufFixed64>.self, value: &_storage._mapFixed64Fixed64) }()
+        case 9: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed32,InternalSwiftProtobuf.ProtobufSFixed32>.self, value: &_storage._mapSfixed32Sfixed32) }()
+        case 10: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed64,InternalSwiftProtobuf.ProtobufSFixed64>.self, value: &_storage._mapSfixed64Sfixed64) }()
+        case 11: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufFloat>.self, value: &_storage._mapInt32Float) }()
+        case 12: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufDouble>.self, value: &_storage._mapInt32Double) }()
+        case 13: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufBool,InternalSwiftProtobuf.ProtobufBool>.self, value: &_storage._mapBoolBool) }()
+        case 14: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufString,InternalSwiftProtobuf.ProtobufString>.self, value: &_storage._mapStringString) }()
+        case 15: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufBytes>.self, value: &_storage._mapInt32Bytes) }()
+        case 16: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufEnumMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_MapEnum>.self, value: &_storage._mapInt32Enum) }()
+        case 17: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapInt32ForeignMessage) }()
+        case 18: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapStringForeignMessage) }()
+        case 19: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestAllTypes>.self, value: &_storage._mapInt32AllTypes) }()
         default: break
         }
       }
@@ -660,8 +663,11 @@ extension ProtobufUnittest_TestMapSubmessage: InternalSwiftProtobuf.Message, Int
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularMessageField(value: &self._testMap)
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._testMap) }()
       default: break
       }
     }
@@ -689,8 +695,11 @@ extension ProtobufUnittest_TestMessageMap: InternalSwiftProtobuf.Message, Intern
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestAllTypes>.self, value: &self.mapInt32Message)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestAllTypes>.self, value: &self.mapInt32Message) }()
       default: break
       }
     }
@@ -719,9 +728,12 @@ extension ProtobufUnittest_TestSameTypeMap: InternalSwiftProtobuf.Message, Inter
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.map1)
-      case 2: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.map2)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.map1) }()
+      case 2: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.map2) }()
       default: break
       }
     }
@@ -758,8 +770,11 @@ extension ProtobufUnittest_TestRequiredMessageMap: InternalSwiftProtobuf.Message
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestRequired>.self, value: &self.mapField)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_TestRequired>.self, value: &self.mapField) }()
       default: break
       }
     }
@@ -856,24 +871,27 @@ extension ProtobufUnittest_TestArenaMap: InternalSwiftProtobuf.Message, Internal
     _ = _uniqueStorage()
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
       while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
         switch fieldNumber {
-        case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &_storage._mapInt32Int32)
-        case 2: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt64,InternalSwiftProtobuf.ProtobufInt64>.self, value: &_storage._mapInt64Int64)
-        case 3: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt32,InternalSwiftProtobuf.ProtobufUInt32>.self, value: &_storage._mapUint32Uint32)
-        case 4: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt64,InternalSwiftProtobuf.ProtobufUInt64>.self, value: &_storage._mapUint64Uint64)
-        case 5: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt32,InternalSwiftProtobuf.ProtobufSInt32>.self, value: &_storage._mapSint32Sint32)
-        case 6: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt64,InternalSwiftProtobuf.ProtobufSInt64>.self, value: &_storage._mapSint64Sint64)
-        case 7: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed32,InternalSwiftProtobuf.ProtobufFixed32>.self, value: &_storage._mapFixed32Fixed32)
-        case 8: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed64,InternalSwiftProtobuf.ProtobufFixed64>.self, value: &_storage._mapFixed64Fixed64)
-        case 9: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed32,InternalSwiftProtobuf.ProtobufSFixed32>.self, value: &_storage._mapSfixed32Sfixed32)
-        case 10: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed64,InternalSwiftProtobuf.ProtobufSFixed64>.self, value: &_storage._mapSfixed64Sfixed64)
-        case 11: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufFloat>.self, value: &_storage._mapInt32Float)
-        case 12: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufDouble>.self, value: &_storage._mapInt32Double)
-        case 13: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufBool,InternalSwiftProtobuf.ProtobufBool>.self, value: &_storage._mapBoolBool)
-        case 14: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufString,InternalSwiftProtobuf.ProtobufString>.self, value: &_storage._mapStringString)
-        case 15: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufBytes>.self, value: &_storage._mapInt32Bytes)
-        case 16: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufEnumMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_MapEnum>.self, value: &_storage._mapInt32Enum)
-        case 17: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapInt32ForeignMessage)
+        case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &_storage._mapInt32Int32) }()
+        case 2: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt64,InternalSwiftProtobuf.ProtobufInt64>.self, value: &_storage._mapInt64Int64) }()
+        case 3: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt32,InternalSwiftProtobuf.ProtobufUInt32>.self, value: &_storage._mapUint32Uint32) }()
+        case 4: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufUInt64,InternalSwiftProtobuf.ProtobufUInt64>.self, value: &_storage._mapUint64Uint64) }()
+        case 5: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt32,InternalSwiftProtobuf.ProtobufSInt32>.self, value: &_storage._mapSint32Sint32) }()
+        case 6: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSInt64,InternalSwiftProtobuf.ProtobufSInt64>.self, value: &_storage._mapSint64Sint64) }()
+        case 7: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed32,InternalSwiftProtobuf.ProtobufFixed32>.self, value: &_storage._mapFixed32Fixed32) }()
+        case 8: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufFixed64,InternalSwiftProtobuf.ProtobufFixed64>.self, value: &_storage._mapFixed64Fixed64) }()
+        case 9: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed32,InternalSwiftProtobuf.ProtobufSFixed32>.self, value: &_storage._mapSfixed32Sfixed32) }()
+        case 10: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufSFixed64,InternalSwiftProtobuf.ProtobufSFixed64>.self, value: &_storage._mapSfixed64Sfixed64) }()
+        case 11: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufFloat>.self, value: &_storage._mapInt32Float) }()
+        case 12: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufDouble>.self, value: &_storage._mapInt32Double) }()
+        case 13: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufBool,InternalSwiftProtobuf.ProtobufBool>.self, value: &_storage._mapBoolBool) }()
+        case 14: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufString,InternalSwiftProtobuf.ProtobufString>.self, value: &_storage._mapStringString) }()
+        case 15: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufBytes>.self, value: &_storage._mapInt32Bytes) }()
+        case 16: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufEnumMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_MapEnum>.self, value: &_storage._mapInt32Enum) }()
+        case 17: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufInt32,ProtobufUnittest_ForeignMessage>.self, value: &_storage._mapInt32ForeignMessage) }()
         default: break
         }
       }
@@ -976,8 +994,11 @@ extension ProtobufUnittest_MessageContainingEnumCalledType: InternalSwiftProtobu
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_MessageContainingEnumCalledType>.self, value: &self.type)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_MessageContainingEnumCalledType>.self, value: &self.type) }()
       default: break
       }
     }
@@ -1011,8 +1032,11 @@ extension ProtobufUnittest_MessageContainingMapCalledEntry: InternalSwiftProtobu
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.entry)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufInt32,InternalSwiftProtobuf.ProtobufInt32>.self, value: &self.entry) }()
       default: break
       }
     }
@@ -1040,8 +1064,11 @@ extension ProtobufUnittest_TestRecursiveMapMessage: InternalSwiftProtobuf.Messag
 
   mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_TestRecursiveMapMessage>.self, value: &self.a)
+      case 1: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMessageMap<InternalSwiftProtobuf.ProtobufString,ProtobufUnittest_TestRecursiveMapMessage>.self, value: &self.a) }()
       default: break
       }
     }

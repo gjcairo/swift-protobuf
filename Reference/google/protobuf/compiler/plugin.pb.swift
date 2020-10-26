@@ -322,6 +322,18 @@ struct Google_Protobuf_Compiler_CodeGeneratorResponse {
     /// Clears the value of `content`. Subsequent reads from it will return its default value.
     mutating func clearContent() {self._content = nil}
 
+    /// Information describing the file content being inserted. If an insertion
+    /// point is used, this information will be appropriately offset and inserted
+    /// into the code generation metadata for the generated files.
+    var generatedCodeInfo: SwiftProtobuf.Google_Protobuf_GeneratedCodeInfo {
+      get {return _generatedCodeInfo ?? SwiftProtobuf.Google_Protobuf_GeneratedCodeInfo()}
+      set {_generatedCodeInfo = newValue}
+    }
+    /// Returns true if `generatedCodeInfo` has been explicitly set.
+    var hasGeneratedCodeInfo: Bool {return self._generatedCodeInfo != nil}
+    /// Clears the value of `generatedCodeInfo`. Subsequent reads from it will return its default value.
+    mutating func clearGeneratedCodeInfo() {self._generatedCodeInfo = nil}
+
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
     init() {}
@@ -329,6 +341,7 @@ struct Google_Protobuf_Compiler_CodeGeneratorResponse {
     fileprivate var _name: String? = nil
     fileprivate var _insertionPoint: String? = nil
     fileprivate var _content: String? = nil
+    fileprivate var _generatedCodeInfo: SwiftProtobuf.Google_Protobuf_GeneratedCodeInfo? = nil
   }
 
   init() {}
@@ -360,11 +373,14 @@ extension Google_Protobuf_Compiler_Version: SwiftProtobuf.Message, SwiftProtobuf
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self._major)
-      case 2: try decoder.decodeSingularInt32Field(value: &self._minor)
-      case 3: try decoder.decodeSingularInt32Field(value: &self._patch)
-      case 4: try decoder.decodeSingularStringField(value: &self._suffix)
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self._major) }()
+      case 2: try { try decoder.decodeSingularInt32Field(value: &self._minor) }()
+      case 3: try { try decoder.decodeSingularInt32Field(value: &self._patch) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self._suffix) }()
       default: break
       }
     }
@@ -412,11 +428,14 @@ extension Google_Protobuf_Compiler_CodeGeneratorRequest: SwiftProtobuf.Message, 
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeRepeatedStringField(value: &self.fileToGenerate)
-      case 2: try decoder.decodeSingularStringField(value: &self._parameter)
-      case 3: try decoder.decodeSingularMessageField(value: &self._compilerVersion)
-      case 15: try decoder.decodeRepeatedMessageField(value: &self.protoFile)
+      case 1: try { try decoder.decodeRepeatedStringField(value: &self.fileToGenerate) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._parameter) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._compilerVersion) }()
+      case 15: try { try decoder.decodeRepeatedMessageField(value: &self.protoFile) }()
       default: break
       }
     }
@@ -458,10 +477,13 @@ extension Google_Protobuf_Compiler_CodeGeneratorResponse: SwiftProtobuf.Message,
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self._error)
-      case 2: try decoder.decodeSingularUInt64Field(value: &self._supportedFeatures)
-      case 15: try decoder.decodeRepeatedMessageField(value: &self.file)
+      case 1: try { try decoder.decodeSingularStringField(value: &self._error) }()
+      case 2: try { try decoder.decodeSingularUInt64Field(value: &self._supportedFeatures) }()
+      case 15: try { try decoder.decodeRepeatedMessageField(value: &self.file) }()
       default: break
       }
     }
@@ -502,14 +524,19 @@ extension Google_Protobuf_Compiler_CodeGeneratorResponse.File: SwiftProtobuf.Mes
     1: .same(proto: "name"),
     2: .standard(proto: "insertion_point"),
     15: .same(proto: "content"),
+    16: .standard(proto: "generated_code_info"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self._name)
-      case 2: try decoder.decodeSingularStringField(value: &self._insertionPoint)
-      case 15: try decoder.decodeSingularStringField(value: &self._content)
+      case 1: try { try decoder.decodeSingularStringField(value: &self._name) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._insertionPoint) }()
+      case 15: try { try decoder.decodeSingularStringField(value: &self._content) }()
+      case 16: try { try decoder.decodeSingularMessageField(value: &self._generatedCodeInfo) }()
       default: break
       }
     }
@@ -525,6 +552,9 @@ extension Google_Protobuf_Compiler_CodeGeneratorResponse.File: SwiftProtobuf.Mes
     if let v = self._content {
       try visitor.visitSingularStringField(value: v, fieldNumber: 15)
     }
+    if let v = self._generatedCodeInfo {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -532,6 +562,7 @@ extension Google_Protobuf_Compiler_CodeGeneratorResponse.File: SwiftProtobuf.Mes
     if lhs._name != rhs._name {return false}
     if lhs._insertionPoint != rhs._insertionPoint {return false}
     if lhs._content != rhs._content {return false}
+    if lhs._generatedCodeInfo != rhs._generatedCodeInfo {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
