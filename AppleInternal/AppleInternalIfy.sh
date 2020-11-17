@@ -19,6 +19,9 @@ for filepath in $(find ./AppleInternal/xcconfigPatches -type f); do
     cat $filepath >> $dstfilepath
 done
 
+# Move around our docs
+cp -f './README.md' './README-OSS.md'
+cp './AppleInternal/README-AppleInternal.md' './README.md'
 
 cat ./AppleInternal/SourcePatch.diff | patch -p1
 
