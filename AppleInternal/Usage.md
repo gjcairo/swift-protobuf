@@ -1,0 +1,23 @@
+# Usage
+
+SwiftProtobuf is Open Source Software so you'll need that approved by Legal first.  You can request that through [https://legal.apple.com/jira/servicedesk/customer/portal/10](https://legal.apple.com/jira/servicedesk/customer/portal/10).
+
+## Library
+
+The library is available for **internal** Swift code on the OS to use as a runtime library.  It is located at `/System/Library/PrivateFrameworks/InternalSwiftProtobuf.framework`.  
+
+Note the current Apple-Internal requirement that prevents framework-to-framework swift dependencies. For the time being, only leaf node binaries may link this framework. This is a B&I / perf policy decision, see more at [https://confluence.sd.apple.com/pages/viewpage.action?pageId=139998422](https://confluence.sd.apple.com/pages/viewpage.action?pageId=139998422) / [http://adoptswift.apple.com](http://adoptswift.apple.com)
+
+The library mirrors the open source version but the module name has been changed to `InternalSwiftProtobuf` to avoid conflicts with anyone using the actual open source version as well.
+
+## Protocol Compiler
+
+It is expected that if going through B&I you will checkin your generated code rather than running `protoc` as part of your build. This is because submitting binaries and running custom compilers is strongly discouraged by B&I
+
+To run the protocol compiler in a way which will work with the renamed module supply use as follows
+
+`protoc --swift_out=SwiftProtobufModuleName=InternalSwiftProtobuf`
+
+DT are considering supplying a protocol compiler as part of Xcode.  See 
+   * [rdar://21942019](rdar://21942019) (Developer tools should include a protobuf compiler that supports Apple languages)
+   * [rdar://19877326](rdar://19877326) (ER: Syntax highlighting for protobuf files)
