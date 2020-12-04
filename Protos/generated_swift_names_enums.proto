@@ -127,6 +127,7 @@ message GeneratedSwiftReservedEnums {
   enum clearValue { NONE_clearValue = 0; }
   enum clearWeak { NONE_clearWeak = 0; }
   enum clientStreaming { NONE_clientStreaming = 0; }
+  enum codePoint { NONE_codePoint = 0; }
   enum codeUnits { NONE_codeUnits = 0; }
   enum Collection { NONE_Collection = 0; }
   enum com { NONE_com = 0; }
@@ -282,6 +283,7 @@ message GeneratedSwiftReservedEnums {
   enum fileName { NONE_fileName = 0; }
   enum FileOptions { NONE_FileOptions = 0; }
   enum filter { NONE_filter = 0; }
+  enum first { NONE_first = 0; }
   enum firstItem { NONE_firstItem = 0; }
   enum float { NONE_float = 0; }
   enum floatLiteral { NONE_floatLiteral = 0; }
@@ -460,6 +462,7 @@ message GeneratedSwiftReservedEnums {
   enum isExtension { NONE_isExtension = 0; }
   enum isInitialized { NONE_isInitialized = 0; }
   enum itemTagsEncodedSize { NONE_itemTagsEncodedSize = 0; }
+  enum Iterator { NONE_Iterator = 0; }
   enum i_2166136261 { NONE_i_2166136261 = 0; }
   enum javaGenerateEqualsAndHash { NONE_javaGenerateEqualsAndHash = 0; }
   enum javaGenericServices { NONE_javaGenericServices = 0; }
@@ -656,6 +659,7 @@ message GeneratedSwiftReservedEnums {
   enum rawChars { NONE_rawChars = 0; }
   enum RawRepresentable { NONE_RawRepresentable = 0; }
   enum RawValue { NONE_RawValue = 0; }
+  enum read4HexDigits { NONE_read4HexDigits = 0; }
   enum register { NONE_register = 0; }
   enum RepeatedEnumExtensionField { NONE_RepeatedEnumExtensionField = 0; }
   enum RepeatedExtensionField { NONE_RepeatedExtensionField = 0; }

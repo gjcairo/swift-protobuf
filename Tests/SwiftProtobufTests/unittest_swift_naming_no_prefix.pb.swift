@@ -36,6 +36,22 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.Pr
   typealias Version = _2
 }
 
+/// For issue #1084 - If the generated code compiles, things are good.
+///
+/// Top level extensions declarations are qualified with `Extensions_`, so there is nothing special
+/// is needed in generation handling.
+struct BaseMessage: InternalSwiftProtobuf.ExtensibleMessage {
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  var _protobuf_extensionFieldValues = InternalSwiftProtobuf.ExtensionFieldValueSet()
+}
+
 // MARK: - Extension support defined in unittest_swift_naming_no_prefix.proto.
 
 // MARK: - Extension Properties
@@ -44,6 +60,24 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.Pr
 // extension fields. The names are based on the extension field name from the proto
 // declaration. To avoid naming collisions, the names are prefixed with the name of
 // the scope where the extend directive occurs.
+
+extension BaseMessage {
+
+  var newValue: Int32 {
+    get {return getExtensionValue(ext: Extensions_new_value) ?? 0}
+    set {setExtensionValue(ext: Extensions_new_value, value: newValue)}
+  }
+  /// Returns true if extension `Extensions_new_value`
+  /// has been explicitly set.
+  var hasNewValue: Bool {
+    return hasExtensionValue(ext: Extensions_new_value)
+  }
+  /// Clears the value of extension `Extensions_new_value`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearNewValue() {
+    clearExtensionValue(ext: Extensions_new_value)
+  }
+}
 
 extension SwiftUnittest_Names_ExtensionNamingInitialsLowers {
 
@@ -845,7 +879,8 @@ let UnittestSwiftNamingNoPrefix_Extensions: InternalSwiftProtobuf.SimpleExtensio
   Extensions_Id,
   Extensions_IdNumber,
   Extensions_TheIdNumber,
-  Extensions_RequestId
+  Extensions_RequestId,
+  Extensions_new_value
 ]
 
 // Extension Objects - The only reason these might be needed is when manually
@@ -1096,3 +1131,39 @@ let Extensions_RequestId = InternalSwiftProtobuf.MessageExtension<InternalSwiftP
   _protobuf_fieldNumber: 144,
   fieldName: "RequestId"
 )
+
+let Extensions_new_value = InternalSwiftProtobuf.MessageExtension<InternalSwiftProtobuf.OptionalExtensionField<InternalSwiftProtobuf.ProtobufInt32>, BaseMessage>(
+  _protobuf_fieldNumber: 1,
+  fieldName: "new_value"
+)
+
+// MARK: - Code below here is support for the SwiftProtobuf runtime.
+
+extension BaseMessage: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = "BaseMessage"
+  static let _protobuf_nameMap = InternalSwiftProtobuf._NameMap()
+
+  public var isInitialized: Bool {
+    if !_protobuf_extensionFieldValues.isInitialized {return false}
+    return true
+  }
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      if (1 <= fieldNumber && fieldNumber < 1001) {
+        try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: BaseMessage.self, fieldNumber: fieldNumber)
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 1, end: 1001)
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: BaseMessage, rhs: BaseMessage) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._protobuf_extensionFieldValues != rhs._protobuf_extensionFieldValues {return false}
+    return true
+  }
+}
