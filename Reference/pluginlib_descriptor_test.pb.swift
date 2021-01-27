@@ -487,6 +487,19 @@ struct SDTProto2MessageForPresence {
   fileprivate var _optMessageField: SDTTopLevelMessage? = nil
 }
 
+/// To check handling of extension ranges that are out of order.
+struct SDTMsgExtensionRangeOrdering: SwiftProtobuf.ExtensibleMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  var _protobuf_extensionFieldValues = SwiftProtobuf.ExtensionFieldValueSet()
+}
+
 // MARK: - Extension support defined in pluginlib_descriptor_test.proto.
 
 // MARK: - Extension Properties
@@ -1140,6 +1153,39 @@ extension SDTProto2MessageForPresence: SwiftProtobuf.Message, SwiftProtobuf._Mes
     if lhs.repeatMessageField != rhs.repeatMessageField {return false}
     if lhs.o != rhs.o {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension SDTMsgExtensionRangeOrdering: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".MsgExtensionRangeOrdering"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public var isInitialized: Bool {
+    if !_protobuf_extensionFieldValues.isInitialized {return false}
+    return true
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      if (1 <= fieldNumber && fieldNumber < 5) || (7 == fieldNumber) || (9 == fieldNumber) || (100 <= fieldNumber && fieldNumber < 121) || (126 <= fieldNumber && fieldNumber < 131) {
+        try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: SDTMsgExtensionRangeOrdering.self, fieldNumber: fieldNumber)
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 1, end: 5)
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 7, end: 8)
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 9, end: 10)
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 100, end: 121)
+    try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 126, end: 131)
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: SDTMsgExtensionRangeOrdering, rhs: SDTMsgExtensionRangeOrdering) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._protobuf_extensionFieldValues != rhs._protobuf_extensionFieldValues {return false}
     return true
   }
 }
