@@ -18,7 +18,7 @@
 
 import Foundation
 import XCTest
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 class Test_FieldMask: XCTestCase, PBTestHelpers {
     typealias MessageTestType = Google_Protobuf_FieldMask
@@ -55,7 +55,7 @@ class Test_FieldMask: XCTestCase, PBTestHelpers {
     func testDebugDescription() {
         var m = Google_Protobuf_FieldMask()
         m.paths = ["foo", "bar"]
-        XCTAssertEqual(m.debugDescription, "SwiftProtobuf.Google_Protobuf_FieldMask:\npaths: \"foo\"\npaths: \"bar\"\n")
+        XCTAssertEqual(m.debugDescription, "InternalSwiftProtobuf.Google_Protobuf_FieldMask:\npaths: \"foo\"\npaths: \"bar\"\n")
     }
 
     func testConvenienceInits() {

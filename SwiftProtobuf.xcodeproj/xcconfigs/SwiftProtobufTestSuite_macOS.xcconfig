@@ -9,3 +9,16 @@ INFOPLIST_FILE = SwiftProtobuf.xcodeproj/ProtobufTestSuite_Info.plist
 PRODUCT_BUNDLE_IDENTIFIER = org.swift.protobuf.SwiftProtobufTests
 PRODUCT_MODULE_NAME = SwiftProtobufTests
 PRODUCT_NAME = SwiftProtobufTests
+
+
+// AppleInternal Section
+
+
+// Architectures
+SDKROOT = macosx.internal
+
+// Linking
+LD_RUNPATH_SEARCH_PATHS =
+
+// Packaging
+PRODUCT_BUNDLE_IDENTIFIER = com.apple.InternalSwiftProtobufTests

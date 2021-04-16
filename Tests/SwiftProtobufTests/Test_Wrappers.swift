@@ -15,7 +15,7 @@
 
 import Foundation
 import XCTest
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 //TODO: Test Mirror functionality
 
