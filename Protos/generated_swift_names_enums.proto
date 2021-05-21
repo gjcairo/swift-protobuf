@@ -276,7 +276,6 @@ message GeneratedSwiftReservedEnums {
   enum fieldSize { NONE_fieldSize = 0; }
   enum FieldTag { NONE_FieldTag = 0; }
   enum fieldType { NONE_fieldType = 0; }
-  enum fieldValue { NONE_fieldValue = 0; }
   enum file { NONE_file = 0; }
   enum FileDescriptorProto { NONE_FileDescriptorProto = 0; }
   enum FileDescriptorSet { NONE_FileDescriptorSet = 0; }
@@ -360,6 +359,7 @@ message GeneratedSwiftReservedEnums {
   enum groupFieldNumberStack { NONE_groupFieldNumberStack = 0; }
   enum groupSize { NONE_groupSize = 0; }
   enum h { NONE_h = 0; }
+  enum hadOneofValue { NONE_hadOneofValue = 0; }
   enum handleConflictingOneOf { NONE_handleConflictingOneOf = 0; }
   enum hasAggregateValue { NONE_hasAggregateValue = 0; }
   enum hasAllowAlias { NONE_hasAllowAlias = 0; }
@@ -535,6 +535,8 @@ message GeneratedSwiftReservedEnums {
   enum minor { NONE_minor = 0; }
   enum Mixin { NONE_Mixin = 0; }
   enum mixins { NONE_mixins = 0; }
+  enum modifier { NONE_modifier = 0; }
+  enum modify { NONE_modify = 0; }
   enum month { NONE_month = 0; }
   enum msgExtension { NONE_msgExtension = 0; }
   enum mutating { NONE_mutating = 0; }
@@ -675,6 +677,7 @@ message GeneratedSwiftReservedEnums {
   enum result { NONE_result = 0; }
   enum rethrows { NONE_rethrows = 0; }
   enum return { NONE_return = 0; }
+  enum ReturnType { NONE_ReturnType = 0; }
   enum revision { NONE_revision = 0; }
   enum rhs { NONE_rhs = 0; }
   enum root { NONE_root = 0; }
@@ -739,6 +742,7 @@ message GeneratedSwiftReservedEnums {
   enum textDecoder { NONE_textDecoder = 0; }
   enum TextFormatDecoder { NONE_TextFormatDecoder = 0; }
   enum TextFormatDecodingError { NONE_TextFormatDecodingError = 0; }
+  enum TextFormatDecodingOptions { NONE_TextFormatDecodingOptions = 0; }
   enum TextFormatEncodingOptions { NONE_TextFormatEncodingOptions = 0; }
   enum TextFormatEncodingVisitor { NONE_TextFormatEncodingVisitor = 0; }
   enum textFormatString { NONE_textFormatString = 0; }

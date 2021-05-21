@@ -1800,6 +1800,36 @@ extension ProtobufUnittest_DupEnum.TestEnumWithDupValueLite: CaseIterable {
 
 #endif  // swift(>=4.2)
 
+struct ProtobufUnittest_RecursiveMessage {
+  // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var recurse: ProtobufUnittest_RecursiveMessage {
+    get {return _storage._recurse ?? ProtobufUnittest_RecursiveMessage()}
+    set {_uniqueStorage()._recurse = newValue}
+  }
+  /// Returns true if `recurse` has been explicitly set.
+  var hasRecurse: Bool {return _storage._recurse != nil}
+  /// Clears the value of `recurse`. Subsequent reads from it will return its default value.
+  mutating func clearRecurse() {_uniqueStorage()._recurse = nil}
+
+  var payload: Data {
+    get {return _storage._payload ?? Data()}
+    set {_uniqueStorage()._payload = newValue}
+  }
+  /// Returns true if `payload` has been explicitly set.
+  var hasPayload: Bool {return _storage._payload != nil}
+  /// Clears the value of `payload`. Subsequent reads from it will return its default value.
+  mutating func clearPayload() {_uniqueStorage()._payload = nil}
+
+  var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
+}
+
 // MARK: - Extension support defined in unittest_lite.proto.
 
 // MARK: - Extension Properties
@@ -4155,50 +4185,68 @@ extension ProtobufUnittest_TestAllTypesLite: InternalSwiftProtobuf.Message, Inte
         case 84: try { try decoder.decodeSingularStringField(value: &_storage._defaultStringPiece) }()
         case 85: try { try decoder.decodeSingularStringField(value: &_storage._defaultCord) }()
         case 111: try {
-          if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
           var v: UInt32?
           try decoder.decodeSingularUInt32Field(value: &v)
-          if let v = v {_storage._oneofField = .oneofUint32(v)}
+          if let v = v {
+            if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofUint32(v)
+          }
         }()
         case 112: try {
           var v: ProtobufUnittest_TestAllTypesLite.NestedMessage?
+          var hadOneofValue = false
           if let current = _storage._oneofField {
-            try decoder.handleConflictingOneOf()
+            hadOneofValue = true
             if case .oneofNestedMessage(let m) = current {v = m}
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._oneofField = .oneofNestedMessage(v)}
+          if let v = v {
+            if hadOneofValue {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofNestedMessage(v)
+          }
         }()
         case 113: try {
-          if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
           var v: String?
           try decoder.decodeSingularStringField(value: &v)
-          if let v = v {_storage._oneofField = .oneofString(v)}
+          if let v = v {
+            if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofString(v)
+          }
         }()
         case 114: try {
-          if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
           var v: Data?
           try decoder.decodeSingularBytesField(value: &v)
-          if let v = v {_storage._oneofField = .oneofBytes(v)}
+          if let v = v {
+            if _storage._oneofField != nil {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofBytes(v)
+          }
         }()
         case 115: try {
           var v: ProtobufUnittest_TestAllTypesLite.NestedMessage?
+          var hadOneofValue = false
           if let current = _storage._oneofField {
-            try decoder.handleConflictingOneOf()
+            hadOneofValue = true
             if case .oneofLazyNestedMessage(let m) = current {v = m}
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._oneofField = .oneofLazyNestedMessage(v)}
+          if let v = v {
+            if hadOneofValue {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofLazyNestedMessage(v)
+          }
         }()
         case 116: try { try decoder.decodeSingularInt32Field(value: &_storage._deceptivelyNamedList) }()
         case 117: try {
           var v: ProtobufUnittest_TestAllTypesLite.NestedMessage2?
+          var hadOneofValue = false
           if let current = _storage._oneofField {
-            try decoder.handleConflictingOneOf()
+            hadOneofValue = true
             if case .oneofNestedMessage2(let m) = current {v = m}
           }
           try decoder.decodeSingularMessageField(value: &v)
-          if let v = v {_storage._oneofField = .oneofNestedMessage2(v)}
+          if let v = v {
+            if hadOneofValue {try decoder.handleConflictingOneOf()}
+            _storage._oneofField = .oneofNestedMessage2(v)
+          }
         }()
         default: break
         }
@@ -5502,31 +5550,41 @@ extension ProtobufUnittest_TestHugeFieldNumbersLite: InternalSwiftProtobuf.Messa
       case 536870008: try { try decoder.decodeSingularGroupField(value: &self._optionalGroup) }()
       case 536870010: try { try decoder.decodeMapField(fieldType: InternalSwiftProtobuf._ProtobufMap<InternalSwiftProtobuf.ProtobufString,InternalSwiftProtobuf.ProtobufString>.self, value: &self.stringStringMap) }()
       case 536870011: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: UInt32?
         try decoder.decodeSingularUInt32Field(value: &v)
-        if let v = v {self.oneofField = .oneofUint32(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofUint32(v)
+        }
       }()
       case 536870012: try {
         var v: ProtobufUnittest_TestAllTypesLite?
+        var hadOneofValue = false
         if let current = self.oneofField {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .oneofTestAllTypes(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.oneofField = .oneofTestAllTypes(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofTestAllTypes(v)
+        }
       }()
       case 536870013: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.oneofField = .oneofString(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofString(v)
+        }
       }()
       case 536870014: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.oneofField = .oneofBytes(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofBytes(v)
+        }
       }()
       case 536860000..<536870000:
         try { try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: ProtobufUnittest_TestHugeFieldNumbersLite.self, fieldNumber: fieldNumber) }()
@@ -5663,61 +5721,81 @@ extension ProtobufUnittest_TestOneofParsingLite: InternalSwiftProtobuf.Message, 
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Int32?
         try decoder.decodeSingularInt32Field(value: &v)
-        if let v = v {self.oneofField = .oneofInt32(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofInt32(v)
+        }
       }()
       case 2: try {
         var v: ProtobufUnittest_TestAllTypesLite?
+        var hadOneofValue = false
         if let current = self.oneofField {
-          try decoder.handleConflictingOneOf()
+          hadOneofValue = true
           if case .oneofSubmessage(let m) = current {v = m}
         }
         try decoder.decodeSingularMessageField(value: &v)
-        if let v = v {self.oneofField = .oneofSubmessage(v)}
+        if let v = v {
+          if hadOneofValue {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofSubmessage(v)
+        }
       }()
       case 3: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.oneofField = .oneofString(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofString(v)
+        }
       }()
       case 4: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.oneofField = .oneofBytes(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofBytes(v)
+        }
       }()
       case 5: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.oneofField = .oneofStringCord(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofStringCord(v)
+        }
       }()
       case 6: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.oneofField = .oneofBytesCord(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofBytesCord(v)
+        }
       }()
       case 7: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: String?
         try decoder.decodeSingularStringField(value: &v)
-        if let v = v {self.oneofField = .oneofStringStringPiece(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofStringStringPiece(v)
+        }
       }()
       case 8: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: Data?
         try decoder.decodeSingularBytesField(value: &v)
-        if let v = v {self.oneofField = .oneofBytesStringPiece(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofBytesStringPiece(v)
+        }
       }()
       case 9: try {
-        if self.oneofField != nil {try decoder.handleConflictingOneOf()}
         var v: ProtobufUnittest_V2EnumLite?
         try decoder.decodeSingularEnumField(value: &v)
-        if let v = v {self.oneofField = .oneofEnum(v)}
+        if let v = v {
+          if self.oneofField != nil {try decoder.handleConflictingOneOf()}
+          self.oneofField = .oneofEnum(v)
+        }
       }()
       default: break
       }
@@ -5930,4 +6008,76 @@ extension ProtobufUnittest_DupEnum.TestEnumWithDupValueLite: InternalSwiftProtob
     2: .aliased(proto: "BAR1", aliases: ["BAR2"]),
     3: .same(proto: "BAZ"),
   ]
+}
+
+extension ProtobufUnittest_RecursiveMessage: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RecursiveMessage"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "recurse"),
+    2: .same(proto: "payload"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _recurse: ProtobufUnittest_RecursiveMessage? = nil
+    var _payload: Data? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _recurse = source._recurse
+      _payload = source._payload
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
+        switch fieldNumber {
+        case 1: try { try decoder.decodeSingularMessageField(value: &_storage._recurse) }()
+        case 2: try { try decoder.decodeSingularBytesField(value: &_storage._payload) }()
+        default: break
+        }
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._recurse {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._payload {
+        try visitor.visitSingularBytesField(value: v, fieldNumber: 2)
+      }
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittest_RecursiveMessage, rhs: ProtobufUnittest_RecursiveMessage) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._recurse != rhs_storage._recurse {return false}
+        if _storage._payload != rhs_storage._payload {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
 }

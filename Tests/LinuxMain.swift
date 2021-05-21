@@ -555,6 +555,14 @@ extension Test_FieldOrdering {
     ]
 }
 
+extension Test_FuzzTests {
+    static var allTests = [
+        ("test_Binary", test_Binary),
+        ("test_JSON", test_JSON),
+        ("test_TextFormat", test_TextFormat)
+    ]
+}
+
 extension Test_GroupWithinGroup {
     static var allTests = [
         ("testGroupWithGroup_Single", testGroupWithGroup_Single),
@@ -1004,6 +1012,12 @@ extension Test_JSON_Value {
     ]
 }
 
+extension Test_TextFormatDecodingOptions {
+    static var allTests = [
+        ("testMessageDepthLimit", testMessageDepthLimit)
+    ]
+}
+
 extension Test_TextFormat_Map_proto3 {
     static var allTests = [
         ("test_Int32Int32", test_Int32Int32),
@@ -1208,6 +1222,7 @@ XCTMain(
         testCase(Test_ExtremeDefaultValues.allTests),
         testCase(Test_FieldMask.allTests),
         testCase(Test_FieldOrdering.allTests),
+        testCase(Test_FuzzTests.allTests),
         testCase(Test_GroupWithinGroup.allTests),
         testCase(Test_JSON.allTests),
         testCase(Test_JSONPacked.allTests),
@@ -1245,6 +1260,7 @@ XCTMain(
         testCase(Test_JSON_ListValue.allTests),
         testCase(Test_Value.allTests),
         testCase(Test_JSON_Value.allTests),
+        testCase(Test_TextFormatDecodingOptions.allTests),
         testCase(Test_TextFormat_Map_proto3.allTests),
         testCase(Test_TextFormat_Unknown.allTests),
         testCase(Test_TextFormat_WKT_proto3.allTests),

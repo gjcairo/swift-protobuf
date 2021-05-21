@@ -3295,18 +3295,6 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedMessages {
     init() {}
   }
 
-  struct fieldValue {
-    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var fieldValue: Int32 = 0
-
-    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
-
-    init() {}
-  }
-
   struct file {
     // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -4297,6 +4285,18 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedMessages {
     // methods supported on all messages.
 
     var h: Int32 = 0
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct hadOneofValue {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var hadOneofValue: Int32 = 0
 
     var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
@@ -6403,6 +6403,30 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedMessages {
     init() {}
   }
 
+  struct modifier {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var modifier: Int32 = 0
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct modify {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var modify: Int32 = 0
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
   struct month {
     // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -8083,6 +8107,18 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedMessages {
     init() {}
   }
 
+  struct ReturnType {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var returnType: Int32 = 0
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
   struct revision {
     // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -8845,6 +8881,18 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedMessages {
     // methods supported on all messages.
 
     var textFormatDecodingError: Int32 = 0
+
+    var unknownFields = InternalSwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct TextFormatDecodingOptions {
+    // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var textFormatDecodingOptions: Int32 = 0
 
     var unknownFields = InternalSwiftProtobuf.UnknownStorage()
 
@@ -19117,38 +19165,6 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.fieldType: In
   }
 }
 
-extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.fieldValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".fieldValue"
-  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
-    1: .same(proto: "fieldValue"),
-  ]
-
-  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularInt32Field(value: &self.fieldValue) }()
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.fieldValue != 0 {
-      try visitor.visitSingularInt32Field(value: self.fieldValue, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.fieldValue, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.fieldValue) -> Bool {
-    if lhs.fieldValue != rhs.fieldValue {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.file: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".file"
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
@@ -21800,6 +21816,38 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.h: InternalSw
 
   static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.h, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.h) -> Bool {
     if lhs.h != rhs.h {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.hadOneofValue: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".hadOneofValue"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "hadOneofValue"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.hadOneofValue) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.hadOneofValue != 0 {
+      try visitor.visitSingularInt32Field(value: self.hadOneofValue, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.hadOneofValue, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.hadOneofValue) -> Bool {
+    if lhs.hadOneofValue != rhs.hadOneofValue {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -27405,6 +27453,70 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.mixins: Inter
   }
 }
 
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modifier: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".modifier"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "modifier"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.modifier) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.modifier != 0 {
+      try visitor.visitSingularInt32Field(value: self.modifier, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modifier, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modifier) -> Bool {
+    if lhs.modifier != rhs.modifier {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modify: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".modify"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "modify"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.modify) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.modify != 0 {
+      try visitor.visitSingularInt32Field(value: self.modify, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modify, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.modify) -> Bool {
+    if lhs.modify != rhs.modify {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.month: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".month"
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
@@ -31885,6 +31997,38 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.returnMessage
   }
 }
 
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.ReturnType: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".ReturnType"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "ReturnType"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.returnType) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.returnType != 0 {
+      try visitor.visitSingularInt32Field(value: self.returnType, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.ReturnType, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.ReturnType) -> Bool {
+    if lhs.returnType != rhs.returnType {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.revision: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".revision"
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
@@ -33928,6 +34072,38 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDec
 
   static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDecodingError, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDecodingError) -> Bool {
     if lhs.textFormatDecodingError != rhs.textFormatDecodingError {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDecodingOptions: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.protoMessageName + ".TextFormatDecodingOptions"
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    1: .same(proto: "TextFormatDecodingOptions"),
+  ]
+
+  mutating func decodeMessage<D: InternalSwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularInt32Field(value: &self.textFormatDecodingOptions) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.textFormatDecodingOptions != 0 {
+      try visitor.visitSingularInt32Field(value: self.textFormatDecodingOptions, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDecodingOptions, rhs: ProtobufUnittestGenerated_GeneratedSwiftReservedMessages.TextFormatDecodingOptions) -> Bool {
+    if lhs.textFormatDecodingOptions != rhs.textFormatDecodingOptions {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
