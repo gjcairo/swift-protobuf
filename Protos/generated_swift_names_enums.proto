@@ -453,6 +453,7 @@ message GeneratedSwiftReservedEnums {
   enum intern { NONE_intern = 0; }
   enum Internal { NONE_Internal = 0; }
   enum InternalState { NONE_InternalState = 0; }
+  enum InternalSwiftProtobuf { NONE_InternalSwiftProtobuf = 0; }
   enum into { NONE_into = 0; }
   enum ints { NONE_ints = 0; }
   enum isA { NONE_isA = 0; }
@@ -732,7 +733,6 @@ message GeneratedSwiftReservedEnums {
   enum subVisitor { NONE_subVisitor = 0; }
   enum Swift { NONE_Swift = 0; }
   enum swiftPrefix { NONE_swiftPrefix = 0; }
-  enum SwiftProtobuf { NONE_SwiftProtobuf = 0; }
   enum syntax { NONE_syntax = 0; }
   enum T { NONE_T = 0; }
   enum tag { NONE_tag = 0; }
