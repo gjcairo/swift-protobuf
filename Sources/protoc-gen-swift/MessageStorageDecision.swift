@@ -78,7 +78,7 @@ fileprivate struct AnalyzeResult {
     self.costAsField = costAsField
   }
 
-  @inlinable
+//  @inlinable
   init(_ costAsField: Int) {
     self.init(usesStorage: false, costAsField: costAsField)
   }

@@ -15,7 +15,7 @@
 
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 
 /// Interface for field generators.

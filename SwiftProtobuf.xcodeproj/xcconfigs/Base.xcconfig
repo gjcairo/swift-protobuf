@@ -84,3 +84,20 @@ SWIFT_VERSION = 5.0
 
 // Swift Compiler - Warning Policies
 SWIFT_TREAT_WARNINGS_AS_ERRORS = YES
+
+
+// AppleInternal Section
+
+
+SKIP_INSTALL = NO
+
+// I would have expected we could set this to either $(inherited) or $(SDK_VERSION), but that doesn't seem to be overriding the values set in Base.xcconfig.
+IPHONEOS_DEPLOYMENT_TARGET = 15.0
+MACOSX_DEPLOYMENT_TARGET = 12.0
+TVOS_DEPLOYMENT_TARGET = 15.0
+WATCHOS_DEPLOYMENT_TARGET = 8.0
+
+DYLIB_INSTALL_NAME_BASE = $(INSTALL_PATH)
+
+// Signing
+CODE_SIGN_IDENTITY = -
