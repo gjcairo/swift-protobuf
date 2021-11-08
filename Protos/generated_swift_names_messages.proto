@@ -276,7 +276,6 @@ message GeneratedSwiftReservedMessages {
   message fieldSize { int32 fieldSize = 1; }
   message FieldTag { int32 FieldTag = 1; }
   message fieldType { int32 fieldType = 1; }
-  message fieldValue { int32 fieldValue = 1; }
   message file { int32 file = 1; }
   message FileDescriptorProto { int32 FileDescriptorProto = 1; }
   message FileDescriptorSet { int32 FileDescriptorSet = 1; }
@@ -360,6 +359,7 @@ message GeneratedSwiftReservedMessages {
   message groupFieldNumberStack { int32 groupFieldNumberStack = 1; }
   message groupSize { int32 groupSize = 1; }
   message h { int32 h = 1; }
+  message hadOneofValue { int32 hadOneofValue = 1; }
   message handleConflictingOneOf { int32 handleConflictingOneOf = 1; }
   message hasAggregateValue { int32 hasAggregateValue = 1; }
   message hasAllowAlias { int32 hasAllowAlias = 1; }
@@ -535,6 +535,8 @@ message GeneratedSwiftReservedMessages {
   message minor { int32 minor = 1; }
   message Mixin { int32 Mixin = 1; }
   message mixins { int32 mixins = 1; }
+  message modifier { int32 modifier = 1; }
+  message modify { int32 modify = 1; }
   message month { int32 month = 1; }
   message msgExtension { int32 msgExtension = 1; }
   message mutating { int32 mutating = 1; }
@@ -675,6 +677,7 @@ message GeneratedSwiftReservedMessages {
   message result { int32 result = 1; }
   message rethrows { int32 rethrows = 1; }
   message return { int32 return = 1; }
+  message ReturnType { int32 ReturnType = 1; }
   message revision { int32 revision = 1; }
   message rhs { int32 rhs = 1; }
   message root { int32 root = 1; }
@@ -739,6 +742,7 @@ message GeneratedSwiftReservedMessages {
   message textDecoder { int32 textDecoder = 1; }
   message TextFormatDecoder { int32 TextFormatDecoder = 1; }
   message TextFormatDecodingError { int32 TextFormatDecodingError = 1; }
+  message TextFormatDecodingOptions { int32 TextFormatDecodingOptions = 1; }
   message TextFormatEncodingOptions { int32 TextFormatEncodingOptions = 1; }
   message TextFormatEncodingVisitor { int32 TextFormatEncodingVisitor = 1; }
   message textFormatString { int32 textFormatString = 1; }
