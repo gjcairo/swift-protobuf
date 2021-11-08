@@ -248,6 +248,7 @@ extension Test_Any {
         ("test_Any_UnknownUserMessage_JSON", test_Any_UnknownUserMessage_JSON),
         ("test_Any_UnknownUserMessage_protobuf", test_Any_UnknownUserMessage_protobuf),
         ("test_Any_Any", test_Any_Any),
+        ("test_Any_recursive", test_Any_recursive),
         ("test_Any_Duration_JSON_roundtrip", test_Any_Duration_JSON_roundtrip),
         ("test_Any_Duration_transcode", test_Any_Duration_transcode),
         ("test_Any_FieldMask_JSON_roundtrip", test_Any_FieldMask_JSON_roundtrip),
@@ -269,6 +270,9 @@ extension Test_Any {
         ("test_Any_OddTypeURL_FromValue", test_Any_OddTypeURL_FromValue),
         ("test_Any_OddTypeURL_FromMessage", test_Any_OddTypeURL_FromMessage),
         ("test_Any_JSON_Extensions", test_Any_JSON_Extensions),
+        ("test_Any_WKT_UnknownFields", test_Any_WKT_UnknownFields),
+        ("test_Any_empty", test_Any_empty),
+        ("test_Any_nestedList", test_Any_nestedList),
         ("test_IsA", test_IsA),
         ("test_Any_Registry", test_Any_Registry)
     ]
@@ -987,6 +991,7 @@ extension Test_JSON_ListValue {
     static var allTests = [
         ("testProtobuf", testProtobuf),
         ("testJSON", testJSON),
+        ("test_JSON_nested_list", test_JSON_nested_list),
         ("test_equality", test_equality)
     ]
 }

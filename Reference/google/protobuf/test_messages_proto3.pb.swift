@@ -1183,6 +1183,66 @@ struct ProtobufTestMessages_Proto3_ForeignMessage {
   init() {}
 }
 
+struct ProtobufTestMessages_Proto3_NullHypothesisProto3 {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct ProtobufTestMessages_Proto3_EnumOnlyProto3 {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  enum BoolEnum: SwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case kFalse // = 0
+    case kTrue // = 1
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .kFalse
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .kFalse
+      case 1: self = .kTrue
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .kFalse: return 0
+      case .kTrue: return 1
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
+  init() {}
+}
+
+#if swift(>=4.2)
+
+extension ProtobufTestMessages_Proto3_EnumOnlyProto3.BoolEnum: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [ProtobufTestMessages_Proto3_EnumOnlyProto3.BoolEnum] = [
+    .kFalse,
+    .kTrue,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "protobuf_test_messages.proto3"
@@ -1894,6 +1954,10 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
       if _storage._optionalInt32 != 0 {
         try visitor.visitSingularInt32Field(value: _storage._optionalInt32, fieldNumber: 1)
       }
@@ -1939,12 +2003,12 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
       if !_storage._optionalBytes.isEmpty {
         try visitor.visitSingularBytesField(value: _storage._optionalBytes, fieldNumber: 15)
       }
-      if let v = _storage._optionalNestedMessage {
+      try { if let v = _storage._optionalNestedMessage {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 18)
-      }
-      if let v = _storage._optionalForeignMessage {
+      } }()
+      try { if let v = _storage._optionalForeignMessage {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 19)
-      }
+      } }()
       if _storage._optionalNestedEnum != .foo {
         try visitor.visitSingularEnumField(value: _storage._optionalNestedEnum, fieldNumber: 21)
       }
@@ -1960,9 +2024,9 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
       if !_storage._optionalCord.isEmpty {
         try visitor.visitSingularStringField(value: _storage._optionalCord, fieldNumber: 25)
       }
-      if let v = _storage._recursiveMessage {
+      try { if let v = _storage._recursiveMessage {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
-      }
+      } }()
       if !_storage._repeatedInt32.isEmpty {
         try visitor.visitPackedInt32Field(value: _storage._repeatedInt32, fieldNumber: 31)
       }
@@ -2167,9 +2231,6 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
       if !_storage._unpackedNestedEnum.isEmpty {
         try visitor.visitRepeatedEnumField(value: _storage._unpackedNestedEnum, fieldNumber: 102)
       }
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch _storage._oneofField {
       case .oneofUint32?: try {
         guard case .oneofUint32(let v)? = _storage._oneofField else { preconditionFailure() }
@@ -2213,33 +2274,33 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
       }()
       case nil: break
       }
-      if let v = _storage._optionalBoolWrapper {
+      try { if let v = _storage._optionalBoolWrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 201)
-      }
-      if let v = _storage._optionalInt32Wrapper {
+      } }()
+      try { if let v = _storage._optionalInt32Wrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 202)
-      }
-      if let v = _storage._optionalInt64Wrapper {
+      } }()
+      try { if let v = _storage._optionalInt64Wrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 203)
-      }
-      if let v = _storage._optionalUint32Wrapper {
+      } }()
+      try { if let v = _storage._optionalUint32Wrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 204)
-      }
-      if let v = _storage._optionalUint64Wrapper {
+      } }()
+      try { if let v = _storage._optionalUint64Wrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 205)
-      }
-      if let v = _storage._optionalFloatWrapper {
+      } }()
+      try { if let v = _storage._optionalFloatWrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 206)
-      }
-      if let v = _storage._optionalDoubleWrapper {
+      } }()
+      try { if let v = _storage._optionalDoubleWrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 207)
-      }
-      if let v = _storage._optionalStringWrapper {
+      } }()
+      try { if let v = _storage._optionalStringWrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 208)
-      }
-      if let v = _storage._optionalBytesWrapper {
+      } }()
+      try { if let v = _storage._optionalBytesWrapper {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 209)
-      }
+      } }()
       if !_storage._repeatedBoolWrapper.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._repeatedBoolWrapper, fieldNumber: 211)
       }
@@ -2267,24 +2328,24 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3: SwiftProtobuf.Message,
       if !_storage._repeatedBytesWrapper.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._repeatedBytesWrapper, fieldNumber: 219)
       }
-      if let v = _storage._optionalDuration {
+      try { if let v = _storage._optionalDuration {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 301)
-      }
-      if let v = _storage._optionalTimestamp {
+      } }()
+      try { if let v = _storage._optionalTimestamp {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 302)
-      }
-      if let v = _storage._optionalFieldMask {
+      } }()
+      try { if let v = _storage._optionalFieldMask {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 303)
-      }
-      if let v = _storage._optionalStruct {
+      } }()
+      try { if let v = _storage._optionalStruct {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 304)
-      }
-      if let v = _storage._optionalAny {
+      } }()
+      try { if let v = _storage._optionalAny {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 305)
-      }
-      if let v = _storage._optionalValue {
+      } }()
+      try { if let v = _storage._optionalValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 306)
-      }
+      } }()
       if _storage._optionalNullValue != .nullValue {
         try visitor.visitSingularEnumField(value: _storage._optionalNullValue, fieldNumber: 307)
       }
@@ -2586,12 +2647,16 @@ extension ProtobufTestMessages_Proto3_TestAllTypesProto3.NestedMessage: SwiftPro
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
       if _storage._a != 0 {
         try visitor.visitSingularInt32Field(value: _storage._a, fieldNumber: 1)
       }
-      if let v = _storage._corecursive {
+      try { if let v = _storage._corecursive {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      }
+      } }()
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -2642,4 +2707,49 @@ extension ProtobufTestMessages_Proto3_ForeignMessage: SwiftProtobuf.Message, Swi
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
+}
+
+extension ProtobufTestMessages_Proto3_NullHypothesisProto3: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".NullHypothesisProto3"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufTestMessages_Proto3_NullHypothesisProto3, rhs: ProtobufTestMessages_Proto3_NullHypothesisProto3) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufTestMessages_Proto3_EnumOnlyProto3: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".EnumOnlyProto3"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: ProtobufTestMessages_Proto3_EnumOnlyProto3, rhs: ProtobufTestMessages_Proto3_EnumOnlyProto3) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension ProtobufTestMessages_Proto3_EnumOnlyProto3.BoolEnum: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "kFalse"),
+    1: .same(proto: "kTrue"),
+  ]
 }

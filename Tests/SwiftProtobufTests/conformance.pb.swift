@@ -206,7 +206,7 @@ struct Conformance_ConformanceRequest {
   ///
   /// TODO(haberman): if/when we expand the conformance tests to support proto2,
   /// we will want to include a field that lets the payload/response be a
-  /// protobuf_test_messages.proto2.TestAllTypes message instead.
+  /// protobuf_test_messages.google.protobuf.TestAllTypes message instead.
   var payload: Conformance_ConformanceRequest.OneOf_Payload? = nil
 
   var protobufPayload: Data {
@@ -247,7 +247,7 @@ struct Conformance_ConformanceRequest {
 
   /// The full name for the test message to use; for the moment, either:
   /// protobuf_test_messages.proto3.TestAllTypesProto3 or
-  /// protobuf_test_messages.proto2.TestAllTypesProto2.
+  /// protobuf_test_messages.google.protobuf.TestAllTypesProto2.
   var messageType: String = String()
 
   /// Each test is given a specific test category. Some category may need
@@ -277,7 +277,7 @@ struct Conformance_ConformanceRequest {
   ///
   /// TODO(haberman): if/when we expand the conformance tests to support proto2,
   /// we will want to include a field that lets the payload/response be a
-  /// protobuf_test_messages.proto2.TestAllTypes message instead.
+  /// protobuf_test_messages.google.protobuf.TestAllTypes message instead.
   enum OneOf_Payload: Equatable {
     case protobufPayload(Data)
     case jsonPayload(String)
@@ -628,8 +628,9 @@ extension Conformance_ConformanceRequest: InternalSwiftProtobuf.Message, Interna
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every case branch when no optimizations are
-    // enabled. https://github.com/apple/swift-protobuf/issues/1034
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     switch self.payload {
     case .protobufPayload?: try {
       guard case .protobufPayload(let v)? = self.payload else { preconditionFailure() }
@@ -650,12 +651,9 @@ extension Conformance_ConformanceRequest: InternalSwiftProtobuf.Message, Interna
     if self.testCategory != .unspecifiedTest {
       try visitor.visitSingularEnumField(value: self.testCategory, fieldNumber: 5)
     }
-    if let v = self._jspbEncodingOptions {
+    try { if let v = self._jspbEncodingOptions {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    }
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every case branch when no optimizations are
-    // enabled. https://github.com/apple/swift-protobuf/issues/1034
+    } }()
     switch self.payload {
     case .jspbPayload?: try {
       guard case .jspbPayload(let v)? = self.payload else { preconditionFailure() }
@@ -775,8 +773,9 @@ extension Conformance_ConformanceResponse: InternalSwiftProtobuf.Message, Intern
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every case branch when no optimizations are
-    // enabled. https://github.com/apple/swift-protobuf/issues/1034
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
     switch self.result {
     case .parseError?: try {
       guard case .parseError(let v)? = self.result else { preconditionFailure() }

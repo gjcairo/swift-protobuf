@@ -456,6 +456,31 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedEnums {
 
   }
 
+  enum arrayDepth: InternalSwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case noneArrayDepth // = 0
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .noneArrayDepth
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .noneArrayDepth
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .noneArrayDepth: return 0
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   enum arrayLiteral: InternalSwiftProtobuf.Enum {
     typealias RawValue = Int
     case noneArrayLiteral // = 0
@@ -18731,6 +18756,31 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedEnums {
 
   }
 
+  enum totalArrayDepth: InternalSwiftProtobuf.Enum {
+    typealias RawValue = Int
+    case noneTotalArrayDepth // = 0
+    case UNRECOGNIZED(Int)
+
+    init() {
+      self = .noneTotalArrayDepth
+    }
+
+    init?(rawValue: Int) {
+      switch rawValue {
+      case 0: self = .noneTotalArrayDepth
+      default: self = .UNRECOGNIZED(rawValue)
+      }
+    }
+
+    var rawValue: Int {
+      switch self {
+      case .noneTotalArrayDepth: return 0
+      case .UNRECOGNIZED(let i): return i
+      }
+    }
+
+  }
+
   enum totalSize: InternalSwiftProtobuf.Enum {
     typealias RawValue = Int
     case noneTotalSize // = 0
@@ -21827,6 +21877,13 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.array: CaseItera
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.array] = [
     .noneArray,
+  ]
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.arrayDepth: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.arrayDepth] = [
+    .noneArrayDepth,
   ]
 }
 
@@ -26947,6 +27004,13 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.total: CaseItera
   ]
 }
 
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.totalArrayDepth: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.totalArrayDepth] = [
+    .noneTotalArrayDepth,
+  ]
+}
+
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.totalSize: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
   static var allCases: [ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.totalSize] = [
@@ -27904,6 +27968,12 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.areAllInitialize
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.array: InternalSwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "NONE_array"),
+  ]
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.arrayDepth: InternalSwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    0: .same(proto: "NONE_arrayDepth"),
   ]
 }
 
@@ -32290,6 +32360,12 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.Timestamp: Inter
 extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.total: InternalSwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "NONE_total"),
+  ]
+}
+
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedEnums.totalArrayDepth: InternalSwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
+    0: .same(proto: "NONE_totalArrayDepth"),
   ]
 }
 
