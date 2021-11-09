@@ -246,9 +246,13 @@ extension Ext4MyMessage.C: InternalSwiftProtobuf.Message, InternalSwiftProtobuf.
   }
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._c {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._c {
       try visitor.visitSingularInt64Field(value: v, fieldNumber: 1410)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -278,9 +282,13 @@ extension Ext4C: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageIm
   }
 
   func traverse<V: InternalSwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._c {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._c {
       try visitor.visitSingularInt64Field(value: v, fieldNumber: 1420)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 

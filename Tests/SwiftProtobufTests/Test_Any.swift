@@ -276,6 +276,16 @@ class Test_Any: XCTestCase {
         }
     }
 
+    func test_Any_recursive() throws {
+        func nestedAny(_ i: Int) throws -> Google_Protobuf_Any {
+           guard i > 0 else { return Google_Protobuf_Any() }
+           return try Google_Protobuf_Any(message: nestedAny(i - 1))
+        }
+        let any = try nestedAny(5)
+        let encoded = try any.serializedBytes()
+        XCTAssertEqual(encoded.count, 214)
+    }
+
     func test_Any_Duration_JSON_roundtrip() throws {
         let start = "{\"optionalAny\":{\"@type\":\"type.googleapis.com/google.protobuf.Duration\",\"value\":\"99.001s\"}}"
         do {
@@ -679,7 +689,74 @@ class Test_Any: XCTestCase {
       XCTAssertTrue(Google_Protobuf_Any.register(messageType: ProtobufUnittest_TestAllExtensions.self))
       // Throws because the extensions can't be implicitly transcoded
       XCTAssertThrowsError(try decodedWithExtensions.serializedData())
-  }
+    }
+
+    func test_Any_WKT_UnknownFields() throws {
+      let testcases = [
+        // unknown field before value
+        "{\"optionalAny\":{\"@type\":\"type.googleapis.com/google.protobuf.Duration\",\"fred\":1,\"value\":\"99.001s\"}}",
+        // unknown field after value
+        "{\"optionalAny\":{\"@type\":\"type.googleapis.com/google.protobuf.Duration\",\"value\":\"99.001s\",\"fred\":1}}",
+      ]
+      for json in testcases {
+        for ignoreUnknown in [false, true] {
+          var options = JSONDecodingOptions()
+          options.ignoreUnknownFields = ignoreUnknown
+          // This may appear a little odd, since Any lazy parses, this will
+          // always succeed because the Any isn't decoded until requested.
+          let decoded = try! ProtobufTestMessages_Proto3_TestAllTypesProto3(jsonString: json, options: options)
+
+          XCTAssertNotNil(decoded.optionalAny)
+          let anyField = decoded.optionalAny
+          do {
+            let unpacked = try Google_Protobuf_Duration(unpackingAny: anyField)
+            XCTAssertTrue(ignoreUnknown)  // Should have throw if not ignoring unknowns.
+            XCTAssertEqual(unpacked.seconds, 99)
+            XCTAssertEqual(unpacked.nanos, 1000000)
+          } catch {
+            XCTAssertTrue(!ignoreUnknown)
+          }
+
+          // The extra field should still be there.
+          let encoded = try decoded.jsonString()
+          XCTAssertEqual(encoded, json)
+        }
+      }
+    }
+
+    func test_Any_empty() throws {
+      let start = "{\"optionalAny\":{}}"
+      let decoded = try ProtobufTestMessages_Proto3_TestAllTypesProto3(jsonString: start)
+      let protobuf = try decoded.serializedData()
+      XCTAssertEqual(protobuf, Data([138, 19, 0]))
+      let redecoded = try ProtobufTestMessages_Proto3_TestAllTypesProto3(serializedData: protobuf)
+      let retext = redecoded.textFormatString()
+      XCTAssertEqual(retext, "optional_any {\n}\n")
+      let reredecoded = try ProtobufTestMessages_Proto3_TestAllTypesProto3(textFormatString: retext)
+      let rejson = try reredecoded.jsonString()
+      XCTAssertEqual(rejson, start)
+    }
+
+    func test_Any_nestedList() throws {
+      var start = "{\"optionalAny\":{\"x\":"
+      for _ in 0...10000 {
+        start.append("[")
+      }
+      XCTAssertThrowsError(
+        // This should fail because the deeply-nested array is not closed
+        // It should not crash from exhausting stack space
+        try ProtobufTestMessages_Proto3_TestAllTypesProto3(jsonString: start)
+      )
+      for _ in 0...10000 {
+        start.append("]")
+      }
+      start.append("}}")
+      // This should succeed because the deeply-nested array is properly closed
+      // It should not crash from exhausting stack space and should
+      // not fail due to recursion limits (because when skipping, those are
+      // only applied to objects).
+      _ = try ProtobufTestMessages_Proto3_TestAllTypesProto3(jsonString: start)
+    }
 
     func test_IsA() {
       var msg = Google_Protobuf_Any()

@@ -483,6 +483,77 @@ struct Fuzz_Testing_Message: SwiftProtobuf.ExtensibleMessage {
     set {_uniqueStorage()._o = .oneofMessage(newValue)}
   }
 
+  /// Repeated Packed
+  var repeatedPackedInt32: [Int32] {
+    get {return _storage._repeatedPackedInt32}
+    set {_uniqueStorage()._repeatedPackedInt32 = newValue}
+  }
+
+  var repeatedPackedInt64: [Int64] {
+    get {return _storage._repeatedPackedInt64}
+    set {_uniqueStorage()._repeatedPackedInt64 = newValue}
+  }
+
+  var repeatedPackedUint32: [UInt32] {
+    get {return _storage._repeatedPackedUint32}
+    set {_uniqueStorage()._repeatedPackedUint32 = newValue}
+  }
+
+  var repeatedPackedUint64: [UInt64] {
+    get {return _storage._repeatedPackedUint64}
+    set {_uniqueStorage()._repeatedPackedUint64 = newValue}
+  }
+
+  var repeatedPackedSint32: [Int32] {
+    get {return _storage._repeatedPackedSint32}
+    set {_uniqueStorage()._repeatedPackedSint32 = newValue}
+  }
+
+  var repeatedPackedSint64: [Int64] {
+    get {return _storage._repeatedPackedSint64}
+    set {_uniqueStorage()._repeatedPackedSint64 = newValue}
+  }
+
+  var repeatedPackedFixed32: [UInt32] {
+    get {return _storage._repeatedPackedFixed32}
+    set {_uniqueStorage()._repeatedPackedFixed32 = newValue}
+  }
+
+  var repeatedPackedFixed64: [UInt64] {
+    get {return _storage._repeatedPackedFixed64}
+    set {_uniqueStorage()._repeatedPackedFixed64 = newValue}
+  }
+
+  var repeatedPackedSfixed32: [Int32] {
+    get {return _storage._repeatedPackedSfixed32}
+    set {_uniqueStorage()._repeatedPackedSfixed32 = newValue}
+  }
+
+  var repeatedPackedSfixed64: [Int64] {
+    get {return _storage._repeatedPackedSfixed64}
+    set {_uniqueStorage()._repeatedPackedSfixed64 = newValue}
+  }
+
+  var repeatedPackedFloat: [Float] {
+    get {return _storage._repeatedPackedFloat}
+    set {_uniqueStorage()._repeatedPackedFloat = newValue}
+  }
+
+  var repeatedPackedDouble: [Double] {
+    get {return _storage._repeatedPackedDouble}
+    set {_uniqueStorage()._repeatedPackedDouble = newValue}
+  }
+
+  var repeatedPackedBool: [Bool] {
+    get {return _storage._repeatedPackedBool}
+    set {_uniqueStorage()._repeatedPackedBool = newValue}
+  }
+
+  var repeatedPackedEnum: [Fuzz_Testing_AnEnum] {
+    get {return _storage._repeatedPackedEnum}
+    set {_uniqueStorage()._repeatedPackedEnum = newValue}
+  }
+
   /// map<>
   var mapInt32Int32: Dictionary<Int32,Int32> {
     get {return _storage._mapInt32Int32}
@@ -1582,6 +1653,21 @@ struct Fuzz_Testing_Message: SwiftProtobuf.ExtensibleMessage {
   /// Clears the value of `wktBytesValue`. Subsequent reads from it will return its default value.
   mutating func clearWktBytesValue() {_uniqueStorage()._wktBytesValue = nil}
 
+  /// Get some coverage for the special message_set_wire_format.
+  var singularMessageSet: Fuzz_Testing_AMessageSetMessage {
+    get {return _storage._singularMessageSet ?? Fuzz_Testing_AMessageSetMessage()}
+    set {_uniqueStorage()._singularMessageSet = newValue}
+  }
+  /// Returns true if `singularMessageSet` has been explicitly set.
+  var hasSingularMessageSet: Bool {return _storage._singularMessageSet != nil}
+  /// Clears the value of `singularMessageSet`. Subsequent reads from it will return its default value.
+  mutating func clearSingularMessageSet() {_uniqueStorage()._singularMessageSet = nil}
+
+  var repeatedMessageSet: [Fuzz_Testing_AMessageSetMessage] {
+    get {return _storage._repeatedMessageSet}
+    set {_uniqueStorage()._repeatedMessageSet = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   /// oneof
@@ -1761,6 +1847,19 @@ struct Fuzz_Testing_Message: SwiftProtobuf.ExtensibleMessage {
 
   var _protobuf_extensionFieldValues = SwiftProtobuf.ExtensionFieldValueSet()
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+/// A message with message_set_wire_format.
+struct Fuzz_Testing_AMessageSetMessage: SwiftProtobuf.ExtensibleMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  var _protobuf_extensionFieldValues = SwiftProtobuf.ExtensionFieldValueSet()
 }
 
 struct Fuzz_Testing_SingularGroup_ext {
@@ -2358,6 +2457,217 @@ extension Fuzz_Testing_Message {
     clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_message_ext)
   }
 
+  /// Repeated Packed
+  var Fuzz_Testing_repeatedPackedInt32Ext: [Int32] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int32_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int32_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_int32_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedInt32Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int32_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_int32_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedInt32Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int32_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedInt64Ext: [Int64] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int64_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int64_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_int64_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedInt64Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int64_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_int64_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedInt64Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_int64_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedUint32Ext: [UInt32] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint32_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint32_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_uint32_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedUint32Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint32_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_uint32_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedUint32Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint32_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedUint64Ext: [UInt64] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint64_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint64_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_uint64_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedUint64Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint64_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_uint64_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedUint64Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_uint64_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedSint32Ext: [Int32] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint32_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint32_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_sint32_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedSint32Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint32_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_sint32_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedSint32Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint32_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedSint64Ext: [Int64] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint64_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint64_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_sint64_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedSint64Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint64_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_sint64_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedSint64Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sint64_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedFixed32Ext: [UInt32] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed32_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed32_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_fixed32_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedFixed32Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed32_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_fixed32_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedFixed32Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed32_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedFixed64Ext: [UInt64] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed64_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed64_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_fixed64_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedFixed64Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed64_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_fixed64_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedFixed64Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_fixed64_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedSfixed32Ext: [Int32] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedSfixed32Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedSfixed32Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedSfixed64Ext: [Int64] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedSfixed64Ext: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedSfixed64Ext() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedFloatExt: [Float] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_float_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_float_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_float_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedFloatExt: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_float_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_float_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedFloatExt() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_float_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedDoubleExt: [Double] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_double_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_double_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_double_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedDoubleExt: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_double_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_double_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedDoubleExt() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_double_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedBoolExt: [Bool] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_bool_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_bool_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_bool_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedBoolExt: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_bool_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_bool_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedBoolExt() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_bool_ext)
+  }
+
+  var Fuzz_Testing_repeatedPackedEnumExt: [Fuzz_Testing_AnEnum] {
+    get {return getExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_enum_ext) ?? []}
+    set {setExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_enum_ext, value: newValue)}
+  }
+  /// Returns true if extension `Fuzz_Testing_Extensions_repeated_packed_enum_ext`
+  /// has been explicitly set.
+  var hasFuzz_Testing_repeatedPackedEnumExt: Bool {
+    return hasExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_enum_ext)
+  }
+  /// Clears the value of extension `Fuzz_Testing_Extensions_repeated_packed_enum_ext`.
+  /// Subsequent reads from it will return its default value.
+  mutating func clearFuzz_Testing_repeatedPackedEnumExt() {
+    clearExtensionValue(ext: Fuzz_Testing_Extensions_repeated_packed_enum_ext)
+  }
+
 }
 
 // MARK: - File's ExtensionMap: Fuzz_Testing_FuzzTesting_Extensions
@@ -2402,7 +2712,21 @@ let Fuzz_Testing_FuzzTesting_Extensions: SwiftProtobuf.SimpleExtensionMap = [
   Fuzz_Testing_Extensions_repeated_bytes_ext,
   Fuzz_Testing_Extensions_repeated_enum_ext,
   Fuzz_Testing_Extensions_RepeatedGroup_ext,
-  Fuzz_Testing_Extensions_repeated_message_ext
+  Fuzz_Testing_Extensions_repeated_message_ext,
+  Fuzz_Testing_Extensions_repeated_packed_int32_ext,
+  Fuzz_Testing_Extensions_repeated_packed_int64_ext,
+  Fuzz_Testing_Extensions_repeated_packed_uint32_ext,
+  Fuzz_Testing_Extensions_repeated_packed_uint64_ext,
+  Fuzz_Testing_Extensions_repeated_packed_sint32_ext,
+  Fuzz_Testing_Extensions_repeated_packed_sint64_ext,
+  Fuzz_Testing_Extensions_repeated_packed_fixed32_ext,
+  Fuzz_Testing_Extensions_repeated_packed_fixed64_ext,
+  Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext,
+  Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext,
+  Fuzz_Testing_Extensions_repeated_packed_float_ext,
+  Fuzz_Testing_Extensions_repeated_packed_double_ext,
+  Fuzz_Testing_Extensions_repeated_packed_bool_ext,
+  Fuzz_Testing_Extensions_repeated_packed_enum_ext
 ]
 
 // Extension Objects - The only reason these might be needed is when manually
@@ -2591,6 +2915,77 @@ let Fuzz_Testing_Extensions_repeated_message_ext = SwiftProtobuf.MessageExtensio
   fieldName: "fuzz.testing.repeated_message_ext"
 )
 
+/// Repeated Packed
+let Fuzz_Testing_Extensions_repeated_packed_int32_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufInt32>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1061,
+  fieldName: "fuzz.testing.repeated_packed_int32_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_int64_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufInt64>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1062,
+  fieldName: "fuzz.testing.repeated_packed_int64_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_uint32_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufUInt32>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1063,
+  fieldName: "fuzz.testing.repeated_packed_uint32_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_uint64_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufUInt64>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1064,
+  fieldName: "fuzz.testing.repeated_packed_uint64_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_sint32_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufSInt32>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1065,
+  fieldName: "fuzz.testing.repeated_packed_sint32_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_sint64_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufSInt64>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1066,
+  fieldName: "fuzz.testing.repeated_packed_sint64_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_fixed32_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufFixed32>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1067,
+  fieldName: "fuzz.testing.repeated_packed_fixed32_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_fixed64_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufFixed64>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1068,
+  fieldName: "fuzz.testing.repeated_packed_fixed64_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_sfixed32_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufSFixed32>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1069,
+  fieldName: "fuzz.testing.repeated_packed_sfixed32_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_sfixed64_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufSFixed64>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1070,
+  fieldName: "fuzz.testing.repeated_packed_sfixed64_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_float_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufFloat>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1071,
+  fieldName: "fuzz.testing.repeated_packed_float_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_double_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufDouble>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1072,
+  fieldName: "fuzz.testing.repeated_packed_double_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_bool_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedExtensionField<SwiftProtobuf.ProtobufBool>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1073,
+  fieldName: "fuzz.testing.repeated_packed_bool_ext"
+)
+
+let Fuzz_Testing_Extensions_repeated_packed_enum_ext = SwiftProtobuf.MessageExtension<SwiftProtobuf.PackedEnumExtensionField<Fuzz_Testing_AnEnum>, Fuzz_Testing_Message>(
+  _protobuf_fieldNumber: 1074,
+  fieldName: "fuzz.testing.repeated_packed_enum_ext"
+)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "fuzz.testing"
@@ -2661,6 +3056,20 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     76: .standard(proto: "oneof_enum"),
     77: .unique(proto: "OneofGroup", json: "oneofgroup"),
     79: .standard(proto: "oneof_message"),
+    81: .standard(proto: "repeated_packed_int32"),
+    82: .standard(proto: "repeated_packed_int64"),
+    83: .standard(proto: "repeated_packed_uint32"),
+    84: .standard(proto: "repeated_packed_uint64"),
+    85: .standard(proto: "repeated_packed_sint32"),
+    86: .standard(proto: "repeated_packed_sint64"),
+    87: .standard(proto: "repeated_packed_fixed32"),
+    88: .standard(proto: "repeated_packed_fixed64"),
+    89: .standard(proto: "repeated_packed_sfixed32"),
+    90: .standard(proto: "repeated_packed_sfixed64"),
+    91: .standard(proto: "repeated_packed_float"),
+    92: .standard(proto: "repeated_packed_double"),
+    93: .standard(proto: "repeated_packed_bool"),
+    94: .standard(proto: "repeated_packed_enum"),
     100: .standard(proto: "map_int32_int32"),
     101: .standard(proto: "map_int32_int64"),
     102: .standard(proto: "map_int32_uint32"),
@@ -2866,6 +3275,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     515: .standard(proto: "wkt_bool_value"),
     516: .standard(proto: "wkt_string_value"),
     517: .standard(proto: "wkt_bytes_value"),
+    600: .standard(proto: "singular_message_set"),
+    601: .standard(proto: "repeated_message_set"),
   ]
 
   fileprivate class _StorageClass {
@@ -2906,6 +3317,20 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     var _repeatedGroup: [Fuzz_Testing_Message.RepeatedGroup] = []
     var _repeatedMessage: [Fuzz_Testing_Message] = []
     var _o: Fuzz_Testing_Message.OneOf_O?
+    var _repeatedPackedInt32: [Int32] = []
+    var _repeatedPackedInt64: [Int64] = []
+    var _repeatedPackedUint32: [UInt32] = []
+    var _repeatedPackedUint64: [UInt64] = []
+    var _repeatedPackedSint32: [Int32] = []
+    var _repeatedPackedSint64: [Int64] = []
+    var _repeatedPackedFixed32: [UInt32] = []
+    var _repeatedPackedFixed64: [UInt64] = []
+    var _repeatedPackedSfixed32: [Int32] = []
+    var _repeatedPackedSfixed64: [Int64] = []
+    var _repeatedPackedFloat: [Float] = []
+    var _repeatedPackedDouble: [Double] = []
+    var _repeatedPackedBool: [Bool] = []
+    var _repeatedPackedEnum: [Fuzz_Testing_AnEnum] = []
     var _mapInt32Int32: Dictionary<Int32,Int32> = [:]
     var _mapInt32Int64: Dictionary<Int32,Int64> = [:]
     var _mapInt32Uint32: Dictionary<Int32,UInt32> = [:]
@@ -3111,6 +3536,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     var _wktBoolValue: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
     var _wktStringValue: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _wktBytesValue: SwiftProtobuf.Google_Protobuf_BytesValue? = nil
+    var _singularMessageSet: Fuzz_Testing_AMessageSetMessage? = nil
+    var _repeatedMessageSet: [Fuzz_Testing_AMessageSetMessage] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -3154,6 +3581,20 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       _repeatedGroup = source._repeatedGroup
       _repeatedMessage = source._repeatedMessage
       _o = source._o
+      _repeatedPackedInt32 = source._repeatedPackedInt32
+      _repeatedPackedInt64 = source._repeatedPackedInt64
+      _repeatedPackedUint32 = source._repeatedPackedUint32
+      _repeatedPackedUint64 = source._repeatedPackedUint64
+      _repeatedPackedSint32 = source._repeatedPackedSint32
+      _repeatedPackedSint64 = source._repeatedPackedSint64
+      _repeatedPackedFixed32 = source._repeatedPackedFixed32
+      _repeatedPackedFixed64 = source._repeatedPackedFixed64
+      _repeatedPackedSfixed32 = source._repeatedPackedSfixed32
+      _repeatedPackedSfixed64 = source._repeatedPackedSfixed64
+      _repeatedPackedFloat = source._repeatedPackedFloat
+      _repeatedPackedDouble = source._repeatedPackedDouble
+      _repeatedPackedBool = source._repeatedPackedBool
+      _repeatedPackedEnum = source._repeatedPackedEnum
       _mapInt32Int32 = source._mapInt32Int32
       _mapInt32Int64 = source._mapInt32Int64
       _mapInt32Uint32 = source._mapInt32Uint32
@@ -3359,6 +3800,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       _wktBoolValue = source._wktBoolValue
       _wktStringValue = source._wktStringValue
       _wktBytesValue = source._wktBytesValue
+      _singularMessageSet = source._singularMessageSet
+      _repeatedMessageSet = source._repeatedMessageSet
     }
   }
 
@@ -3386,6 +3829,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       if !SwiftProtobuf.Internal.areAllInitialized(_storage._mapSfixed32Message) {return false}
       if !SwiftProtobuf.Internal.areAllInitialized(_storage._mapSfixed64Message) {return false}
       if !SwiftProtobuf.Internal.areAllInitialized(_storage._mapBoolMessage) {return false}
+      if let v = _storage._singularMessageSet, !v.isInitialized {return false}
+      if !SwiftProtobuf.Internal.areAllInitialized(_storage._repeatedMessageSet) {return false}
       return true
     }
   }
@@ -3588,6 +4033,20 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
             _storage._o = .oneofMessage(v)
           }
         }()
+        case 81: try { try decoder.decodeRepeatedInt32Field(value: &_storage._repeatedPackedInt32) }()
+        case 82: try { try decoder.decodeRepeatedInt64Field(value: &_storage._repeatedPackedInt64) }()
+        case 83: try { try decoder.decodeRepeatedUInt32Field(value: &_storage._repeatedPackedUint32) }()
+        case 84: try { try decoder.decodeRepeatedUInt64Field(value: &_storage._repeatedPackedUint64) }()
+        case 85: try { try decoder.decodeRepeatedSInt32Field(value: &_storage._repeatedPackedSint32) }()
+        case 86: try { try decoder.decodeRepeatedSInt64Field(value: &_storage._repeatedPackedSint64) }()
+        case 87: try { try decoder.decodeRepeatedFixed32Field(value: &_storage._repeatedPackedFixed32) }()
+        case 88: try { try decoder.decodeRepeatedFixed64Field(value: &_storage._repeatedPackedFixed64) }()
+        case 89: try { try decoder.decodeRepeatedSFixed32Field(value: &_storage._repeatedPackedSfixed32) }()
+        case 90: try { try decoder.decodeRepeatedSFixed64Field(value: &_storage._repeatedPackedSfixed64) }()
+        case 91: try { try decoder.decodeRepeatedFloatField(value: &_storage._repeatedPackedFloat) }()
+        case 92: try { try decoder.decodeRepeatedDoubleField(value: &_storage._repeatedPackedDouble) }()
+        case 93: try { try decoder.decodeRepeatedBoolField(value: &_storage._repeatedPackedBool) }()
+        case 94: try { try decoder.decodeRepeatedEnumField(value: &_storage._repeatedPackedEnum) }()
         case 100: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufInt32>.self, value: &_storage._mapInt32Int32) }()
         case 101: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufInt64>.self, value: &_storage._mapInt32Int64) }()
         case 102: try { try decoder.decodeMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufUInt32>.self, value: &_storage._mapInt32Uint32) }()
@@ -3793,6 +4252,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
         case 515: try { try decoder.decodeSingularMessageField(value: &_storage._wktBoolValue) }()
         case 516: try { try decoder.decodeSingularMessageField(value: &_storage._wktStringValue) }()
         case 517: try { try decoder.decodeSingularMessageField(value: &_storage._wktBytesValue) }()
+        case 600: try { try decoder.decodeSingularMessageField(value: &_storage._singularMessageSet) }()
+        case 601: try { try decoder.decodeRepeatedMessageField(value: &_storage._repeatedMessageSet) }()
         case 1000..<2001:
           try { try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: Fuzz_Testing_Message.self, fieldNumber: fieldNumber) }()
         default: break
@@ -3803,60 +4264,64 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._singularInt32 {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every if/case branch local when no optimizations
+      // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+      // https://github.com/apple/swift-protobuf/issues/1182
+      try { if let v = _storage._singularInt32 {
         try visitor.visitSingularInt32Field(value: v, fieldNumber: 1)
-      }
-      if let v = _storage._singularInt64 {
+      } }()
+      try { if let v = _storage._singularInt64 {
         try visitor.visitSingularInt64Field(value: v, fieldNumber: 2)
-      }
-      if let v = _storage._singularUint32 {
+      } }()
+      try { if let v = _storage._singularUint32 {
         try visitor.visitSingularUInt32Field(value: v, fieldNumber: 3)
-      }
-      if let v = _storage._singularUint64 {
+      } }()
+      try { if let v = _storage._singularUint64 {
         try visitor.visitSingularUInt64Field(value: v, fieldNumber: 4)
-      }
-      if let v = _storage._singularSint32 {
+      } }()
+      try { if let v = _storage._singularSint32 {
         try visitor.visitSingularSInt32Field(value: v, fieldNumber: 5)
-      }
-      if let v = _storage._singularSint64 {
+      } }()
+      try { if let v = _storage._singularSint64 {
         try visitor.visitSingularSInt64Field(value: v, fieldNumber: 6)
-      }
-      if let v = _storage._singularFixed32 {
+      } }()
+      try { if let v = _storage._singularFixed32 {
         try visitor.visitSingularFixed32Field(value: v, fieldNumber: 7)
-      }
-      if let v = _storage._singularFixed64 {
+      } }()
+      try { if let v = _storage._singularFixed64 {
         try visitor.visitSingularFixed64Field(value: v, fieldNumber: 8)
-      }
-      if let v = _storage._singularSfixed32 {
+      } }()
+      try { if let v = _storage._singularSfixed32 {
         try visitor.visitSingularSFixed32Field(value: v, fieldNumber: 9)
-      }
-      if let v = _storage._singularSfixed64 {
+      } }()
+      try { if let v = _storage._singularSfixed64 {
         try visitor.visitSingularSFixed64Field(value: v, fieldNumber: 10)
-      }
-      if let v = _storage._singularFloat {
+      } }()
+      try { if let v = _storage._singularFloat {
         try visitor.visitSingularFloatField(value: v, fieldNumber: 11)
-      }
-      if let v = _storage._singularDouble {
+      } }()
+      try { if let v = _storage._singularDouble {
         try visitor.visitSingularDoubleField(value: v, fieldNumber: 12)
-      }
-      if let v = _storage._singularBool {
+      } }()
+      try { if let v = _storage._singularBool {
         try visitor.visitSingularBoolField(value: v, fieldNumber: 13)
-      }
-      if let v = _storage._singularString {
+      } }()
+      try { if let v = _storage._singularString {
         try visitor.visitSingularStringField(value: v, fieldNumber: 14)
-      }
-      if let v = _storage._singularBytes {
+      } }()
+      try { if let v = _storage._singularBytes {
         try visitor.visitSingularBytesField(value: v, fieldNumber: 15)
-      }
-      if let v = _storage._singularEnum {
+      } }()
+      try { if let v = _storage._singularEnum {
         try visitor.visitSingularEnumField(value: v, fieldNumber: 16)
-      }
-      if let v = _storage._singularGroup {
+      } }()
+      try { if let v = _storage._singularGroup {
         try visitor.visitSingularGroupField(value: v, fieldNumber: 17)
-      }
-      if let v = _storage._singularMessage {
+      } }()
+      try { if let v = _storage._singularMessage {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 19)
-      }
+      } }()
       if !_storage._repeatedInt32.isEmpty {
         try visitor.visitRepeatedInt32Field(value: _storage._repeatedInt32, fieldNumber: 31)
       }
@@ -3911,9 +4376,6 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       if !_storage._repeatedMessage.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._repeatedMessage, fieldNumber: 49)
       }
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch _storage._o {
       case .oneofInt32?: try {
         guard case .oneofInt32(let v)? = _storage._o else { preconditionFailure() }
@@ -3988,6 +4450,48 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
         try visitor.visitSingularMessageField(value: v, fieldNumber: 79)
       }()
       case nil: break
+      }
+      if !_storage._repeatedPackedInt32.isEmpty {
+        try visitor.visitPackedInt32Field(value: _storage._repeatedPackedInt32, fieldNumber: 81)
+      }
+      if !_storage._repeatedPackedInt64.isEmpty {
+        try visitor.visitPackedInt64Field(value: _storage._repeatedPackedInt64, fieldNumber: 82)
+      }
+      if !_storage._repeatedPackedUint32.isEmpty {
+        try visitor.visitPackedUInt32Field(value: _storage._repeatedPackedUint32, fieldNumber: 83)
+      }
+      if !_storage._repeatedPackedUint64.isEmpty {
+        try visitor.visitPackedUInt64Field(value: _storage._repeatedPackedUint64, fieldNumber: 84)
+      }
+      if !_storage._repeatedPackedSint32.isEmpty {
+        try visitor.visitPackedSInt32Field(value: _storage._repeatedPackedSint32, fieldNumber: 85)
+      }
+      if !_storage._repeatedPackedSint64.isEmpty {
+        try visitor.visitPackedSInt64Field(value: _storage._repeatedPackedSint64, fieldNumber: 86)
+      }
+      if !_storage._repeatedPackedFixed32.isEmpty {
+        try visitor.visitPackedFixed32Field(value: _storage._repeatedPackedFixed32, fieldNumber: 87)
+      }
+      if !_storage._repeatedPackedFixed64.isEmpty {
+        try visitor.visitPackedFixed64Field(value: _storage._repeatedPackedFixed64, fieldNumber: 88)
+      }
+      if !_storage._repeatedPackedSfixed32.isEmpty {
+        try visitor.visitPackedSFixed32Field(value: _storage._repeatedPackedSfixed32, fieldNumber: 89)
+      }
+      if !_storage._repeatedPackedSfixed64.isEmpty {
+        try visitor.visitPackedSFixed64Field(value: _storage._repeatedPackedSfixed64, fieldNumber: 90)
+      }
+      if !_storage._repeatedPackedFloat.isEmpty {
+        try visitor.visitPackedFloatField(value: _storage._repeatedPackedFloat, fieldNumber: 91)
+      }
+      if !_storage._repeatedPackedDouble.isEmpty {
+        try visitor.visitPackedDoubleField(value: _storage._repeatedPackedDouble, fieldNumber: 92)
+      }
+      if !_storage._repeatedPackedBool.isEmpty {
+        try visitor.visitPackedBoolField(value: _storage._repeatedPackedBool, fieldNumber: 93)
+      }
+      if !_storage._repeatedPackedEnum.isEmpty {
+        try visitor.visitPackedEnumField(value: _storage._repeatedPackedEnum, fieldNumber: 94)
       }
       if !_storage._mapInt32Int32.isEmpty {
         try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt32,SwiftProtobuf.ProtobufInt32>.self, value: _storage._mapInt32Int32, fieldNumber: 100)
@@ -4550,59 +5054,65 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
       if !_storage._mapBoolMessage.isEmpty {
         try visitor.visitMapField(fieldType: SwiftProtobuf._ProtobufMessageMap<SwiftProtobuf.ProtobufBool,Fuzz_Testing_Message>.self, value: _storage._mapBoolMessage, fieldNumber: 286)
       }
-      if let v = _storage._wktAny {
+      try { if let v = _storage._wktAny {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 500)
-      }
-      if let v = _storage._wktApi {
+      } }()
+      try { if let v = _storage._wktApi {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 501)
-      }
-      if let v = _storage._wktDuration {
+      } }()
+      try { if let v = _storage._wktDuration {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 502)
-      }
-      if let v = _storage._wktEmpty {
+      } }()
+      try { if let v = _storage._wktEmpty {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 503)
-      }
-      if let v = _storage._wktFieldMask {
+      } }()
+      try { if let v = _storage._wktFieldMask {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 504)
-      }
-      if let v = _storage._wktSourceContext {
+      } }()
+      try { if let v = _storage._wktSourceContext {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 505)
-      }
-      if let v = _storage._wktStruct {
+      } }()
+      try { if let v = _storage._wktStruct {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 506)
-      }
-      if let v = _storage._wktTimestamp {
+      } }()
+      try { if let v = _storage._wktTimestamp {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 507)
-      }
-      if let v = _storage._wktType {
+      } }()
+      try { if let v = _storage._wktType {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 508)
-      }
-      if let v = _storage._wktDoubleValue {
+      } }()
+      try { if let v = _storage._wktDoubleValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 509)
-      }
-      if let v = _storage._wktFloatValue {
+      } }()
+      try { if let v = _storage._wktFloatValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 510)
-      }
-      if let v = _storage._wktInt64Value {
+      } }()
+      try { if let v = _storage._wktInt64Value {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 511)
-      }
-      if let v = _storage._wktUint64Value {
+      } }()
+      try { if let v = _storage._wktUint64Value {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 512)
-      }
-      if let v = _storage._wktInt32Value {
+      } }()
+      try { if let v = _storage._wktInt32Value {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 513)
-      }
-      if let v = _storage._wktUint32Value {
+      } }()
+      try { if let v = _storage._wktUint32Value {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 514)
-      }
-      if let v = _storage._wktBoolValue {
+      } }()
+      try { if let v = _storage._wktBoolValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 515)
-      }
-      if let v = _storage._wktStringValue {
+      } }()
+      try { if let v = _storage._wktStringValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 516)
-      }
-      if let v = _storage._wktBytesValue {
+      } }()
+      try { if let v = _storage._wktBytesValue {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 517)
+      } }()
+      try { if let v = _storage._singularMessageSet {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 600)
+      } }()
+      if !_storage._repeatedMessageSet.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._repeatedMessageSet, fieldNumber: 601)
       }
       try visitor.visitExtensionFields(fields: _protobuf_extensionFieldValues, start: 1000, end: 2001)
     }
@@ -4651,6 +5161,20 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
         if _storage._repeatedGroup != rhs_storage._repeatedGroup {return false}
         if _storage._repeatedMessage != rhs_storage._repeatedMessage {return false}
         if _storage._o != rhs_storage._o {return false}
+        if _storage._repeatedPackedInt32 != rhs_storage._repeatedPackedInt32 {return false}
+        if _storage._repeatedPackedInt64 != rhs_storage._repeatedPackedInt64 {return false}
+        if _storage._repeatedPackedUint32 != rhs_storage._repeatedPackedUint32 {return false}
+        if _storage._repeatedPackedUint64 != rhs_storage._repeatedPackedUint64 {return false}
+        if _storage._repeatedPackedSint32 != rhs_storage._repeatedPackedSint32 {return false}
+        if _storage._repeatedPackedSint64 != rhs_storage._repeatedPackedSint64 {return false}
+        if _storage._repeatedPackedFixed32 != rhs_storage._repeatedPackedFixed32 {return false}
+        if _storage._repeatedPackedFixed64 != rhs_storage._repeatedPackedFixed64 {return false}
+        if _storage._repeatedPackedSfixed32 != rhs_storage._repeatedPackedSfixed32 {return false}
+        if _storage._repeatedPackedSfixed64 != rhs_storage._repeatedPackedSfixed64 {return false}
+        if _storage._repeatedPackedFloat != rhs_storage._repeatedPackedFloat {return false}
+        if _storage._repeatedPackedDouble != rhs_storage._repeatedPackedDouble {return false}
+        if _storage._repeatedPackedBool != rhs_storage._repeatedPackedBool {return false}
+        if _storage._repeatedPackedEnum != rhs_storage._repeatedPackedEnum {return false}
         if _storage._mapInt32Int32 != rhs_storage._mapInt32Int32 {return false}
         if _storage._mapInt32Int64 != rhs_storage._mapInt32Int64 {return false}
         if _storage._mapInt32Uint32 != rhs_storage._mapInt32Uint32 {return false}
@@ -4856,6 +5380,8 @@ extension Fuzz_Testing_Message: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
         if _storage._wktBoolValue != rhs_storage._wktBoolValue {return false}
         if _storage._wktStringValue != rhs_storage._wktStringValue {return false}
         if _storage._wktBytesValue != rhs_storage._wktBytesValue {return false}
+        if _storage._singularMessageSet != rhs_storage._singularMessageSet {return false}
+        if _storage._repeatedMessageSet != rhs_storage._repeatedMessageSet {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -4885,9 +5411,13 @@ extension Fuzz_Testing_Message.SingularGroup: SwiftProtobuf.Message, SwiftProtob
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._groupField {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._groupField {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 18)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -4917,9 +5447,13 @@ extension Fuzz_Testing_Message.RepeatedGroup: SwiftProtobuf.Message, SwiftProtob
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._groupField {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._groupField {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 48)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -4949,15 +5483,44 @@ extension Fuzz_Testing_Message.OneofGroup: SwiftProtobuf.Message, SwiftProtobuf.
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._groupField {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._groupField {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 78)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Fuzz_Testing_Message.OneofGroup, rhs: Fuzz_Testing_Message.OneofGroup) -> Bool {
     if lhs._groupField != rhs._groupField {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Fuzz_Testing_AMessageSetMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".AMessageSetMessage"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  public var isInitialized: Bool {
+    if !_protobuf_extensionFieldValues.isInitialized {return false}
+    return true
+  }
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    try decoder.decodeExtensionFieldsAsMessageSet(values: &_protobuf_extensionFieldValues, messageType: Fuzz_Testing_AMessageSetMessage.self)
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try visitor.visitExtensionFieldsAsMessageSet(fields: _protobuf_extensionFieldValues, start: 4, end: 2147483647)
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Fuzz_Testing_AMessageSetMessage, rhs: Fuzz_Testing_AMessageSetMessage) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    if lhs._protobuf_extensionFieldValues != rhs._protobuf_extensionFieldValues {return false}
     return true
   }
 }
@@ -4981,9 +5544,13 @@ extension Fuzz_Testing_SingularGroup_ext: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._groupField {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._groupField {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 1018)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -5013,9 +5580,13 @@ extension Fuzz_Testing_RepeatedGroup_ext: SwiftProtobuf.Message, SwiftProtobuf._
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._groupField {
+    // The use of inline closures is to circumvent an issue where the compiler
+    // allocates stack space for every if/case branch local when no optimizations
+    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
+    // https://github.com/apple/swift-protobuf/issues/1182
+    try { if let v = self._groupField {
       try visitor.visitSingularInt32Field(value: v, fieldNumber: 1048)
-    }
+    } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
