@@ -52,6 +52,10 @@ struct BaseMessage: InternalSwiftProtobuf.ExtensibleMessage {
   var _protobuf_extensionFieldValues = InternalSwiftProtobuf.ExtensionFieldValueSet()
 }
 
+#if swift(>=5.5) && canImport(_Concurrency)
+extension BaseMessage: @unchecked Sendable {}
+#endif  // swift(>=5.5) && canImport(_Concurrency)
+
 // MARK: - Extension support defined in unittest_swift_naming_no_prefix.proto.
 
 // MARK: - Extension Properties

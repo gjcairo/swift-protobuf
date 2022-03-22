@@ -28,13 +28,13 @@ class FileGenerator {
         let ext = ".pb.swift"
         let pathParts = splitPath(pathname: fileDescriptor.name)
         switch generatorOptions.outputNaming {
-        case .FullPath:
+        case .fullPath:
             return pathParts.dir + pathParts.base + ext
-        case .PathToUnderscores:
+        case .pathToUnderscores:
             let dirWithUnderscores =
                 pathParts.dir.replacingOccurrences(of: "/", with: "_")
             return dirWithUnderscores + pathParts.base + ext
-        case .DropPath:
+        case .dropPath:
             return pathParts.base + ext
         }
     }
@@ -138,6 +138,21 @@ class FileGenerator {
               p.print(caseIterablePrinter.content)
               p.print("\n#endif  // swift(>=4.2)\n")
             }
+        }
+
+        var sendablePrinter = CodePrinter()
+        for e in enums {
+            e.generateSendable(printer: &sendablePrinter)
+        }
+
+        for m in messages {
+            m.generateSendable(printer: &sendablePrinter)
+        }
+
+        if !sendablePrinter.isEmpty {
+            p.print("\n#if swift(>=5.5) && canImport(_Concurrency)\n")
+            p.print(sendablePrinter.content)
+            p.print("#endif  // swift(>=5.5) && canImport(_Concurrency)\n")
         }
 
         if !extensionSet.isEmpty {

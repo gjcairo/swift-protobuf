@@ -84,7 +84,7 @@ $ protoc \
 _NOTE:_ protoc 3.2.0 does not recognize `--swift_opt` if you rely on
 `protoc-gen-swift` being found on the `PATH`. To work around this, you need to
 explicitly add the argument `--plugin=[PATH-TO-protoc-gen-swift]` to the
-command line, then the `--swift-opt` argument will be understood.  If you are
+command line, then the `--swift_opt` argument will be understood.  If you are
 using protoc 3.2.1 or later, then this workaround is _not_ needed.
 
 ##### Generation Option: `FileNaming` - Naming of Generated Sources
@@ -93,7 +93,7 @@ By default, the paths to the proto files are maintained on the
 generated files.  So if you pass `foo/bar/my.proto`, you will get
 `foo/bar/my.pb.swift` in the output directory. The Swift plugin
 supports an option to control the generated file names, the option is
-given as part of the `--swift_out` argument like this:
+given as part of the `--swift_opt` argument like this:
 
 ```
 $ protoc --swift_opt=FileNaming=[value] --swift_out=. foo/bar/*.proto mumble/*.proto
