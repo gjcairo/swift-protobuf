@@ -54,7 +54,7 @@ GOOGLE_PROTOBUF_CHECKOUT?=../protobuf
 PROTOC_GEN_SWIFT=.build/debug/protoc-gen-swift
 GENERATE_SRCS_BASE=${PROTOC} --plugin=protoc-gen-tfiws=${PROTOC_GEN_SWIFT}
 # Until the flag isn't needed, add the flag to enable proto3 optional.
-GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional
+GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional --tfiws_opt=SwiftProtobufModuleName=InternalSwiftProtobuf
 
 # Where to find the Swift conformance test runner executable.
 SWIFT_CONFORMANCE_PLUGIN=.build/debug/Conformance
