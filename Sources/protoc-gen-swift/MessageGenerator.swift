@@ -194,6 +194,27 @@ class MessageGenerator {
     }
   }
 
+  func generateSendable(printer p: inout CodePrinter) {
+    // Once our minimum supported version has Data be Sendable, @unchecked
+    // will not be needed for all messages, provided that the extension types
+    // in the library are marked Sendable.
+    //
+    // Messages that have a storage class will always need @unchecked.
+    p.print("extension \(swiftFullName): @unchecked Sendable {}\n")
+
+    for o in oneofs {
+      o.generateSendable(printer: &p)
+    }
+
+    for e in enums {
+      e.generateSendable(printer: &p)
+    }
+
+    for m in messages {
+      m.generateSendable(printer: &p)
+    }
+  }
+
   func generateRuntimeSupport(printer p: inout CodePrinter, file: FileGenerator, parent: MessageGenerator?) {
     p.print(
         "\n",
@@ -279,8 +300,12 @@ class MessageGenerator {
       generateWithLifetimeExtension(printer: &p, throws: true) { p in
         p.print("while let \(varName) = try decoder.nextFieldNumber() {\n")
         p.indent()
-        if !fields.isEmpty {
-
+        // If a message only has extensions and there are multiple extension
+        // ranges, get more compact source gen by still using the `switch..case`
+        // code. This also avoids typechecking performance issues if there are
+        // dozens of ranges because we aren't constructing a single large
+        // expression containing untyped integer literals.
+        if !fields.isEmpty || descriptor.extensionRanges.count > 3 {
           p.print(
               "// The use of inline closures is to circumvent an issue where the compiler\n",
               "// allocates stack space for every case branch when no optimizations are\n",
@@ -295,7 +320,8 @@ class MessageGenerator {
             p.print("try { try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: \(swiftFullName).self, fieldNumber: fieldNumber) }()\n")
             p.outdent()
           }
-          p.print("default: break\n")
+          p.print("default: break\n",
+                  "}\n")
         } else if isExtensible {
           // Just output a simple if-statement if the message had no fields of its
           // own but we still need to generate a decode statement for extensions.
@@ -303,9 +329,6 @@ class MessageGenerator {
           p.indent()
           p.print("try decoder.decodeExtensionField(values: &_protobuf_extensionFieldValues, messageType: \(swiftFullName).self, fieldNumber: fieldNumber)\n")
           p.outdent()
-          p.print("}\n")
-        }
-        if !fields.isEmpty {
           p.print("}\n")
         }
         p.outdent()
@@ -340,7 +363,10 @@ class MessageGenerator {
           "// https://github.com/apple/swift-protobuf/issues/1182\n")
       }
 
-      var ranges = descriptor.normalizedExtensionRanges.makeIterator()
+      // Use the "ambitious" ranges because for visit because subranges with no
+      // intermixed fields can be merged to reduce the number of calls for
+      // extension visitation.
+      var ranges = descriptor.ambitiousExtensionRanges.makeIterator()
       var nextRange = ranges.next()
       for f in fieldsSortedByNumber {
         while nextRange != nil && Int(nextRange!.start) < f.number {

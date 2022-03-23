@@ -4381,6 +4381,10 @@ struct ProtobufUnittestGenerated_GeneratedSwiftReservedFields {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
+#if swift(>=5.5) && canImport(_Concurrency)
+extension ProtobufUnittestGenerated_GeneratedSwiftReservedFields: @unchecked Sendable {}
+#endif  // swift(>=5.5) && canImport(_Concurrency)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "protobuf_unittest_generated"
@@ -9251,9 +9255,6 @@ extension ProtobufUnittestGenerated_GeneratedSwiftReservedFields: InternalSwiftP
       }
       if _storage._internalSwiftProtobuf != 0 {
         try visitor.visitSingularInt32Field(value: _storage._internalSwiftProtobuf, fieldNumber: 451)
-      }
-      if _storage._internalSwiftProtobuf != 0 {
-        try visitor.visitSingularInt32Field(value: _storage._internalSwiftProtobuf, fieldNumber: 450)
       }
       if _storage._into != 0 {
         try visitor.visitSingularInt32Field(value: _storage._into, fieldNumber: 452)
