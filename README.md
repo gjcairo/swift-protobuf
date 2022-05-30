@@ -17,6 +17,10 @@ This framework differs from the upstream open source framework in a few notable 
 - its name is different. Specifically, this framework is named `InternalSwiftProtobuf` instead of `SwiftProtobuf`
 - it's compiled for distribution, and disables any inlining, to improve severability between library and adopter
 
+## Git Tagging Strategy
+
+The `'Internal/<x>'` tags reflect the code as submitted to B&I and are included in the OS. That is, if you run `xbs find projectversions SwiftProtobuf` you can find the version submitted to the OS, that corresponds to a specific `Internal/`-prefixed tag. The tags without the `'Internal'` prefix are identical to the tags that exist in the public repository.
+
 # Usage
 
 SwiftProtobuf is Open Source Software so you'll need that approved by Legal first.  You can request that through [https://legal.apple.com/jira/servicedesk/customer/portal/10](https://legal.apple.com/jira/servicedesk/customer/portal/10).
