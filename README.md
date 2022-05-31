@@ -39,7 +39,7 @@ It is expected that if going through B&I you will checkin your generated code ra
 
 To run the protocol compiler in a way which will work with the renamed module supply use as follows
 
-`protoc --swift_out=SwiftProtobufModuleName=InternalSwiftProtobuf`
+`protoc --swift_opt=SwiftProtobufModuleName=InternalSwiftProtobuf`
 
 DT are considering supplying a protocol compiler as part of Xcode.  See 
 
