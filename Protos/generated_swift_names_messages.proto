@@ -461,6 +461,7 @@ message GeneratedSwiftReservedMessages {
   message intern { int32 intern = 1; }
   message Internal { int32 Internal = 1; }
   message InternalState { int32 InternalState = 1; }
+  message InternalSwiftProtobuf { int32 InternalSwiftProtobuf = 1; }
   message into { int32 into = 1; }
   message ints { int32 ints = 1; }
   message isA { int32 isA = 1; }
@@ -742,7 +743,6 @@ message GeneratedSwiftReservedMessages {
   message subVisitor { int32 subVisitor = 1; }
   message Swift { int32 Swift = 1; }
   message swiftPrefix { int32 swiftPrefix = 1; }
-  message SwiftProtobuf { int32 SwiftProtobuf = 1; }
   message syntax { int32 syntax = 1; }
   message T { int32 T = 1; }
   message tag { int32 tag = 1; }

@@ -1,0 +1,15 @@
+// Architectures
+SDKROOT = iphoneos.internal
+
+// Build Options
+BUILD_LIBRARY_FOR_DISTRIBUTION = YES
+SUPPORTS_TEXT_BASED_API = YES
+SWIFT_INSTALL_OBJC_HEADER = NO
+
+// Packaging
+PRODUCT_BUNDLE_IDENTIFIER = com.apple.InternalSwiftProtobuf
+PRODUCT_MODULE_NAME = InternalSwiftProtobuf
+PRODUCT_NAME = InternalSwiftProtobuf
+
+// Deployment
+INSTALL_PATH = $(SYSTEM_LIBRARY_DIR)/PrivateFrameworks
