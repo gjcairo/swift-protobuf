@@ -17,10 +17,6 @@ This framework differs from the upstream open source framework in a few notable 
 - its name is different. Specifically, this framework is named `InternalSwiftProtobuf` instead of `SwiftProtobuf`
 - it's compiled for distribution, and disables any inlining, to improve severability between library and adopter
 
-## Git Tagging Strategy
-
-The `'Internal/<x>'` tags reflect the code as submitted to B&I and are included in the OS. That is, if you run `xbs find projectversions SwiftProtobuf` you can find the version submitted to the OS, that corresponds to a specific `Internal/`-prefixed tag. The tags without the `'Internal'` prefix are identical to the tags that exist in the public repository.
-
 # Usage
 
 SwiftProtobuf is Open Source Software so you'll need that approved by Legal first.  You can request that through [https://legal.apple.com/jira/servicedesk/customer/portal/10](https://legal.apple.com/jira/servicedesk/customer/portal/10).
@@ -39,7 +35,7 @@ It is expected that if going through B&I you will checkin your generated code ra
 
 To run the protocol compiler in a way which will work with the renamed module supply use as follows
 
-`protoc --swift_opt=SwiftProtobufModuleName=InternalSwiftProtobuf`
+`protoc --swift_out=SwiftProtobufModuleName=InternalSwiftProtobuf`
 
 DT are considering supplying a protocol compiler as part of Xcode.  See 
 
