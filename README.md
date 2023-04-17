@@ -23,9 +23,7 @@ SwiftProtobuf is Open Source Software so you'll need that approved by Legal firs
 
 ## Library
 
-The library is available for **internal** Swift code on the OS to use as a runtime library.  It is located at `/System/Library/PrivateFrameworks/InternalSwiftProtobuf.framework`.  
-
-Note the current Apple-Internal requirement that prevents framework-to-framework swift dependencies. For the time being, only leaf node binaries may link this framework. This is a B&I / perf policy decision, see more at [https://confluence.sd.apple.com/pages/viewpage.action?pageId=139998422](https://confluence.sd.apple.com/pages/viewpage.action?pageId=139998422) / [http://adoptswift.apple.com](http://adoptswift.apple.com)
+The library is available for **internal** Swift code on the OS to use as a runtime library.  It is located at `/System/Library/PrivateFrameworks/InternalSwiftProtobuf.framework`.
 
 The library mirrors the open source version but the module name has been changed to `InternalSwiftProtobuf` to avoid conflicts with anyone using the actual open source version as well.
 
