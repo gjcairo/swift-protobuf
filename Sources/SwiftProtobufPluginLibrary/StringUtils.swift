@@ -10,12 +10,12 @@
 
 import Foundation
 
-@inlinable
+//@inlinable
 func trimWhitespace(_ s: String) -> String {
   return s.trimmingCharacters(in: .whitespacesAndNewlines)
 }
 
-@inlinable
+//@inlinable
 func trimWhitespace(_ s: String.SubSequence) -> String {
   return s.trimmingCharacters(in: .whitespacesAndNewlines)
 }

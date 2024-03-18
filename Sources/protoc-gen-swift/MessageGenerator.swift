@@ -16,7 +16,7 @@
 
 import Foundation
 import SwiftProtobufPluginLibrary
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 class MessageGenerator {
   private let descriptor: Descriptor

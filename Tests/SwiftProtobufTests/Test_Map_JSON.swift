@@ -16,7 +16,7 @@
 
 import Foundation
 import XCTest
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 // TODO: Testing encoding needs some help, since the order of
 // entries isn't well-defined.

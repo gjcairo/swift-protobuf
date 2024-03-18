@@ -106,7 +106,7 @@ extension Message {
   ///     `BinaryDecodingError.missingRequiredFields`.
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
-  @inlinable
+//  @inlinable
   public init(
     serializedData data: Data,
     extensions: ExtensionMap? = nil,
@@ -136,7 +136,7 @@ extension Message {
   ///     `BinaryEncodingError.missingRequiredFields`.
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
-  @inlinable
+//  @inlinable
   public init<Bytes: ContiguousBytes>(
     contiguousBytes bytes: Bytes,
     extensions: ExtensionMap? = nil,
@@ -166,7 +166,7 @@ extension Message {
   ///     `BinaryEncodingError.missingRequiredFields`.
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
-  @inlinable
+//  @inlinable
   public mutating func merge(
     serializedData data: Data,
     extensions: ExtensionMap? = nil,
@@ -202,7 +202,7 @@ extension Message {
   ///     `BinaryDecodingError.missingRequiredFields`.
   ///   - options: The BinaryDecodingOptions to use.
   /// - Throws: `BinaryDecodingError` if decoding fails.
-  @inlinable
+//  @inlinable
   public mutating func merge<Bytes: ContiguousBytes>(
     contiguousBytes bytes: Bytes,
     extensions: ExtensionMap? = nil,

@@ -20,7 +20,7 @@
 // -----------------------------------------------------------------------------
 
 import Foundation
-import SwiftProtobuf
+import InternalSwiftProtobuf
 import SwiftProtobufPluginLibrary
 
 struct GeneratorPlugin: CodeGenerator {
@@ -52,7 +52,7 @@ struct GeneratorPlugin: CodeGenerator {
     .proto3Optional,
   ]
 
-  var version: String? { return "\(SwiftProtobuf.Version.versionString)" }
+  var version: String? { return "\(InternalSwiftProtobuf.Version.versionString)" }
   var copyrightLine: String? { return "\(Version.copyright)" }
   var projectURL: String? { return "https://github.com/apple/swift-protobuf" }
 

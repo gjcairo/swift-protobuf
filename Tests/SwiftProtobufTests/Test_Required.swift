@@ -30,7 +30,7 @@
 import Foundation
 import XCTest
 
-import SwiftProtobuf
+import InternalSwiftProtobuf
 
 class Test_Required: XCTestCase, PBTestHelpers {
     typealias MessageTestType = ProtobufUnittest_TestAllRequiredTypes
