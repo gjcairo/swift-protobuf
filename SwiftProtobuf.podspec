@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftProtobuf'
-  s.version = '1.20.2'
+  s.version = '1.25.2'
   s.license = { :type => 'Apache 2.0', :file => 'LICENSE.txt' }
   s.summary = 'Swift Protobuf code generator plugin and runtime library'
   s.homepage = 'https://github.com/apple/swift-protobuf'
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   s.ios.deployment_target = '9.0'
-  s.osx.deployment_target = '10.9'
+  s.osx.deployment_target = '10.11'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 

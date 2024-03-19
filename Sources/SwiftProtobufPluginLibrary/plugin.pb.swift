@@ -9,33 +9,10 @@
 
 // Protocol Buffers - Google's data interchange format
 // Copyright 2008 Google Inc.  All rights reserved.
-// https://developers.google.com/protocol-buffers/
 //
-// Redistribution and use in source and binary forms, with or without
-// modification, are permitted provided that the following conditions are
-// met:
-//
-//     * Redistributions of source code must retain the above copyright
-// notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above
-// copyright notice, this list of conditions and the following disclaimer
-// in the documentation and/or other materials provided with the
-// distribution.
-//     * Neither the name of Google Inc. nor the names of its
-// contributors may be used to endorse or promote products derived from
-// this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file or at
+// https://developers.google.com/open-source/licenses/bsd
 
 // Author: kenton@google.com (Kenton Varda)
 //
@@ -142,6 +119,11 @@ public struct Google_Protobuf_Compiler_CodeGeneratorRequest {
   /// they import.  The files will appear in topological order, so each file
   /// appears before any file that imports it.
   ///
+  /// Note: the files listed in files_to_generate will include runtime-retention
+  /// options only, but all other files will include source-retention options.
+  /// The source_file_descriptors field below is available in case you need
+  /// source-retention options for files_to_generate.
+  ///
   /// protoc guarantees that all proto_files will be written after
   /// the fields above, even though this is not technically guaranteed by the
   /// protobuf wire format.  This theoretically could allow a plugin to stream
@@ -153,6 +135,11 @@ public struct Google_Protobuf_Compiler_CodeGeneratorRequest {
   /// Type names of fields and extensions in the FileDescriptorProto are always
   /// fully qualified.
   public var protoFile: [InternalSwiftProtobuf.Google_Protobuf_FileDescriptorProto] = []
+
+  /// File descriptors with all options, including source-retention options.
+  /// These descriptors are only provided for the files listed in
+  /// files_to_generate.
+  public var sourceFileDescriptors: [InternalSwiftProtobuf.Google_Protobuf_FileDescriptorProto] = []
 
   /// The version number of protocol compiler.
   public var compilerVersion: Google_Protobuf_Compiler_Version {
@@ -215,6 +202,7 @@ public struct Google_Protobuf_Compiler_CodeGeneratorResponse {
     public typealias RawValue = Int
     case none // = 0
     case proto3Optional // = 1
+    case supportsEditions // = 2
 
     public init() {
       self = .none
@@ -224,6 +212,7 @@ public struct Google_Protobuf_Compiler_CodeGeneratorResponse {
       switch rawValue {
       case 0: self = .none
       case 1: self = .proto3Optional
+      case 2: self = .supportsEditions
       default: return nil
       }
     }
@@ -232,6 +221,7 @@ public struct Google_Protobuf_Compiler_CodeGeneratorResponse {
       switch self {
       case .none: return 0
       case .proto3Optional: return 1
+      case .supportsEditions: return 2
       }
     }
 
@@ -427,11 +417,13 @@ extension Google_Protobuf_Compiler_CodeGeneratorRequest: InternalSwiftProtobuf.M
     1: .standard(proto: "file_to_generate"),
     2: .same(proto: "parameter"),
     15: .standard(proto: "proto_file"),
+    17: .standard(proto: "source_file_descriptors"),
     3: .standard(proto: "compiler_version"),
   ]
 
   public var isInitialized: Bool {
     if !InternalSwiftProtobuf.Internal.areAllInitialized(self.protoFile) {return false}
+    if !InternalSwiftProtobuf.Internal.areAllInitialized(self.sourceFileDescriptors) {return false}
     return true
   }
 
@@ -445,6 +437,7 @@ extension Google_Protobuf_Compiler_CodeGeneratorRequest: InternalSwiftProtobuf.M
       case 2: try { try decoder.decodeSingularStringField(value: &self._parameter) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._compilerVersion) }()
       case 15: try { try decoder.decodeRepeatedMessageField(value: &self.protoFile) }()
+      case 17: try { try decoder.decodeRepeatedMessageField(value: &self.sourceFileDescriptors) }()
       default: break
       }
     }
@@ -467,6 +460,9 @@ extension Google_Protobuf_Compiler_CodeGeneratorRequest: InternalSwiftProtobuf.M
     if !self.protoFile.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.protoFile, fieldNumber: 15)
     }
+    if !self.sourceFileDescriptors.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.sourceFileDescriptors, fieldNumber: 17)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -474,6 +470,7 @@ extension Google_Protobuf_Compiler_CodeGeneratorRequest: InternalSwiftProtobuf.M
     if lhs.fileToGenerate != rhs.fileToGenerate {return false}
     if lhs._parameter != rhs._parameter {return false}
     if lhs.protoFile != rhs.protoFile {return false}
+    if lhs.sourceFileDescriptors != rhs.sourceFileDescriptors {return false}
     if lhs._compilerVersion != rhs._compilerVersion {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -532,6 +529,7 @@ extension Google_Protobuf_Compiler_CodeGeneratorResponse.Feature: InternalSwiftP
   public static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "FEATURE_NONE"),
     1: .same(proto: "FEATURE_PROTO3_OPTIONAL"),
+    2: .same(proto: "FEATURE_SUPPORTS_EDITIONS"),
   ]
 }
 

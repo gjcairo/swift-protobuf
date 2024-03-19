@@ -52,7 +52,7 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: InternalSwiftProtobuf.Pr
 /// `NullValue` is a singleton enumeration to represent the null value for the
 /// `Value` type union.
 ///
-///  The JSON representation for `NullValue` is JSON `null`.
+/// The JSON representation for `NullValue` is JSON `null`.
 public enum Google_Protobuf_NullValue: InternalSwiftProtobuf.Enum {
   public typealias RawValue = Int
 
@@ -84,7 +84,7 @@ public enum Google_Protobuf_NullValue: InternalSwiftProtobuf.Enum {
 
 extension Google_Protobuf_NullValue: CaseIterable {
   // The compiler won't synthesize support with the UNRECOGNIZED case.
-  public static var allCases: [Google_Protobuf_NullValue] = [
+  public static let allCases: [Google_Protobuf_NullValue] = [
     .nullValue,
   ]
 }

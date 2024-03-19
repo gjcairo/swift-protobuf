@@ -1,4 +1,4 @@
-# To generate the descriptor set.
+# To generate the data set.
 #   FuzzTesting/make_FuzzBinary_dict Protos/fuzz_testing.proto
 
 # Tags for all the fields

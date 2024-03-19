@@ -124,6 +124,8 @@ The possible values for `Visibility` are:
 
 * `Internal` (default): No visibility is set for the types, so they get the
   default internal visibility.
+* `Package` (Swift 5.9 or later required): The visibility on the types is set to
+ `package` so the types will be exposed across the whole Swift package they belong to.
 * `Public`: The visibility on the types is set to `public` so the types will
   be exposed outside the module they are compiled into.
 
@@ -160,6 +162,30 @@ mapping {
 
 The `proto_file_path` values here should match the paths used in the proto file
 `import` statements.
+
+
+##### Generation Option: `ImplementationOnlyImports` - `@_implementationOnly`-annotated imports
+
+By default, SwiftProtobuf does not annotate any imports with `@_implementationOnly`.
+However, in some scenarios, such as when distributing an `XCFramework`, imports 
+for types used only internally should be annotated as `@_implementationOnly` to 
+avoid exposing internal symbols to clients.
+You can change this with the `ImplementationOnlyImports` option:
+
+```
+$ protoc --swift_opt=ImplementationOnlyImports=[value] --swift_out=. foo/bar/*.proto mumble/*.proto
+```
+
+The possible values for `ImplementationOnlyImports` are:
+
+* `false` (default): The `@_implementationOnly` annotation will never be used.
+* `true`: Imports of internal dependencies and any modules defined in the module
+mappings will be annotated as `@_implementationOnly`. 
+
+**Important:** Modules cannot be imported as implementation-only if they're 
+exposed via public API, so even if `ImplementationOnlyImports` is set to `true`,
+this will only work if the `Visibility` is set to `internal`.  
+
 
 ### Building your project
 

@@ -1,13 +1,13 @@
 diff --git a/Makefile b/Makefile
-index 0be6fef8..a28b03fa 100644
+index 5e9d642a..3f2a994d 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -54,7 +54,7 @@ GOOGLE_PROTOBUF_CHECKOUT?=../protobuf
  PROTOC_GEN_SWIFT=.build/debug/protoc-gen-swift
  GENERATE_SRCS_BASE=${PROTOC} --plugin=protoc-gen-tfiws=${PROTOC_GEN_SWIFT}
- # Until the flag isn't needed, add the flag to enable proto3 optional.
--GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional
-+GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos --experimental_allow_proto3_optional --tfiws_opt=SwiftProtobufModuleName=InternalSwiftProtobuf
- 
+ # Search 'Protos/SwiftProtobuf/' so the WKTs can be found (google/protobuf/*).
+-GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos/SwiftProtobuf
++GENERATE_SRCS=${GENERATE_SRCS_BASE} -I Protos/SwiftProtobuf --tfiws_opt=SwiftProtobufModuleName=InternalSwiftProtobuf
+
  # Where to find the Swift conformance test runner executable.
  SWIFT_CONFORMANCE_PLUGIN=.build/debug/Conformance

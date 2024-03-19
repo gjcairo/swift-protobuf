@@ -11,34 +11,63 @@
 import SwiftProtobufPluginLibrary
 
 class GeneratorOptions {
-  enum OutputNaming : String {
-    case fullPath = "FullPath"
-    case pathToUnderscores = "PathToUnderscores"
-    case dropPath = "DropPath"
+  enum OutputNaming {
+    case fullPath
+    case pathToUnderscores
+    case dropPath
+
+    init?(flag: String) {
+      switch flag.lowercased() {
+      case "fullpath", "full_path":
+        self = .fullPath
+      case "pathtounderscores", "path_to_underscores":
+        self = .pathToUnderscores
+      case "droppath", "drop_path":
+        self = .dropPath
+      default:
+        return nil
+      }
+    }
   }
 
-  enum Visibility : String {
-    case `internal` = "Internal"
-    case `public` = "Public"
+  enum Visibility {
+    case `internal`
+    case `public`
+    case `package`
+
+    init?(flag: String) {
+      switch flag.lowercased() {
+      case "internal":
+        self = .internal
+      case "public":
+        self = .public
+      case "package":
+        self = .package
+      default:
+        return nil
+      }
+    }
   }
 
   let outputNaming: OutputNaming
   let protoToModuleMappings: ProtoFileToModuleMappings
   let visibility: Visibility
+  let implementationOnlyImports: Bool
 
   /// A string snippet to insert for the visibility
   let visibilitySourceSnippet: String
 
-  init(parameter: String?) throws {
+  init(parameter: CodeGeneratorParameter) throws {
     var outputNaming: OutputNaming = .fullPath
     var moduleMapPath: String?
     var visibility: Visibility = .internal
     var swiftProtobufModuleName: String? = nil
+    var implementationOnlyImports: Bool = false
 
-    for pair in parseParameter(string:parameter) {
+    for pair in parameter.parsedPairs {
       switch pair.key {
       case "FileNaming":
-        if let naming = OutputNaming(rawValue: pair.value) {
+        if let naming = OutputNaming(flag: pair.value) {
           outputNaming = naming
         } else {
           throw GenerationError.invalidParameterValue(name: pair.key,
@@ -49,7 +78,7 @@ class GeneratorOptions {
           moduleMapPath = pair.value
         }
       case "Visibility":
-        if let value = Visibility(rawValue: pair.value) {
+        if let value = Visibility(flag: pair.value) {
           visibility = value
         } else {
           throw GenerationError.invalidParameterValue(name: pair.key,
@@ -60,6 +89,13 @@ class GeneratorOptions {
         // that would ordinarily not be required for a given adopter.
         if isValidSwiftIdentifier(pair.value) {
           swiftProtobufModuleName = pair.value
+        } else {
+          throw GenerationError.invalidParameterValue(name: pair.key,
+                                                      value: pair.value)
+        }
+      case "ImplementationOnlyImports":
+        if let value = Bool(pair.value) {
+          implementationOnlyImports = value
         } else {
           throw GenerationError.invalidParameterValue(name: pair.key,
                                                       value: pair.value)
@@ -89,7 +125,10 @@ class GeneratorOptions {
       visibilitySourceSnippet = ""
     case .public:
       visibilitySourceSnippet = "public "
+    case .package:
+      visibilitySourceSnippet = "package "
     }
 
+    self.implementationOnlyImports = implementationOnlyImports
   }
 }
