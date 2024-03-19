@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F44F936E1DAEA53900BC5B85"
-               BuildableName = "SwiftProtobuf.framework"
+               BuildableName = "InternalSwiftProtobuf.framework"
                BlueprintName = "SwiftProtobuf_tvOS"
                ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F44F936E1DAEA53900BC5B85"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_tvOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F44F936E1DAEA53900BC5B85"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_tvOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F44F936E1DAEA53900BC5B85"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_tvOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>

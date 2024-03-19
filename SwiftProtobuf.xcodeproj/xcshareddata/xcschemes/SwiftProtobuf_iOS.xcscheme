@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD12FD351D767BA0001815C7"
-               BuildableName = "SwiftProtobuf.framework"
+               BuildableName = "InternalSwiftProtobuf.framework"
                BlueprintName = "SwiftProtobuf_iOS"
                ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD12FD351D767BA0001815C7"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_iOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD12FD351D767BA0001815C7"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_iOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BD12FD351D767BA0001815C7"
-            BuildableName = "SwiftProtobuf.framework"
+            BuildableName = "InternalSwiftProtobuf.framework"
             BlueprintName = "SwiftProtobuf_iOS"
             ReferencedContainer = "container:SwiftProtobuf.xcodeproj">
          </BuildableReference>
