@@ -2605,14 +2605,14 @@ struct SwiftUnittest_Names_FieldNames {
   /// Clears the value of `timeRecord`. Subsequent reads from it will return its default value.
   mutating func clearTimeRecord() {_uniqueStorage()._timeRecord = nil}
 
-  var jsonShouldBeOverriden: Int32 {
-    get {return _storage._jsonShouldBeOverriden ?? 0}
-    set {_uniqueStorage()._jsonShouldBeOverriden = newValue}
+  var jsonShouldBeOverridden: Int32 {
+    get {return _storage._jsonShouldBeOverridden ?? 0}
+    set {_uniqueStorage()._jsonShouldBeOverridden = newValue}
   }
-  /// Returns true if `jsonShouldBeOverriden` has been explicitly set.
-  var hasJsonShouldBeOverriden: Bool {return _storage._jsonShouldBeOverriden != nil}
-  /// Clears the value of `jsonShouldBeOverriden`. Subsequent reads from it will return its default value.
-  mutating func clearJsonShouldBeOverriden() {_uniqueStorage()._jsonShouldBeOverriden = nil}
+  /// Returns true if `jsonShouldBeOverridden` has been explicitly set.
+  var hasJsonShouldBeOverridden: Bool {return _storage._jsonShouldBeOverridden != nil}
+  /// Clears the value of `jsonShouldBeOverridden`. Subsequent reads from it will return its default value.
+  mutating func clearJsonShouldBeOverridden() {_uniqueStorage()._jsonShouldBeOverridden = nil}
 
   var any: Int32 {
     get {return _storage._any ?? 0}
@@ -2952,7 +2952,7 @@ struct SwiftUnittest_Names_MessageNames {
     fileprivate var _debugDescription_p: Int32? = nil
   }
 
-  struct Swift {
+  struct SwiftMessage {
     // InternalSwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -7474,7 +7474,7 @@ struct SwiftUnittest_Names_EnumNames {
 
   }
 
-  enum Swift: InternalSwiftProtobuf.Enum {
+  enum SwiftEnum: InternalSwiftProtobuf.Enum {
     typealias RawValue = Int
     case aSwift // = 0
 
@@ -12161,7 +12161,7 @@ extension SwiftUnittest_Names_EnumNames.debugDescriptionEnum: CaseIterable {
   // Support synthesized by the compiler.
 }
 
-extension SwiftUnittest_Names_EnumNames.Swift: CaseIterable {
+extension SwiftUnittest_Names_EnumNames.SwiftEnum: CaseIterable {
   // Support synthesized by the compiler.
 }
 
@@ -13869,7 +13869,7 @@ extension SwiftUnittest_Names_MessageNames.UIntMessage: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.hashValueMessage: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.descriptionMessage: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.debugDescriptionMessage: @unchecked Sendable {}
-extension SwiftUnittest_Names_MessageNames.Swift: @unchecked Sendable {}
+extension SwiftUnittest_Names_MessageNames.SwiftMessage: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.UNRECOGNIZED: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.classMessage: @unchecked Sendable {}
 extension SwiftUnittest_Names_MessageNames.deinitMessage: @unchecked Sendable {}
@@ -14084,7 +14084,7 @@ extension SwiftUnittest_Names_EnumNames.UIntEnum: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.hashValueEnum: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.descriptionEnum: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.debugDescriptionEnum: @unchecked Sendable {}
-extension SwiftUnittest_Names_EnumNames.Swift: @unchecked Sendable {}
+extension SwiftUnittest_Names_EnumNames.SwiftEnum: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.UNRECOGNIZED: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.classEnum: @unchecked Sendable {}
 extension SwiftUnittest_Names_EnumNames.deinitEnum: @unchecked Sendable {}
@@ -16974,7 +16974,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
     241: .same(proto: "TimeScale"),
     242: .same(proto: "TimeBase"),
     243: .same(proto: "TimeRecord"),
-    244: .unique(proto: "json_should_be_overriden", json: "json_was_overridden"),
+    244: .unique(proto: "json_should_be_overridden", json: "json_was_overridden"),
     245: .same(proto: "Any"),
     246: .same(proto: "Int32"),
     247: .same(proto: "Int64"),
@@ -17199,7 +17199,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
     var _timeScale: Int32? = nil
     var _timeBase: Int32? = nil
     var _timeRecord: Int32? = nil
-    var _jsonShouldBeOverriden: Int32? = nil
+    var _jsonShouldBeOverridden: Int32? = nil
     var _any: Int32? = nil
     var _int32: Int32? = nil
     var _int64: Int32? = nil
@@ -17427,7 +17427,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
       _timeScale = source._timeScale
       _timeBase = source._timeBase
       _timeRecord = source._timeRecord
-      _jsonShouldBeOverriden = source._jsonShouldBeOverriden
+      _jsonShouldBeOverridden = source._jsonShouldBeOverridden
       _any = source._any
       _int32 = source._int32
       _int64 = source._int64
@@ -17667,7 +17667,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
         case 241: try { try decoder.decodeSingularInt32Field(value: &_storage._timeScale) }()
         case 242: try { try decoder.decodeSingularInt32Field(value: &_storage._timeBase) }()
         case 243: try { try decoder.decodeSingularInt32Field(value: &_storage._timeRecord) }()
-        case 244: try { try decoder.decodeSingularInt32Field(value: &_storage._jsonShouldBeOverriden) }()
+        case 244: try { try decoder.decodeSingularInt32Field(value: &_storage._jsonShouldBeOverridden) }()
         case 245: try { try decoder.decodeSingularInt32Field(value: &_storage._any) }()
         case 246: try { try decoder.decodeSingularInt32Field(value: &_storage._int32) }()
         case 247: try { try decoder.decodeSingularInt32Field(value: &_storage._int64) }()
@@ -18313,7 +18313,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
       try { if let v = _storage._timeRecord {
         try visitor.visitSingularInt32Field(value: v, fieldNumber: 243)
       } }()
-      try { if let v = _storage._jsonShouldBeOverriden {
+      try { if let v = _storage._jsonShouldBeOverridden {
         try visitor.visitSingularInt32Field(value: v, fieldNumber: 244)
       } }()
       try { if let v = _storage._any {
@@ -18576,7 +18576,7 @@ extension SwiftUnittest_Names_FieldNames: InternalSwiftProtobuf.Message, Interna
         if _storage._timeScale != rhs_storage._timeScale {return false}
         if _storage._timeBase != rhs_storage._timeBase {return false}
         if _storage._timeRecord != rhs_storage._timeRecord {return false}
-        if _storage._jsonShouldBeOverriden != rhs_storage._jsonShouldBeOverriden {return false}
+        if _storage._jsonShouldBeOverridden != rhs_storage._jsonShouldBeOverridden {return false}
         if _storage._any != rhs_storage._any {return false}
         if _storage._int32 != rhs_storage._int32 {return false}
         if _storage._int64 != rhs_storage._int64 {return false}
@@ -18944,7 +18944,7 @@ extension SwiftUnittest_Names_MessageNames.debugDescriptionMessage: InternalSwif
   }
 }
 
-extension SwiftUnittest_Names_MessageNames.Swift: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
+extension SwiftUnittest_Names_MessageNames.SwiftMessage: InternalSwiftProtobuf.Message, InternalSwiftProtobuf._MessageImplementationBase, InternalSwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = SwiftUnittest_Names_MessageNames.protoMessageName + ".Swift"
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     1: .same(proto: "Swift"),
@@ -18973,7 +18973,7 @@ extension SwiftUnittest_Names_MessageNames.Swift: InternalSwiftProtobuf.Message,
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: SwiftUnittest_Names_MessageNames.Swift, rhs: SwiftUnittest_Names_MessageNames.Swift) -> Bool {
+  static func ==(lhs: SwiftUnittest_Names_MessageNames.SwiftMessage, rhs: SwiftUnittest_Names_MessageNames.SwiftMessage) -> Bool {
     if lhs._swift != rhs._swift {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
@@ -26397,7 +26397,7 @@ extension SwiftUnittest_Names_EnumNames.debugDescriptionEnum: InternalSwiftProto
   ]
 }
 
-extension SwiftUnittest_Names_EnumNames.Swift: InternalSwiftProtobuf._ProtoNameProviding {
+extension SwiftUnittest_Names_EnumNames.SwiftEnum: InternalSwiftProtobuf._ProtoNameProviding {
   static let _protobuf_nameMap: InternalSwiftProtobuf._NameMap = [
     0: .same(proto: "aSwift"),
   ]

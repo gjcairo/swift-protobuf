@@ -16,12 +16,13 @@
 
 import Foundation
 import XCTest
+import InternalSwiftProtobuf
 
 class Test_Enum: XCTestCase, PBTestHelpers {
     typealias MessageTestType = Proto3Unittest_TestAllTypes
 
     func testEqual() {
-        // The message from unittest.proto doens't exist in unittest_proto3.proto
+        // The message from unittest.proto doesn't exist in unittest_proto3.proto
     }
 
     func testJSONsingular() {
@@ -38,6 +39,28 @@ class Test_Enum: XCTestCase, PBTestHelpers {
         assertJSONEncode("{\"repeatedNestedEnum\":[\"FOO\",\"BAR\"]}") { (m: inout MessageTestType) in
             m.repeatedNestedEnum = [.foo, .bar]
         }
+    }
+
+    func testJSONdecodingOptions() {
+        var options = JSONDecodingOptions()
+
+        let json_with_unknown_enum_single = "{\"optionalNestedEnum\":\"NEW_VALUE\"}"
+        let json_with_unknown_enum_repeated = "{\"repeatedNestedEnum\":[\"FOO\",\"NEW_VALUE\", \"BAR\"]}"
+
+        options.ignoreUnknownFields = false
+        assertJSONDecodeFails(json_with_unknown_enum_single)
+        assertJSONDecodeFails(json_with_unknown_enum_repeated)
+
+        options.ignoreUnknownFields = true
+        assertJSONDecodeSucceeds(json_with_unknown_enum_single, options: options) { (m: MessageTestType) -> Bool in
+            // proto3 syntax, so the field should have the default value.
+            m.optionalNestedEnum == .zero
+        }
+        assertJSONDecodeSucceeds(json_with_unknown_enum_repeated, options: options) { (m: MessageTestType) -> Bool in
+          m.repeatedNestedEnum == [.foo, .bar]
+        }
+
+        // Proto3Unittest_TestAllTypes doesn't have a map<>, Test_Map_JSON covers this case.
     }
 
     func testUnknownValues() throws {
